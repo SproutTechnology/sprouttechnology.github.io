@@ -1,9 +1,13 @@
 import Logo from "../components/Logo"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full h-16 bg-gray-400 flex items-center p-2 shadow-xl">
-       <Logo/>
+    <nav className="w-full h-20 flex items-center p-2 shadow-xl bg-stone-900">
+      <Logo/>
+      <FontAwesomeIcon size="lg" className="ml-auto mr-2 cursor-pointer" icon={faBars} />
     </nav>
   );
 }
