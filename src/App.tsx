@@ -1,19 +1,15 @@
 import Layout from "./components/Layout";
-import Box from "./components/Box";
-import { Canvas } from '@react-three/fiber';
-import React from 'react';
+import React, { Suspense } from 'react';
+import Index from './components/Intro/Index';
+import Particles from './components/Intro/Particles';
 
 function App() {
   return (
     <Layout>
       <div className="h-screen bg-stone-400 items-center justify-center flex">
-        <Canvas>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          <Box position={[-1.2, 0, 0]} />
-          <Box position={[1.2, 0, 0]} />
-        </Canvas>
-        <span className="text-4xl">Placeholder</span>
+        <Suspense fallback={null}>
+          <Index/>
+        </Suspense>
       </div>
     </Layout>
   );
