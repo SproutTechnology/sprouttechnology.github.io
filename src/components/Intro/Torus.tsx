@@ -1,9 +1,10 @@
 // Threejs example: threejs.org/examples/?q=asc#webgl_effects_ascii
 
 import { useEffect, useRef, useState, useMemo, useLayoutEffect } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, MeshProps, useFrame, useThree } from '@react-three/fiber'
 import { Box, OrbitControls, useCursor } from '@react-three/drei'
 import { AsciiEffect } from 'three-stdlib'
+import * as THREE from 'three';
 
 
 export default function App() {
@@ -24,12 +25,18 @@ export default function App() {
 
 
 
-function Torusknot(props) {
-  const ref = useRef()
+function Torusknot(props: MeshProps) {
+  const ref = useRef<THREE.Mesh>(null!)
   const [clicked, click] = useState(false)
   const [hovered, hover] = useState(false)
   useCursor(hovered)
-  useFrame((state, delta) => (ref.current.position.x = ref.current.position.x += delta*0.1))
+
+  useFrame((state, delta) => {
+    if(ref.current?.position?.x) {
+      ref.current.position.x += delta
+    }
+  })
+
   return (
     <mesh
       {...props}
@@ -72,13 +79,14 @@ function AsciiRenderer({
     effect.domElement.style.backgroundColor = bgColor
   }, [fgColor, bgColor])
 
-  // Append on mount, remove on unmount
   useEffect(() => {
     gl.domElement.style.opacity = '0'
-    gl.domElement.parentNode.appendChild(effect.domElement)
+    if(gl.domElement?.parentNode)
+      gl.domElement.parentNode.appendChild(effect.domElement)
     return () => {
       gl.domElement.style.opacity = '1'
-      gl.domElement.parentNode.removeChild(effect.domElement)
+      if(gl.domElement?.parentNode)
+        gl.domElement.parentNode.removeChild(effect.domElement)
     }
   }, [effect])
 
@@ -91,6 +99,8 @@ function AsciiRenderer({
   useFrame((state) => {
     effect.render(scene, camera)
   }, renderIndex)
+
+  return <></>
 
   // This component returns nothing, it is a purely logical
 }
