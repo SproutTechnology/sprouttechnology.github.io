@@ -42,6 +42,9 @@
   --_panel-gap: 1rem;
   --_panel-outline: 3px;
   --_panel-outline-offset: 4px;
+  --_panel-border-radius: calc(
+    ((var(--_panel-padding) * 2) + var(--_button-size)) / 2
+  );
 
   display: flex;
   flex-direction: column;
@@ -73,13 +76,20 @@
   overflow: hidden;
   padding: var(--_panel-padding);
   padding-right: calc(var(--_panel-padding) * 4);
-  border-radius: calc(((var(--_panel-padding) * 2) + var(--_button-size)) / 2);
+  border-radius: var(--_panel-border-radius);
   cursor: pointer;
+}
+
+@media (min-width: 45em) {
+  .accordion-panel:has([aria-expanded='false']) {
+    border-top-right-radius: 5px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .accordion-panel {
-    transition: flex-basis 500ms, flex-grow 500ms;
+    transition: flex-basis 500ms, flex-grow 500ms, border-radius 500ms,
+      outline 500ms;
   }
 }
 
@@ -189,6 +199,6 @@
   width: var(--_button-size);
   aspect-ratio: 1 / 1;
   padding: 0.25rem;
-  border-radius: 50%;
+  border-radius: 50% 5% 50% 50%;
   z-index: 10;
 }
