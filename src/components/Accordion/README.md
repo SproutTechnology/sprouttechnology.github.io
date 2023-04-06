@@ -30,6 +30,8 @@ Initially the icons were all round, but I thought it would be fun to make it in 
 
 - Move icon colors from css to somewhere else (as it's just 5 static colors at the moment). This should somehow still be connected to the outline color.
 
+- Use Tailwind in conjuction with css?
+
 ## Links
 
 - [Modern UI icons](https://www.svgrepo.com/collection/modern-ui-icons)
