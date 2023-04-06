@@ -40,7 +40,7 @@ export default function Accordion({ panels, svgSprites }: Props) {
   };
 
   return (
-    <div className="wrapper">
+    <>
       <div className="accordion">
         {panels.map((panel, index) => (
           <AccordionPanel
@@ -58,6 +58,6 @@ export default function Accordion({ panels, svgSprites }: Props) {
       </div>
 
       {svgSprites}
-    </div>
+    </>
   );
 }
