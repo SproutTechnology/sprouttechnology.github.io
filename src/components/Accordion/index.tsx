@@ -1,5 +1,7 @@
 import { AccordionPanel } from './AccordionPanel';
 
+import './accordion.css';
+
 interface PanelItem {
   title?: string;
   content?: string | JSX.Element;
