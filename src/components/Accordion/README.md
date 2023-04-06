@@ -29,3 +29,9 @@ Initially the icons were all round, but I thought it would be fun to make it in 
 - Make the button (header/title) enable navigation?
 
 - Move icon colors from css to somewhere else (as it's just 5 static colors at the moment). This should somehow still be connected to the outline color.
+
+## Links
+
+- [Modern UI icons](https://www.svgrepo.com/collection/modern-ui-icons)
+- [Initial inspiration by Zed Dash](https://codepen.io/z-/pen/OBPJKK)
+- [Extended inspiration by Kevin Powell](https://www.youtube.com/watch?v=WJERnXiFFug)
