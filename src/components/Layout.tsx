@@ -1,11 +1,8 @@
-import { ReactNode } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-interface Props {
-  children: ReactNode;
-}
+import React, { ReactNode } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-function Layout({ children }: Props) {
+function Layout({ children }: React.PropsWithChildren) {
   return (
     <div className="flex flex-col w-full">
       <Navbar />
