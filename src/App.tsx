@@ -13,21 +13,21 @@ function App() {
                 title: 'Contact',
                 content: 'Ipsam placeat dicta voluptas illo.',
                 imageSrc: 'images/sara.jpeg',
-                imageAlt: 'Bild på Sara Ljungberg',
+                imageAlt: 'Sara Ljungberg från Sprout',
                 svgSpritesIconId: 'phone',
               },
               {
                 title: 'Sales',
                 content: 'Nihil incidunt laborum quis.',
                 imageSrc: 'images/oliver.jpeg',
-                imageAlt: 'Bild på Oliver Stanisic',
+                imageAlt: 'Oliver Stanisic från Sprout',
                 svgSpritesIconId: 'share',
               },
               {
                 title: 'Development',
                 content: 'Quo ab necessitatibus enim.',
                 imageSrc: 'images/simon.jpeg',
-                imageAlt: 'Bild på Simon Arvidsson',
+                imageAlt: 'Simon Arvidsson från Sprout',
                 svgSpritesIconId: 'java',
               },
               {
@@ -35,7 +35,7 @@ function App() {
                 content:
                   'Tempora sed labore dolores similique sunt ex laborum iure.',
                 imageSrc: 'images/joseph.jpeg',
-                imageAlt: 'Bild på Joseph Chambochumbi',
+                imageAlt: 'Joseph Chambochumbi från Sprout',
                 svgSpritesIconId: 'lightbulb',
               },
               {
@@ -43,7 +43,7 @@ function App() {
                 content:
                   'Ipsam non aspernatur quo accusamus sequi non consectetur magnam ut.',
                 imageSrc: 'images/johan.jpeg',
-                imageAlt: 'Bild på Johan Gustafsson',
+                imageAlt: 'Johan Gustafsson från Sprout',
                 svgSpritesIconId: 'csharp',
               },
             ]}
