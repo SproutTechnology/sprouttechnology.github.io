@@ -1,10 +1,12 @@
 import Layout from "./components/Layout";
+import Showcase from "./components/Showcase";
+import MainText from "./components/MainText";
+import ImageWithAsideText from "./components/ImageWithAsideText";
 function App() {
   return (
     <Layout>
-      <div className="h-screen bg-stone-400 items-center justify-center flex">
-        <span className="text-4xl">Placeholder</span>
-      </div>
+      <ImageWithAsideText></ImageWithAsideText>
+     
     </Layout>
   );
 }

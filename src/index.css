@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,6 +14,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    color: black;
 }
 
 @media (prefers-color-scheme: light) {
@@ -26,4 +28,9 @@
     button {
         background-color: #f9f9f9;
     }
+}
+
+.header {
+    background-image: url('/src/assets/sprout.svg');
+    background-size: cover
 }
