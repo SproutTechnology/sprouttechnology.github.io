@@ -1,28 +1,56 @@
-function ImageWithAsideText() {
+import classNames from "classnames";
+
+interface Props {
+  position?: string;
+  text: string;
+  topTitle: string;
+  bottomTitle: string;
+  imageSrc: string;
+  textFirst?: boolean;
+}
+
+function ImageWithTextRow({
+  position,
+  textFirst = false,
+  text,
+  topTitle,
+  bottomTitle,
+  imageSrc,
+}: Props) {
   return (
-    <div className="flex gap-10 w-4/6">
-      <img
-        src="https://t4.ftcdn.net/jpg/03/84/55/29/360_F_384552930_zPoe9zgmCF7qgt8fqSedcyJ6C6Ye3dFs.jpg"
-        className="radius-10 basis-1/2 object-cover "
-      />
-      <aside className="mt-10 basis-1/2">
-        <h2 className="text-left">How we </h2>
-        <h2 className="text-right">came to be</h2>
-        <p>
-          We've all been in the business for a few years. Colleagues have come
-          and gone, projects and companies have changed in a world where
-          technology is ever evolving. We've stayed on that path, with its ups
-          and downs, following our passion for software. Somewhere along that
-          path we met people that made a mark. People that inspired and
-          challenged us, made us better or simply put a smile on our face.
-          People on our wavelength or that expand our perspectives. People that
-          bring out the very best version of ourselves. After a while, we've
-          realized it's all about them. Those people. Us. Sprout is a
-          collaborative, creative platform that builds upon that insight.
-        </p>
-      </aside>
+    <div
+      className={classNames({
+        flex: true,
+        "@container": true,
+        "justify-end": position === "right",
+        "justify-center": position === "center",
+      })}
+    >
+      <div
+        className={classNames(
+          {
+            "flex max-w-full @3xl:max-w-[60%] @lg:gap-14 @lg:flex flex-wrap @lg:flex-nowrap flex" : true,
+            "flex-row-reverse": textFirst,
+          }
+        )}
+      >
+        <img
+          src={imageSrc}
+          className="basis-full rounded-2xl w-6/12 min-w-[50%] object-cover"
+        />
+        <aside className="@lg:pt-6">
+          <div className="grid grid-cols-[min-content_auto] @lg:grid-cols-[min-content_min-content] col-span-full">
+            <h2 className="whitespace-nowrap">{topTitle}</h2>
+
+            <h2 className="row-start-2 col-start-2 -ml-16 whitespace-nowrap">
+              {bottomTitle}
+            </h2>
+            <p className="row-start-3 col-span-full">{text}</p>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
 
-export default ImageWithAsideText;
+export default ImageWithTextRow;

@@ -9,7 +9,7 @@ function Layout({ children }: Props) {
   return (
     <div className="flex flex-col w-full bg-clean-sheets">  
       <Header/>
-      <main className="basis-full pr-10 pl-10 flex-col gap-y-24">
+      <main className="basis-full flex pr-10 pl-10 flex-col gap-12 sm:gap-48">
         {children}
       </main>
       <Footer />

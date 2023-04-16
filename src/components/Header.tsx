@@ -7,7 +7,7 @@ function Header() {
       <div className="mr-20 ml-20 mt-1">
         <Showcase />
         <div className="mr-10">
-        <h1 className="text-left">We are Sprout.</h1>
+        <h1 className="text-left fluid-h1">We are Sprout.</h1>
         <p className="text-right">Welcome to our universe. A growing ecosystem of collaborationg people, ideas and initiatives</p>
         </div>
        
