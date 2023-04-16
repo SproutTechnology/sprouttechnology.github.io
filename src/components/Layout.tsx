@@ -7,7 +7,7 @@ interface Props {
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col w-full bg-clean-sheets">  
+    <div className="flex flex-col w-full bg-clean-sheets gap-12">  
       <Header/>
       <main className="basis-full flex pr-10 pl-10 flex-col gap-12 sm:gap-48">
         {children}

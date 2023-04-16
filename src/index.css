@@ -56,7 +56,26 @@ h2 {
     font-size: clamp(2rem, 3vw, 4em);
 }
 
+.test {
+    width: clamp(10rem, 15vw, 15rem);
+    height: clamp(10rem, 15vh, 15rem);
+}
+
 .header {
     background-image: url('/src/assets/sprout.svg');
     background-size: cover
+}
+
+.footer {
+    background-image: url('/src/assets/sprout_footer.svg');
+    background-size: cover;
+}
+
+.fluid-gap {
+    gap: clamp(1rem, 8vw, 20rem)
+}
+
+.cards-menu {
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 }

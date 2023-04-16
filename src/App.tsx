@@ -8,8 +8,8 @@ function App() {
       <ImageWithTextRow
         imageSrc="https://t4.ftcdn.net/jpg/03/84/55/29/360_F_384552930_zPoe9zgmCF7qgt8fqSedcyJ6C6Ye3dFs.jpg"
         position=""
-        topTitle="How we"
-        bottomTitle="came to be"
+        topHeader="How we"
+        bottomHeader="came to be"
         text="We've all been in the business for a few years. Colleagues have come
             and gone, projects and companies have changed in a world where
             technology is ever evolving. We've stayed on that path, with its ups
@@ -24,9 +24,9 @@ function App() {
        <ImageWithTextRow
         imageSrc="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
         position="right"
-        topTitle="How we"
+        topHeader="How we"
         textFirst
-        bottomTitle="came to be"
+        bottomHeader="came to be"
         text="We've all been in the business for a few years. Colleagues have come
             and gone, projects and companies have changed in a world where
             technology is ever evolving. We've stayed on that path, with its ups

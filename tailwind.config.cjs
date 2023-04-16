@@ -5,6 +5,9 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            gridTemplateColumns: {
+                'menu-grid': 'repeat(auto-fit, minmax(10rem, max-content))'
+            },
             gridTemplateRows: {
                 layout: "1fr 1fr 1fr",
             },
@@ -15,7 +18,7 @@ module.exports = {
         colors: {
             "living-room": "#E5DBD1",
             "night-sky": "#1C1C1C",
-            "fresh-curtains": "#EEEEEEE",
+            "fresh-curtains": "#EEEEEE",
             "clean-sheets": "#FFFFFF",
         },
 
@@ -29,7 +32,7 @@ module.exports = {
             paragraph: ["1.125rem", "1.5rem"],
             caption: ["0.75rem", "1rem"],
         },
-        extend: {},
+
     },
     plugins: [
 
