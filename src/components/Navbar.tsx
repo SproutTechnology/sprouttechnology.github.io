@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
   return (
-    <nav className="w-full h-20 flex items-center p-2 shadow-xl bg-stone-900">
+    <nav className="w-full h-34 absolute flex items-center p-2">
       <Logo/>
       <FontAwesomeIcon size="lg" className="ml-auto mr-2 cursor-pointer" icon={faBars} />
     </nav>

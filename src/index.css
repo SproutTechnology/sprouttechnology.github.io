@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,6 +14,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    color: black;
 }
 
 @media (prefers-color-scheme: light) {
@@ -26,6 +28,56 @@
     button {
         background-color: #f9f9f9;
     }
+}
+
+.fluid-h1 {
+    font-size: clamp(48px, 10vw, 20rem);
+}
+
+.image-with-text {
+    max-width: 75%;
+}
+
+.image-with-row-text {
+    container-type: inline-size;
+}
+
+@media only screen and (max-width: 1000px) {
+    .image-with-text {
+        max-width: 100%;
+    }
+}
+
+p {
+    font-size: clamp(10px, 1vw, 20rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 3vw, 4em);
+}
+
+.test {
+    width: clamp(10rem, 15vw, 15rem);
+    height: clamp(10rem, 15vh, 15rem);
+}
+
+.header {
+    background-image: url('/src/assets/sprout.svg');
+    background-size: cover
+}
+
+.footer {
+    background-image: url('/src/assets/sprout_footer.svg');
+    background-size: cover;
+}
+
+.fluid-gap {
+    gap: clamp(1rem, 8vw, 20rem)
+}
+
+.cards-menu {
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 }
 @font-face {
     font-family: 'SproutFont';
