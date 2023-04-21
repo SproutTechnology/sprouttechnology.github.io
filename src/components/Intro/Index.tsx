@@ -2,7 +2,7 @@ import {TextGeometry} from 'three/examples/jsm/geometries/TextGeometry';
 
 import {AsciiEffect} from './AsciiEffect.js';
 import {Canvas, extend, ThreeElements, useFrame, useThree} from '@react-three/fiber';
-import {ScrollControls, Text3D} from '@react-three/drei'
+import {Text3D} from '@react-three/drei'
 import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
 
 
@@ -52,7 +52,7 @@ const Stuff = (props: ThreeElements['mesh']) => {
                 visible={true}
                 rotation={[0, 0, 0]}
                 position={[-3, -3, 0]}
-                font={'/sprout-logo.json'}
+                font={'/custom-fonts/sprout-logo/sprout-logo-glyph.json'}
                 curveSegments={3}
                 bevelEnabled
                 bevelSize={0.1}
@@ -130,10 +130,8 @@ function AsciiRenderer({
 
 //
 function Intro() {
-    return <Canvas style={{cursor: 'crosshair', width: '800px', height: '700px'}} camera={{position: [0, 0, 4.8]}}>
-        <ScrollControls pages={0}>
-            <Stuff/>
-        </ScrollControls>
+    return <Canvas style={{width: '800px', height: '700px'}} camera={{position: [0, 0, 4.8]}}>
+        <Stuff/>
     </Canvas>
 }
 

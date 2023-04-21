@@ -251,7 +251,7 @@ class AsciiEffect {
 
 			}
 
-			oAscii.innerHTML = `<tr><td style="font-family:SproutFont,monospace;display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
+			oAscii.innerHTML = `<tr><td style="font-family:SproutLogoGlyphA,monospace;display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
 
 			// console.timeEnd('rendering');
 

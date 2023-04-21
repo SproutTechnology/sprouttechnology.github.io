@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-    font-family: SproutFont, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;
@@ -80,12 +80,12 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
 }
 @font-face {
-    font-family: 'SproutFont';
-    src: url('/glyphter-font/fonts/Sprout-font.eot');
-    src: url('/glyphter-font/fonts/Sprout-font.eot?#iefix') format('embedded-opentype'),
-    url('/glyphter-font/fonts/Sprout-font.woff') format('woff'),
-    url('/glyphter-font/fonts/Sprout-font.ttf') format('truetype'),
-    url('/glyphter-font/fonts/Sprout-font.svg#Sprout-font') format('svg');
+    font-family: 'SproutLogoGlyphA';
+    src: url('/custom-fonts/sprout-logo/Sprout-logo-glyph.eot');
+    src: url('/custom-fonts/sprout-logo/Sprout-logo-glyph.eot?#iefix') format('embedded-opentype'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.woff') format('woff'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.ttf') format('truetype'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.svg#Sprout-logo-glyph') format('svg');
     font-weight: normal;
     font-style: normal;
 }
