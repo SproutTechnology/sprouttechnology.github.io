@@ -5,6 +5,19 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            animation: {
+                "fade": "fadeIn 4s ease-in-out",
+            },
+
+            // that is actual animation
+            keyframes: (theme) => ({
+                fadeIn: {
+                    "0%": { opacity: "0%" },
+                    "20%": { opacity: "0%" },
+                    "100%": { opacity: "100%" },
+                },
+            }),
+
             gridTemplateColumns: {
                 'menu-grid': 'repeat(auto-fit, minmax(10rem, max-content))'
             },
