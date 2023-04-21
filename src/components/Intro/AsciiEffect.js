@@ -188,7 +188,7 @@ class AsciiEffect {
 
 			for ( let y = 0; y < iHeight; y += 2 ) {
 
-				for ( let x = 0; x < iWidth; x ++ ) {
+				for ( let x = 0; x < iWidth; x += 2 ) {
 
 					const iOffset = ( y * iWidth + x ) * 4;
 
@@ -230,11 +230,14 @@ class AsciiEffect {
 
 					if ( bColor ) {
 
-						strChars += '<span style=\''
-							+ 'color:rgb(' + iRed + ',' + iGreen + ',' + iBlue + ');'
+						strChars += '<div style=\''
+							+ 'display:inline-block;'
+							+ 'width:17px;'
+							+ 'height:17px;'
+							+ 'color:rgb(' + Math.max(29, iRed) + ',' + Math.max(29, iGreen) + ',' + Math.max(29, iBlue) + ');'
 							+ ( bBlock ? 'background-color:rgb(' + iRed + ',' + iGreen + ',' + iBlue + ');' : '' )
 							+ ( bAlpha ? 'opacity:' + ( iAlpha / 255 ) + ';' : '' )
-							+ '\'>' + strThisChar + '</span>';
+							+ '\'>' + strThisChar + '</div>';
 
 					} else {
 
@@ -248,7 +251,7 @@ class AsciiEffect {
 
 			}
 
-			oAscii.innerHTML = `<tr><td style="display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
+			oAscii.innerHTML = `<tr><td style="font-family:SproutFont,monospace;display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
 
 			// console.timeEnd('rendering');
 

@@ -18,7 +18,7 @@ export default function App() {
 
       </Box>
       <OrbitControls />
-      <AsciiRenderer fgColor="white" bgColor="black" />
+      <AsciiRenderer fgColor="black" bgColor="white" />
     </Canvas>
   )
 }
