@@ -1,7 +1,7 @@
 import Layout from "./components/Layout";
-import Showcase from "./components/Showcase";
-import MainText from "./components/MainText";
 import ImageWithTextRow from "./components/ImageWithAsideText";
+import React, { Suspense } from 'react';
+
 function App() {
   return (
     <Layout>

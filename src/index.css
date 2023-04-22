@@ -20,7 +20,7 @@
 @media (prefers-color-scheme: light) {
      :root {
         color: #213547;
-        background-color: #ffffff;
+        background-color: #1D1D1D;
     }
     a:hover {
         color: #747bff;
@@ -78,4 +78,14 @@ h2 {
 .cards-menu {
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+}
+@font-face {
+    font-family: 'SproutLogoGlyphA';
+    src: url('/custom-fonts/sprout-logo/Sprout-logo-glyph.eot');
+    src: url('/custom-fonts/sprout-logo/Sprout-logo-glyph.eot?#iefix') format('embedded-opentype'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.woff') format('woff'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.ttf') format('truetype'),
+    url('/custom-fonts/sprout-logo/Sprout-logo-glyph.svg#Sprout-logo-glyph') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }

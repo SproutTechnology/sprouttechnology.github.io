@@ -2,10 +2,10 @@ import Navbar from "../components/Navbar";
 import Showcase from "./Showcase";
 function Header() {
   return (
-    <div className="header h-[45rem] sm:h-[85vw]">
+    <div className="header relative h-[45rem] sm:h-[155vw] text-living-room">
       <Navbar />
       <div className="mr-20 ml-20 mt-1">
-        <div className="h-[30vw]">
+        <div className="h-[45rem]">
           <Showcase />
         </div>
         <div className="mr-10">
