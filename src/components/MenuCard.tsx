@@ -10,10 +10,10 @@ function MenuCard({ title, color }: MenuItem) {
   return (
     <li
       style={{ backgroundColor: color }}
-      className="test  rounded-xl flex items-end"
+      className="h-card w-card rounded-xl flex items-end"
     >
       <div className="flex items-center w-full">
-        <h3 className="p-2 font-semibold w-full">{title}</h3>
+        <span className="p-2 font-semibold w-full">{title}</span>
         <FontAwesomeIcon
           size="lg"
           className="ml-auto mr-2 cursor-pointer"
