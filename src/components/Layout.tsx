@@ -1,20 +1,21 @@
-import { ReactNode } from "react";
+import {ReactNode} from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+
 interface Props {
-  children: ReactNode;
+    children: ReactNode;
 }
 
-function Layout({ children }: Props) {
-  return (
-    <div className="flex flex-col w-full gap-12">
-      <Header />
-      <main className="basis-full flex pr-10 pl-10 flex-col gap-12 sm:gap-48 main">
-       {children} 
-      </main>
-      <Footer />
-    </div>
-  );
+function Layout({children}: Props) {
+    return (
+        <main className="flex flex-col gap-12 sm:gap-48 main">
+            <Header/>
+            <div className="basis-full pr-20 pl-20 flex flex-col sm:gap-48">
+                {children}
+            </div>
+            <Footer/>
+        </main>
+    );
 }
 
 export default Layout;
