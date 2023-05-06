@@ -28,16 +28,16 @@ function ImageWithTextRow({
     >
       <div
         className={classNames({
-          "flex max-w-full @3xl:max-w-[60%] @lg:gap-14 @lg:flex flex-wrap @lg:flex-nowrap flex":
+          "flex max-w-full @3xl:max-w-[90%] @4xl:gap-14 @4xl:flex flex-wrap @4xl:flex-nowrap flex":
             true,
           "flex-row-reverse": textFirst,
         })}
       >
         <img
           src={imageSrc}
-          className="basis-full rounded-2xl w-6/12 min-w-[50%] object-cover"
+          className="basis-full rounded-2xl min-w-[50%] object-cover"
         />
-        <aside className="@lg:pt-6">
+        <aside className="@4xl:pt-6">
           <BrokenHeaderWithOptionalText
             bottomHeader={bottomHeader}
             topHeader={topHeader}

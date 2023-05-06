@@ -27,7 +27,7 @@ const menuItems: Array<MenuItem> = [
 function CardsMenu() {
   return (
     <nav>
-      <ul className="grid fluid-gap grid-cols-menu-grid justify-center">
+      <ul className="@container gap-6 grid fluid-gap grid-cols-menu-grid justify-center">
         {menuItems.map(({ title, color }) => (
           <MenuCard color={color} title={title}></MenuCard>
         ))}

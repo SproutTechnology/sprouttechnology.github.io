@@ -8,8 +8,26 @@ module.exports = {
             animation: {
                 "fade": "fadeIn 4s ease-in-out",
             },
+            backgroundImage: {
+                'hero-pattern': "url('/src/assets/header.svg')",
+                'footer': "url('/src/assets/footer.svg')",
+            },
 
-            // that is actual animation
+            width: {
+                card: "clamp(10rem, 14cqi, 15rem)"
+            },
+            height: {
+                card: 'clamp(12rem, 24cqi, 24rem)'
+            },
+            fontSize: {
+                "large-title": "clamp(3rem, 10cqi, 10rem)",
+                "small-title": "clamp(1rem, 2cqi, 2rem)",
+                "medium-title": "clamp(3rem, 5cqi, 5rem)",
+
+                ingress: ["1.5rem", "2.75rem"],
+                paragraph: ["1.125rem", "1.5rem"],
+                caption: ["0.75rem", "1rem"],
+            },
             keyframes: (theme) => ({
                 fadeIn: {
                     "0%": { opacity: "0%" },
@@ -39,13 +57,7 @@ module.exports = {
         fontFamily: {
             "font-sen": ["Sen", "sans-serif"],
         },
-        fontSize: {
-            "large-title": ["16rem"],
-            "small-title": ["4rem"],
-            ingress: ["1.5rem", "2.75rem"],
-            paragraph: ["1.125rem", "1.5rem"],
-            caption: ["0.75rem", "1rem"],
-        },
+
 
     },
     plugins: [
@@ -53,8 +65,9 @@ module.exports = {
         require('@tailwindcss/container-queries'),
         plugin(function({ addBase, theme }) {
             addBase({
-                h1: { fontSize: theme("fontSize.large-title") },
-                h2: { fontSize: theme("fontSize.small-title") },
+                h1: { fontSize: theme("fontSize.large-title"), color: theme('colors.living-room') },
+                h2: { fontSize: theme('fontSize.small-title'), color: theme('colors.living-room') },
+                h3: { fontSize: theme("fontSize.medium-title") },
                 p: { fontSize: theme("fontSize.paragraph") },
             });
         }),
