@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import Showcase from "./Showcase";
 function Header() {
   return (
-    <div className="@container bg-hero-pattern flex flex-col h-[130vh]">
+    <div className="@container bg-hero-pattern flex flex-col h-[230vh]">
      
       <Navbar />
     

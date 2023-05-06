@@ -130,7 +130,7 @@ function AsciiRenderer({
 
 //
 function Intro() {
-    return <Canvas style={{width: '100%', height: '100%'}} camera={{position: [0, 0, 4.8]}}>
+    return <Canvas style={{width: '800px', height: '700px'}} camera={{position: [0, 0, 4.8]}}>
         <Stuff/>
     </Canvas>
 }
