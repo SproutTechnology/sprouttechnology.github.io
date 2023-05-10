@@ -1,18 +1,27 @@
 import { ReactNode } from "react";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Hero from "./Hero";
+import Navbar from "./Navbar"
+import Container  from "./Container";
 interface Props {
   children: ReactNode;
 }
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col w-full gap-12">
-      <Header />
-      <main className="basis-full flex pr-10 pl-10 flex-col gap-12 sm:gap-48 main">
-       {children} 
-      </main>
-      <Footer />
+    <div >
+      <Navbar/>
+      <div className=" flex flex-col gap-12">
+        <Hero />
+        <Container>
+        <main className="basis-full flex pr-10 pl-10 flex-col gap-12 sm:gap-48 main">
+        
+        {children} 
+       
+        </main>
+        </Container>
+        <Footer />
+      </div>
     </div>
   );
 }

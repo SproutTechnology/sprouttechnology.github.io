@@ -10,6 +10,7 @@ module.exports = {
             },
             backgroundImage: {
                 'hero-pattern': "url('/src/assets/header.svg')",
+                'hero-pattern-mobile' : "url('/src/assets/header_mobile.svg')",
                 'footer': "url('/src/assets/footer.svg')",
             },
 
@@ -20,7 +21,7 @@ module.exports = {
                 card: 'clamp(12rem, 24cqi, 24rem)'
             },
             fontSize: {
-                "large-title": "clamp(3rem, 10cqi, 10rem)",
+                "large-title": "clamp(3rem, 10cqi, 8rem)",
                 "small-title": "clamp(1rem, 2cqi, 2rem)",
                 "medium-title": "clamp(3rem, 5cqi, 5rem)",
 

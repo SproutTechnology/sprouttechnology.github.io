@@ -1,12 +1,11 @@
-import Navbar from "../components/Navbar";
+import Container from "./Container";
 import Showcase from "./Showcase";
-function Header() {
+function Hero() {
   return (
-    <div className="@container bg-hero-pattern flex flex-col h-[130vh]">
-     
-      <Navbar />
-    
-      <div className="min-h-0 basis-2/5">
+    <div>
+    <div className="@container  bg-charcoal  flex flex-col h-[100vh] ">
+     <Container>  
+      <div className="min-h-0 basis-2/5 ">
         <Showcase />
       </div>
       <div className="p-10 min-h-0">
@@ -16,8 +15,12 @@ function Header() {
           ideas and initiatives
         </h2>
       </div>
+      </Container>
+      
+    </div>
+    <div className="bg-hero-pattern h-[20vw] bg-no-repeat bg-contain"> </div>
     </div>
   );
 }
 
-export default Header;
+export default Hero;
