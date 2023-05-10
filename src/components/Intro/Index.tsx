@@ -64,7 +64,7 @@ const Stuff = (props: ThreeElements['mesh']) => {
                 A
                 <meshStandardMaterial color={"grey"}/>
                 {
-                    <AsciiRenderer fgColor="white" bgColor="#0000"/>
+                    <AsciiRenderer fgColor="#0000" bgColor="#0000"/>
                 }
             </Text3D>
         </>
@@ -76,7 +76,7 @@ function AsciiRenderer({
                            renderIndex = 1,
                            bgColor = 'black',
                            fgColor = 'white',
-                           characters = ' AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // Don't ask...
+                           characters = 'A',
                            invert = false,
                            color = true,
                            resolution = 0.12,
@@ -130,7 +130,7 @@ function AsciiRenderer({
 
 //
 function Intro() {
-    return <Canvas style={{width: '100%', height: '100%'}} camera={{position: [0, 0, 4.8]}}>
+    return <Canvas style={{width: '800px', height: '700px'}} camera={{position: [0, 0, 4.8]}}>
         <Stuff/>
     </Canvas>
 }

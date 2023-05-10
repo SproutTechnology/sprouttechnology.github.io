@@ -25,6 +25,9 @@
     a:hover {
         color: #747bff;
     }
+    .main {
+        background-color: white;
+    }
     button {
         background-color: #f9f9f9;
     }

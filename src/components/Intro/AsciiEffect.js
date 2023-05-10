@@ -225,19 +225,29 @@ class AsciiEffect {
 
 					let strThisChar = aCharList[ iCharIdx ];
 
-					if ( strThisChar === undefined || strThisChar == ' ' )
+					if ( strThisChar === undefined || strThisChar === ' ' )
 						strThisChar = '&nbsp;';
 
 					if ( bColor ) {
 
+						if(iRed < 29 && x !== 0) {
+							// iRed < 25 means that the object is soo dark that it can be replaced by a
+							// lightweight character. It will not be visible but the width and height will correct.
+							//
+							strChars += 'A';
+						} else {
 						strChars += '<div style=\''
 							+ 'display:inline-block;'
-							+ 'width:17px;'
-							+ 'height:17px;'
+							+ 'width:16px;'
+							+ 'height:16px;'
 							+ 'color:rgb(' + Math.max(29, iRed) + ',' + Math.max(29, iGreen) + ',' + Math.max(29, iBlue) + ');'
 							+ ( bBlock ? 'background-color:rgb(' + iRed + ',' + iGreen + ',' + iBlue + ');' : '' )
 							+ ( bAlpha ? 'opacity:' + ( iAlpha / 255 ) + ';' : '' )
 							+ '\'>' + strThisChar + '</div>';
+
+						}
+
+
 
 					} else {
 
