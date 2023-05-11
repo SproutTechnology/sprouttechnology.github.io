@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         extend: {
             animation: {
-                "fade": "fadeIn 4s ease-in-out",
+                "fade": "fadeIn 3s ease-in-out",
             },
             backgroundImage: {
                 'hero-pattern': "url('/src/assets/header.svg')",
@@ -20,12 +20,12 @@ module.exports = {
                 card: 'clamp(12rem, 24cqi, 24rem)'
             },
             fontSize: {
-                "large-title": "clamp(3rem, 10cqi, 10rem)",
-                "small-title": "clamp(1rem, 2cqi, 2rem)",
-                "medium-title": "clamp(3rem, 5cqi, 5rem)",
+                "large-title": "clamp(3rem, 10cqi, 6rem)",
+                "medium-title": "clamp(1rem, 5cqi, 1.5rem)",
+                "small-title": "clamp(0.5rem, 2cqi, 1rem)",
 
                 ingress: ["1.5rem", "2.75rem"],
-                paragraph: ["1.125rem", "1.5rem"],
+                paragraph: ["1rem", "1.5rem"],
                 caption: ["0.75rem", "1rem"],
             },
             keyframes: (theme) => ({
@@ -66,9 +66,9 @@ module.exports = {
         plugin(function({ addBase, theme }) {
             addBase({
                 h1: { fontSize: theme("fontSize.large-title"), color: theme('colors.living-room') },
-                h2: { fontSize: theme('fontSize.small-title'), color: theme('colors.living-room') },
-                h3: { fontSize: theme("fontSize.medium-title") },
-                p: { fontSize: theme("fontSize.paragraph") },
+                h2: { fontSize: theme('fontSize.medium-title'), color: theme('colors.living-room') },
+                h3: { fontSize: theme("fontSize.small-title") },
+                p: { fontSize: theme("fontSize.paragraph"), color: theme('colors.charcoal') },
             });
         }),
     ],
