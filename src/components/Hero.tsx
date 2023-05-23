@@ -1,24 +1,18 @@
 import Container from "./Container";
 import Showcase from "./Showcase";
+
+import { Theme, css } from '@emotion/react'
+const hero = (theme: Theme) => css`
+  background-color : ${theme.color.charcoal};
+  height : 90vh;
+  
+`
 function Hero() {
   return (
-    <div>
-    <div className="@container  bg-charcoal  flex flex-col h-[100vh] ">
-     <Container>  
-      <div className="min-h-0 basis-2/5 ">
+    <div css={hero}>
+      <Container padTop={false} centerContent={true}>
         <Showcase />
-      </div>
-      <div className="p-10 min-h-0">
-        <h1 className="whitespace-nowrap">We are Sprout.</h1>
-        <h2 className=" text-right">
-          Welcome to our universe. A growing ecosystem of collaborationg people,
-          ideas and initiatives
-        </h2>
-      </div>
       </Container>
-      
-    </div>
-    <div className="bg-hero-pattern h-[20vw] bg-no-repeat bg-contain"> </div>
     </div>
   );
 }

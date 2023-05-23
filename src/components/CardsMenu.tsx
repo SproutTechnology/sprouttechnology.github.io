@@ -1,5 +1,5 @@
-import MenuCard from "./MenuCard";
-
+import MenuCard from "./Card";
+import {css} from "@emotion/react"
 interface MenuItem {
   color: string;
   title: string;
@@ -24,12 +24,23 @@ const menuItems: Array<MenuItem> = [
   },
 ];
 
+
+const container = css`
+    container-type : inline-size;
+    gap : 1rem;
+    flex-wrap : wrap;
+    justify-content : space-between;
+    display : flex;
+    padding : 0px;
+   
+`
+
 function CardsMenu() {
   return (
     <nav>
-      <ul className="@container gap-6 grid fluid-gap grid-cols-menu-grid justify-center">
+      <ul css={container} >
         {menuItems.map(({ title, color }) => (
-          <MenuCard color={color} title={title}></MenuCard>
+          <MenuCard small={true} color={color} title={title}></MenuCard>
         ))}
       </ul>
     </nav>
