@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+html, body {
+    margin : 0;
+}
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -15,12 +17,13 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     color: black;
+    overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: light) {
      :root {
         color: #213547;
-        background-color: #1D1D1D;
+        background-color: #E5DBD1
     }
     a:hover {
         color: #747bff;

@@ -1,44 +1,32 @@
-import Layout from "./components/Layout";
-import ImageWithTextRow from "./components/ImageWithAsideText";
-import React, { Suspense } from 'react';
+import MainContent from "./components/MainContent";
+import { ThemeProvider, useTheme } from '@emotion/react'
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import theme from "./emotion.d";
+import HeadingWithSubheading from "./components/HeadingWithSubheading";
 
 function App() {
+
   return (
-    <Layout>
-      <ImageWithTextRow
-        imageSrc="https://t4.ftcdn.net/jpg/03/84/55/29/360_F_384552930_zPoe9zgmCF7qgt8fqSedcyJ6C6Ye3dFs.jpg"
-        position=""
-        topHeader="How we"
-        bottomHeader="came to be"
-        text="We've all been in the business for a few years. Colleagues have come
-            and gone, projects and companies have changed in a world where
-            technology is ever evolving. We've stayed on that path, with its ups
-            and downs, following our passion for software. Somewhere along that
-            path we met people that made a mark. People that inspired and
-            challenged us, made us better or simply put a smile on our face.
-            People on our wavelength or that expand our perspectives. People
-            that bring out the very best version of ourselves. After a while,
-            we've realized it's all about them. Those people. Us. Sprout is a
-            collaborative, creative platform that builds upon that insight."
-      ></ImageWithTextRow>
-       <ImageWithTextRow
-        imageSrc="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-        position="right"
-        topHeader="How we"
-        textFirst
-        bottomHeader="came to be"
-        text="We've all been in the business for a few years. Colleagues have come
-            and gone, projects and companies have changed in a world where
-            technology is ever evolving. We've stayed on that path, with its ups
-            and downs, following our passion for software. Somewhere along that
-            path we met people that made a mark. People that inspired and
-            challenged us, made us better or simply put a smile on our face.
-            People on our wavelength or that expand our perspectives. People
-            that bring out the very best version of ourselves. After a while,
-            we've realized it's all about them. Those people. Us. Sprout is a
-            collaborative, creative platform that builds upon that insight."
-      ></ImageWithTextRow>
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <Hero />
+      <HeadingWithSubheading
+        backgroundColor={theme.backgroundColors.charcoal}
+        textColor={theme.backgroundColors.livingRoom}
+        text="We are Sprout"
+        subheading="Welcome to our universe. A growing ecosystem of collaborating people, ideas and initiatives"
+      />
+      <MainContent />
+      <HeadingWithSubheading 
+        backgroundColor={theme.backgroundColors.livingRoom} 
+        textColor={theme.backgroundColors.charcoal} 
+        text="Next up" 
+        subheading="What would you like to know" 
+      />
+      <Footer />
+    </ThemeProvider>
   );
 }
 

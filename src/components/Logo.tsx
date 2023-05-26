@@ -4,10 +4,10 @@ const Logo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 704.4 198.25"
-    className="h-12"
+    height="2rem"
   >
     <defs>
-      <style>{".cls-1{fill:#AAA}"}</style>
+      <style>{".cls-1{fill:#FFFFFF}"}</style>
     </defs>
     <g id="Lager_2" data-name="Lager 2">
       <g id="Final_results" data-name="Final results">
