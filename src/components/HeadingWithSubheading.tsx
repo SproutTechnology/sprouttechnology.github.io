@@ -19,13 +19,13 @@ interface StyledHeaderProps  {
 const StyledHeader = styled.div`
     container-type : inline-size;
     background-color : ${(props : StyledHeaderProps) => props.backgroundColor};
-    color : 
     display : flex;
     flex-direction : column;
     gap : 1rem;
 `
 
 const MainAndSubHeadingWrapper = styled.div`
+    container-type : inline-size;
     display : flex;
     width : 100%;
     flex-direction : column;
@@ -34,6 +34,7 @@ const MainAndSubHeadingWrapper = styled.div`
 
 const MainHeading = styled.h1`
   font-size: ${props => props.theme.fontSize.h1};
+  white-space : no-wrap;
   color : ${props => props.color};
   margin : unset;
 `
@@ -41,8 +42,9 @@ const MainHeading = styled.h1`
 const SubHeading = styled.h2`
   font-size: ${props => props.theme.fontSize.h2};
   color : ${props => props.color};
-  align-self : flex-end;
-  max-width : 35rem;
+  margin : unset;
+  margin-left : min(0px, 30rem, 40cqi);
+  max-width : 30rem;
 `
 
 

@@ -40,7 +40,7 @@ const StyledContainer = styled('div')`
     }
 `
 const TopCurveBackground = styled('div')`
-    background-image:  url("/src/assets/curve_left.svg");
+    background-image:  url("/curve_left.svg");
     background-position: top;
     background-repeat: no-repeat;
     background-color : #E5DBD1;
@@ -49,7 +49,7 @@ const TopCurveBackground = styled('div')`
 `
 
 const BottomCurveBackground = styled('div')`
-    background-image:  url("/src/assets/curve_right.svg");
+    background-image:  url("/curve_right.svg");
     background-position: top;
     background-repeat: no-repeat;
     background-color : #1D1D1D;

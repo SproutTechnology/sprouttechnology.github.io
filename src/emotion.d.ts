@@ -63,7 +63,7 @@ export default {
         grey: "#6E686D"
     },
     fontSize: {
-        h1: "clamp(1rem, 20cqi, 96px)",
+        h1: "96px",
         h2: "24px"
     },
     spacing: {
