@@ -128,9 +128,10 @@ function AsciiRenderer({
     return <></>
 }
 
+
 //
 function Intro() {
-    return <Canvas style={{width: '100%', height: '100%'}} camera={{position: [0, 0, 4.8]}}>
+    return <Canvas  style={{display : "flex",aspectRatio : 1 / 1, maxHeight : "90vh"}} camera={{position: [0, 0, 4.8]}}>
         <Stuff/>
     </Canvas>
 }

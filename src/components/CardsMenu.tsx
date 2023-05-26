@@ -1,48 +1,57 @@
-import MenuCard from "./Card";
-import {css} from "@emotion/react"
+import Card from "./Card";
+import CardSize from "../enums/CardSize";
+import styled from "@emotion/styled";
+import {  useTheme } from '@emotion/react'
+
 interface MenuItem {
   color: string;
   title: string;
 }
 
-const menuItems: Array<MenuItem> = [
-  {
-    color: "#c2b07e",
-    title: "Cases",
-  },
-  {
-    color: "#8f755e",
-    title: "Interviews",
-  },
-  {
-    color: "#c2b07e",
-    title: "Way of working",
-  },
-  {
-    color: "#3b3734",
-    title: "Get in touch",
-  },
-];
 
 
-const container = css`
-    container-type : inline-size;
-    gap : 1rem;
-    flex-wrap : wrap;
-    justify-content : space-between;
-    display : flex;
-    padding : 0px;
-   
+
+const StyledList = styled.ul`
+  padding : 0px;
+  container-type : inline-size;
+  gap : 1rem;
+  justify-content : center;
+  flex-wrap : wrap;
+  display : flex;
 `
 
+
+
 function CardsMenu() {
+  const theme = useTheme();
+  const menuItems: Array<MenuItem> = [
+    {
+      color: theme.cardColors.beige,
+      title: "Cases",
+    },
+    {
+      color: theme.cardColors.brown,
+      title: "Interviews",
+    },
+    {
+      color: theme.cardColors.green,
+      title: "Way of working",
+    },
+    {
+      color: theme.cardColors.grey,
+      title: "Get in touch",
+    },
+  ];
+  
+  
+
   return (
     <nav>
-      <ul css={container} >
+      <StyledList>
         {menuItems.map(({ title, color }) => (
-          <MenuCard small={true} color={color} title={title}></MenuCard>
+          <Card size={CardSize.Medium} color={color} title={title} />
         ))}
-      </ul>
+      </StyledList>
     </nav>
   );
 }

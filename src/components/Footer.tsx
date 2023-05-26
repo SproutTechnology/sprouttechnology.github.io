@@ -1,19 +1,13 @@
 import CardsMenu from "./CardsMenu";
-import BottomCurveContainer from "./BottomCurveContainer"
-import { Theme, css } from '@emotion/react'
-
-const footer = (theme : Theme )=> css`
-  margin-top : 15rem;
-  
-`
+import FluidCenterContainer from "./FluidCenterContainer"
+import CurveBackground from "../enums/CurveBackground";
 
 function Footer() {
   return (
-    <footer css={footer}>   
-        <BottomCurveContainer  centerContent={false} padTop={false}>
+    <footer >   
+        <FluidCenterContainer curveBackground={CurveBackground.Bottom}  centerContent={false} padTop={false}>
             <CardsMenu></CardsMenu>
-        </BottomCurveContainer>
-        
+        </FluidCenterContainer>
     </footer>
   );
 }

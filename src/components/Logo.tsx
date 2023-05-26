@@ -7,7 +7,7 @@ const Logo = () => (
     height="2rem"
   >
     <defs>
-      <style>{".cls-1{fill:#AAA}"}</style>
+      <style>{".cls-1{fill:#FFFFFF}"}</style>
     </defs>
     <g id="Lager_2" data-name="Lager 2">
       <g id="Final_results" data-name="Final results">

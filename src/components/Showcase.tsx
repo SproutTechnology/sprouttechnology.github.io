@@ -1,21 +1,22 @@
-import React, {Suspense} from "react";
+import {Suspense} from "react";
 import Intro from "./Intro/Index";
-import {css, Theme} from "@emotion/react"
-const showCase = (theme: Theme) => css`
-  background-color : ${theme.color.charcoal};
-  height : 100%;
+import styled from "@emotion/styled";
+
+const ShowcaseWrapper = styled.div`
+  background-color : ${props => props.theme.backgroundColors.charcoal};
+  display : flex;
+  justify-content : center;
   width : 100%;
-  
-  
+
 `
 
 function Showcase() {
   return (
-      <div css={showCase} >
+      <ShowcaseWrapper>
           <Suspense fallback={null}>
           <Intro />
         </Suspense>
-      </div>
+      </ShowcaseWrapper>
   );
 }
 
