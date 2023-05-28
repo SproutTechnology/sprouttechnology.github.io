@@ -18,8 +18,9 @@ const StyledCard = styled.div`
   flex-direction : column;
   align-items : center;
   justify-content : space-between;
+  flex-shrink : 0;
   border-radius : ${(props) => props.theme.borderRadius};
-  min-width : ${(props) => props.theme.cardSizes.width[props.size]};
+  width : ${(props) => props.theme.cardSizes.width[props.size]};
   height : ${(props) => props.theme.cardSizes.height[props.size]};
   background-color: ${(props : StyledCard) => props.color};
 `

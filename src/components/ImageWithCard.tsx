@@ -3,28 +3,39 @@ import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
 interface Props {
   mirror? : Boolean,
+ 
 }
 
 
 const ImageWithCardContainer = styled.div`
   container-type : inline-size;
+  width : ${(props) => props.theme.cardSizes.width[CardSize.Large]};
   display : flex;
   flex-direction : column;
+  justify-content : center;
   gap : 1rem;
-  @container (width > 800px){
+  align-items : center;
+  @container (width > 700px){
+    width : 100%;
+    height : ${props => props.theme.cardSizes.height[CardSize.Large]};
     flex-direction : ${(props : Props) => props.mirror ? 'row-reverse' : 'row'};
   }
 `
 
-const ImageWrapper = styled.picture`
-  display : flex;
-  flex-basis : 70cqi;
+const ImageWrapper = styled.div`
+max-width: 100%;
+height: 100%;
+object-fit: scale-down;
+border-radius: 2rem;
+}
+  
 `
 
 const Image = styled.img`
-  max-width : 100%;
-  height : auto;
-  border-radius : 1rem;
+width : 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 2rem;
 `
 
 

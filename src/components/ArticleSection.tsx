@@ -4,6 +4,7 @@ import ImageWithCard from "./ImageWithCard";
 const StyledArticleSection = styled.div`
     display : flex;
     flex-direction : column;
+    align-items : center;
     gap : ${props => props.theme.spacing.medium};
 `
 
