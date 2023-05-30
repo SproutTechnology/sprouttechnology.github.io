@@ -1,140 +1,162 @@
-import {TextGeometry} from 'three/examples/jsm/geometries/TextGeometry';
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 
-import {AsciiEffect} from './AsciiEffect.js';
-import {Canvas, extend, ThreeElements, useFrame, useThree} from '@react-three/fiber';
-import {Text3D} from '@react-three/drei'
-import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
+import { AsciiEffect } from "./AsciiEffect.js";
+import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
+import { Text3D } from "@react-three/drei";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
+extend({ TextGeometry });
 
-let timer = 0;
-extend({TextGeometry});
+const asciiRenderOptions = {
+  fgColor: "rgb(255,255,255,0)",
+  bgColor: "rgb(0,0,0,0)",
+};
 
+const characterList = [" ", "A"];
 
-const Stuff = (props: ThreeElements['mesh']) => {
+function useAsciiRenderer({
+  renderIndex = 1,
+  bgColor = "black",
+  fgColor = "white",
+  invert = false,
+  color = true,
+  resolution = 0.12,
+}) {
+  // Reactive state
+  const { size, gl, scene, camera } = useThree();
 
-    const {size} = useThree()
+  // Create effect
+  const effect = useMemo(() => {
+    const effect = new AsciiEffect(gl, characterList, {
+      // invert,
+      // color,
+      resolution,
+      strResolution: "low",
+    });
 
-    const [lightIntensity, setLightIntensity] = useState(0)
+    effect.domElement.style.position = "absolute";
+    effect.domElement.style.top = "0px";
+    effect.domElement.style.left = "0px";
+    effect.domElement.style.pointerEvents = "none";
 
-    const [light1x, setLight1x] = useState(0)
-    const [light1y, setLight1y] = useState(0)
+    return effect;
+  }, [invert, color, resolution]);
 
-    const [light2x, setLight2x] = useState(0)
-    const [light2y, setLight2y] = useState(0)
+  // Styling
+  useLayoutEffect(() => {
+    effect.domElement.style.color = fgColor;
+    effect.domElement.style.backgroundColor = bgColor;
+  }, [fgColor, bgColor]);
 
-    useFrame((state, delta) => {
+  // Append on mount, remove on unmount
+  useEffect(() => {
+    gl.domElement.style.opacity = "0";
+    if (gl.domElement?.parentNode)
+      gl.domElement.parentNode.appendChild(effect.domElement);
+    return () => {
+      gl.domElement.style.opacity = "1";
+      if (gl.domElement?.parentNode)
+        gl.domElement.parentNode.removeChild(effect.domElement);
+    };
+  }, [effect]);
 
-        timer += delta * 1500;
+  // Set size
+  useEffect(() => {
+    effect.setSize(size.width, size.height);
+  }, [effect, size]);
 
-        const light1x = state.pointer.x * size.width / 250 - 0.5
-        const light1y = state.pointer.y * size.height / 250
+  // Take over render-loop (that is what the index is for)
+  useFrame((state) => {
+    effect.render(scene, camera);
+  }, renderIndex);
 
-        setLight1x(light1x)
-        setLight1y(light1y)
-
-        const light2x = -Math.sin(timer * 0.0001) * 6
-        const light2y = -Math.cos(timer * 0.0004) * 3;
-
-        setLight2x(light2x)
-        setLight2y(light2y)
-
-        setLightIntensity(timer*1.0001)
-    })
-
-
-    return (
-        <>
-            <spotLight position={[light2y, -light2x, 2]} angle={0.3} intensity={Math.min(0.3, lightIntensity)}/>
-            <pointLight position={[0, 0, 10]} intensity={Math.min(0.8, lightIntensity)} distance={20} decay={1}/>
-            <pointLight position={[light1x, light1y, 2]} intensity={Math.min(2.0, lightIntensity)} distance={3} decay={0.4}/>
-
-            <Text3D
-                visible={true}
-                rotation={[0, 0, 0]}
-                position={[-3, -3, 0]}
-                font={'/custom-fonts/sprout-logo/sprout-logo-glyph.json'}
-                curveSegments={3}
-                bevelEnabled
-                bevelSize={0.1}
-                bevelThickness={0.1}
-                height={0.2}
-                lineHeight={0.5}
-                letterSpacing={0.4}
-                size={4.5}>
-                A
-                <meshStandardMaterial color={"grey"}/>
-                {
-                    <AsciiRenderer fgColor="white" bgColor="#0000"/>
-                }
-            </Text3D>
-        </>
-    )
+  return null;
 }
 
+const Stuff = () => {
+  const { size } = useThree();
 
-function AsciiRenderer({
-                           renderIndex = 1,
-                           bgColor = 'black',
-                           fgColor = 'white',
-                           characters = ' AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', // Don't ask...
-                           invert = false,
-                           color = true,
-                           resolution = 0.12,
-                           strResolution = 'low'
-                       }) {
-    // Reactive state
-    const {size, gl, scene, camera} = useThree()
+  const [lightIntensity, setLightIntensity] = useState(0);
 
-    // Create effect
-    const effect = useMemo(() => {
-        const effect = new AsciiEffect(gl, characters, {invert, color, resolution, strResolution})
-        effect.domElement.style.position = 'absolute'
-        effect.domElement.style.top = '0px'
-        effect.domElement.style.left = '0px'
-        effect.domElement.style.pointerEvents = 'none'
-        return effect
-    }, [characters, invert, color, resolution])
+  const [light1x, setLight1x] = useState(0);
+  const [light1y, setLight1y] = useState(0);
 
-    // Styling
-    useLayoutEffect(() => {
-        effect.domElement.style.color = fgColor
-        effect.domElement.style.backgroundColor = bgColor
-    }, [fgColor, bgColor])
+  const [light2x, setLight2x] = useState(0);
+  const [light2y, setLight2y] = useState(0);
 
-    // Append on mount, remove on unmount
-    useEffect(() => {
-        gl.domElement.style.opacity = '0'
-        if (gl.domElement?.parentNode)
-            gl.domElement.parentNode.appendChild(effect.domElement)
-        return () => {
-            gl.domElement.style.opacity = '1'
-            if (gl.domElement?.parentNode)
-                gl.domElement.parentNode.removeChild(effect.domElement)
-        }
-    }, [effect])
+  const timer = useRef(0);
 
-    // Set size
-    useEffect(() => {
-        effect.setSize(size.width, size.height)
-    }, [effect, size])
+  useFrame((state, delta) => {
+    timer.current += delta * 1500;
 
-    // Take over render-loop (that is what the index is for)
-    useFrame((state) => {
-        effect.render(scene, camera)
-    }, renderIndex)
+    const light1x = (state.pointer.x * size.width) / 250 - 0.5;
+    const light1y = (state.pointer.y * size.height) / 250;
 
-    // This component returns nothing, it is a purely logical
+    setLight1x(light1x);
+    setLight1y(light1y);
 
-    return <></>
-}
+    const light2x = -Math.sin(timer.current * 0.0001) * 6;
+    const light2y = -Math.cos(timer.current * 0.0004) * 3;
 
+    setLight2x(light2x);
+    setLight2y(light2y);
 
-//
+    setLightIntensity(timer.current * 1.0001);
+  });
+
+  useAsciiRenderer(asciiRenderOptions);
+
+  return (
+    <>
+      <spotLight
+        position={[light2y, -light2x, 2]}
+        angle={0.3}
+        intensity={Math.min(0.3, lightIntensity)}
+      />
+      <pointLight
+        position={[0, 0, 10]}
+        intensity={Math.min(0.8, lightIntensity)}
+        distance={20}
+        decay={1}
+      />
+      <pointLight
+        position={[light1x, light1y, 2]}
+        intensity={Math.min(2.0, lightIntensity)}
+        distance={3}
+        decay={0.4}
+      />
+
+      <Text3D
+        visible={true}
+        rotation={[0, 0, 0]}
+        position={[-3, -3, 0]}
+        font={"/custom-fonts/sprout-logo/sprout-logo-glyph.json"}
+        curveSegments={3}
+        bevelEnabled
+        bevelSize={0.1}
+        bevelThickness={0.1}
+        height={0.2}
+        lineHeight={0.5}
+        letterSpacing={0.4}
+        size={4.5}
+      >
+        A
+        <meshStandardMaterial color={"grey"} />
+      </Text3D>
+    </>
+  );
+};
+
 function Intro() {
-    return <Canvas  style={{display : "flex",aspectRatio : 1 / 1, maxHeight : "90vh"}} camera={{position: [0, 0, 4.8]}}>
-        <Stuff/>
+  return (
+    <Canvas
+      style={{ display: "flex", aspectRatio: 1 / 1, maxHeight: "90vh" }}
+      camera={{ position: [0, 0, 4.8] }}
+      gl={{ preserveDrawingBuffer: true }}
+    >
+      <Stuff />
     </Canvas>
+  );
 }
-
 
 export default Intro;
