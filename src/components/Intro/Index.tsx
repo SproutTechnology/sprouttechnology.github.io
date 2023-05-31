@@ -3,13 +3,62 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { AsciiEffect } from "./AsciiEffect.js";
 import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
 import { Text3D } from "@react-three/drei";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 extend({ TextGeometry });
 
 const asciiRenderOptions = {
   fgColor: "rgb(255,255,255,0)",
   bgColor: "rgb(0,0,0,0)",
+};
+
+const BASE_RESOLUTION = 0.2;
+const xlarge = ["(min-width: 1280px)", 0.12] as const;
+const large = ["(min-width: 1024px)", 0.15] as const;
+const medium = ["(min-width: 768px)", 0.17] as const;
+
+const resolutions = [xlarge, large, medium].map(
+  ([mq, res]) => [window.matchMedia(mq), res] as const
+);
+
+const useResolution = () => {
+  const subscribe = useCallback((callback: VoidFunction) => {
+    resolutions.forEach(([mq]) => {
+      // if ("addEventListener" in mq) {
+      mq.addEventListener("change", callback);
+      // } else {
+      // TODO: @ts-expect-error up to safari 13 compat
+      // mq.addListener(callback);
+      // }
+    });
+
+    return () => {
+      resolutions.forEach(([mq]) => {
+        // if ("removeEventListener" in mq) {
+        mq.removeEventListener("change", callback);
+        // } else {
+        // TODO: @ts-expect-error up to safari 13 compat
+        // mq.removeListener(callback);
+        // }
+      });
+    };
+  }, []);
+
+  return useSyncExternalStore(subscribe, () => {
+    const matching = resolutions.find(([mq]) => mq.matches);
+
+    if (!matching) return BASE_RESOLUTION;
+
+    return matching[1];
+  });
 };
 
 const characterList = [" ", "A"];
@@ -20,10 +69,10 @@ function useAsciiRenderer({
   fgColor = "white",
   invert = false,
   color = true,
-  resolution = 0.12,
 }) {
   // Reactive state
   const { size, gl, scene, camera } = useThree();
+  const resolution = useResolution();
 
   // Create effect
   const effect = useMemo(() => {
@@ -129,7 +178,7 @@ const Stuff = () => {
       <Text3D
         visible={true}
         rotation={[0, 0, 0]}
-        position={[-3, -3, 0]}
+        position={[-3.2, -3.2, 0]}
         font={"/custom-fonts/sprout-logo/sprout-logo-glyph.json"}
         curveSegments={3}
         bevelEnabled
@@ -150,7 +199,12 @@ const Stuff = () => {
 function Intro() {
   return (
     <Canvas
-      style={{ display: "flex", aspectRatio: 1 / 1, maxHeight: "90vh" }}
+      style={{
+        display: "flex",
+        aspectRatio: 1 / 1,
+        maxHeight: "90vh",
+        userSelect: "none",
+      }}
       camera={{ position: [0, 0, 4.8] }}
       gl={{ preserveDrawingBuffer: true }}
     >

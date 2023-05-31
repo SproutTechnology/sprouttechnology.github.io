@@ -187,12 +187,17 @@ export class AsciiEffect {
 
           const iCharIdx = fBrightness && 1;
 
-          const currentChar = aCharList[iCharIdx];
+          let currentChar = aCharList[iCharIdx];
 
           oAsciiCtx.fillStyle = `rgb(${Math.max(29, iRed)}, ${Math.max(
             29,
             iGreen
           )}, ${Math.max(29, iBlue)}, ${iAlpha / 255})`;
+          // uncomment for debug mode
+          // {
+          //   oAsciiCtx.fillStyle = "rgb(255, 255, 255, 1)";
+          //   currentChar = "A";
+          // }
 
           const row = y / 2 + 1;
           const col = x / 2;
