@@ -39,4 +39,5 @@ html, body {
     src: url('/custom-fonts/sprout-logo/Sprout-logo-glyph.eot?#iefix') format('embedded-opentype'), url('/custom-fonts/sprout-logo/Sprout-logo-glyph.woff') format('woff'), url('/custom-fonts/sprout-logo/Sprout-logo-glyph.ttf') format('truetype'), url('/custom-fonts/sprout-logo/Sprout-logo-glyph.svg#Sprout-logo-glyph') format('svg');
     font-weight: normal;
     font-style: normal;
+    font-display: block;
 }
