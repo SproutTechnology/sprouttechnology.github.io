@@ -13,6 +13,7 @@ interface Props {
 
 interface StyleProps {
     padTop: Boolean,
+    padBot : Boolean,
     centerContent: Boolean,
 }
 
@@ -29,8 +30,8 @@ const StyledContainer = styled('div')`
     margin-right : 1rem;
     margin-left : 1rem;
     @media only screen and (min-width: 1200px) { 
-        margin-right : clamp(1rem, 20vw, 20rem);
-        margin-left : clamp(1rem, 20vw, 20rem);
+        margin-right : clamp(1rem, 20vw, 15rem);
+        margin-left : clamp(1rem, 20vw, 15rem);
         display : flex;
         justify-content : center;
         flex-direction : column;

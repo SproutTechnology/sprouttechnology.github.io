@@ -16,6 +16,9 @@ declare module '@emotion/react' {
         [size : string]: string,
       }
     },
+    buttonColors : {
+      hover : string
+    },
     cardColors: {
       beige: string,
       brown: string,
@@ -23,8 +26,10 @@ declare module '@emotion/react' {
       grey: string
     },
     fontSize: {
+      p : string,
       h1: string,
       h2: string,
+      button : string,
     },
     spacing: {
       small: string
@@ -46,15 +51,18 @@ export default {
     cardSizes: {
         width: {
             [CardSize.Large]: "21.5rem",
-            [CardSize.Medium]: "12rem",
+            [CardSize.Medium]: "16.5rem",
             [CardSize.Small]: "10.25rem"
         },
         height : {
             [CardSize.Large]: "30rem",
-            [CardSize.Medium]: "18rem",
+            [CardSize.Medium]: "25rem",
             [CardSize.Small]: "16.5rem"
         }
 
+    },
+    buttonColors : {
+      hover : '#48413A'
     },
     cardColors: {
         beige: "#D7D0C2",
@@ -63,8 +71,10 @@ export default {
         grey: "#6E686D"
     },
     fontSize: {
+        p : "16px",
         h1: "96px",
-        h2: "24px"
+        h2: "32px",
+        button : "16px"
     },
     spacing: {
         small: "0.5rem",

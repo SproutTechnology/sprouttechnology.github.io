@@ -3,7 +3,13 @@ import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
 interface Props {
   mirror? : Boolean,
+  text : string,
+  title : string
  
+}
+
+interface ImageWithCardContainerProps {
+  mirror : Boolean
 }
 
 
@@ -18,7 +24,7 @@ const ImageWithCardContainer = styled.div`
   @container (width > 700px){
     width : 100%;
     height : ${props => props.theme.cardSizes.height[CardSize.Large]};
-    flex-direction : ${(props : Props) => props.mirror ? 'row-reverse' : 'row'};
+    flex-direction : ${(props : ImageWithCardContainerProps) => props.mirror ? 'row-reverse' : 'row'};
   }
 `
 
@@ -39,9 +45,9 @@ border-radius: 2rem;
 `
 
 
-const ImageWithCard = ( {mirror} : Props) => (
-    <ImageWithCardContainer mirror={mirror} >
-        <Card size={CardSize.Large} color="#C8B9AB" title="Sprout is us"></Card>    
+const ImageWithCard = ( {mirror, text, title} : Props) => (
+    <ImageWithCardContainer mirror={mirror || false} >
+        <Card size={CardSize.Large} text={text} color="#C8B9AB" title={title}></Card>    
         <ImageWrapper>
           <Image src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"></Image>
         </ImageWrapper>

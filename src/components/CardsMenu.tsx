@@ -6,6 +6,7 @@ import {  useTheme } from '@emotion/react'
 interface MenuItem {
   color: string;
   title: string;
+  buttonText : string,
 }
 
 
@@ -27,18 +28,22 @@ function CardsMenu() {
   const menuItems: Array<MenuItem> = [
     {
       color: theme.cardColors.beige,
+      buttonText : "Slide to",
       title: "Cases",
     },
     {
       color: theme.cardColors.brown,
-      title: "Interviews",
+      buttonText : "Jump to",
+      title: "The people",
     },
     {
       color: theme.cardColors.green,
-      title: "Way of working",
+      buttonText : "Run to",
+      title: "The way",
     },
     {
       color: theme.cardColors.grey,
+      buttonText : "Drive to",
       title: "Get in touch",
     },
   ];
@@ -48,8 +53,8 @@ function CardsMenu() {
   return (
     <nav>
       <StyledList>
-        {menuItems.map(({ title, color }) => (
-          <Card size={CardSize.Medium} color={color} title={title} />
+        {menuItems.map(({ title, color, buttonText }) => (
+          <Card buttonText={buttonText} text="We've all been in the business for a few years. Colleagues have come and gone. " size={CardSize.Medium} color={color} title={title} />
         ))}
       </StyledList>
     </nav>
