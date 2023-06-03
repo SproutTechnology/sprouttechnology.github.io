@@ -13,7 +13,6 @@ interface Props {
 
 interface StyleProps {
     padTop: Boolean,
-    padBot : Boolean,
     centerContent: Boolean,
 }
 

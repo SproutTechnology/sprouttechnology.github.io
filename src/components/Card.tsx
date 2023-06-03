@@ -6,7 +6,7 @@ interface Card {
   title: string;
   size : CardSize
   text : string
-  buttonText : string,
+  buttonText? : string,
 }
 
 interface StyledCard {
