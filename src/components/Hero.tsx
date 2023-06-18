@@ -10,7 +10,7 @@ const hero = (theme: Theme) => css`
 function Hero() {
   return (
     <div css={hero}>
-      <FluidCenterContainer padTop={false} centerContent={true}>
+      <FluidCenterContainer light={false} padTop={false} centerContent={true}>
         <Showcase />
       </FluidCenterContainer>
     </div>

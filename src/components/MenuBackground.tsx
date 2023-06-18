@@ -20,13 +20,13 @@ const Breakout = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: -1;
 `;
 
 const Wrapper = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: -1;
 `;
 
 const StyledSVG = styled.svg`

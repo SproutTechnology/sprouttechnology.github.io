@@ -12,10 +12,13 @@ import { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "
 import { useTheme } from "@emotion/react";
 import CardSize from "../enums/CardSize";
 import { AnchorButton } from "./Button";
+import {Link} from "react-router-dom";
+import LinkToPage from "../enums/LinkToPage";
+
 
 const Nav = styled.nav`
     display: flex;
-    background-color: ${(props) => props.theme.backgroundColors.charcoal};
+    background-color: #0000;
     padding-left: ${(props) => props.theme.spacing.large};
     padding-right: ${(props) => props.theme.spacing.large};
     align-items: center;
@@ -147,7 +150,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
                         </CardText>
 
-                        <MenuCTA as="a" href="/about" small {...props}>
+                        <MenuCTA as="a" href="/sprout-is-us" small {...props}>
                             Jump to
                         </MenuCTA>
                     </CardContent>
@@ -161,7 +164,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
                         </CardText>
 
-                        <MenuCTA as="a" href="/vision" small {...props}>
+                        <MenuCTA as="a" href="/the-vision" small {...props}>
                             Run to
                         </MenuCTA>
                     </CardContent>
@@ -175,7 +178,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
                         </CardText>
 
-                        <MenuCTA as="a" href="/contact" small {...props}>
+                        <MenuCTA as="a" href="/" small {...props}>
                             Drive to
                         </MenuCTA>
                     </CardContent>
@@ -206,7 +209,9 @@ function Navbar() {
 
     return (
         <Nav>
-            <Logo />
+            <Link to={LinkToPage.StartPage}>
+                <Logo/>
+            </Link>
 
             <MenuButton isOpen={isMenuOpen} toggle={toggle} />
             <MenuWrapper data-open={isMenuOpen}>

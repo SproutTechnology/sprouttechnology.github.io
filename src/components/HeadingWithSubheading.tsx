@@ -31,8 +31,6 @@ const MainAndSubHeadingWrapper = styled.div`
     width : 100%;
     grid-template-rows : 1fr 1fr;
     grid-template-columns : repeat(3, 1fr);
-    
-
 `
 
 const MainHeading = styled.h1`
@@ -62,7 +60,7 @@ const SubHeading = styled.h2`
 
 const HeadingWithSubheading = ({ text, textColor, backgroundColor, subheading }: Props) => (
     <StyledHeader backgroundColor={backgroundColor}>
-        <FluidCenterContainer padTop={false} centerContent={true}>
+        <FluidCenterContainer padTop={false} centerContent={true} light={false}>
             <MainAndSubHeadingWrapper>
                 <MainHeading color={textColor}>{text}</MainHeading>
                 <SubHeading color={textColor}>{subheading}</SubHeading>
