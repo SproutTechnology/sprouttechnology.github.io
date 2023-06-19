@@ -5,58 +5,74 @@ import { ValueAnimationTransition, useAnimate } from "framer-motion";
 
 import Logo from "../components/Logo";
 import classNames from "classnames";
+import { css } from "@emotion/react";
 
 const Button = styled.button`
     appearance: none;
     cursor: pointer;
     border: 0;
     background: transparent;
-    font-size: 0.5rem;
+    font-size: 1rem;
 `;
 
-const HamburgerMenu = styled.span`
-    display: inline-block;
+const HamburgerMenu = styled.span<{ isOpen: boolean }>(({ isOpen }) => [
+    css`
+        display: inline-block;
 
-    width: 4em;
-    height: 0.5em;
-    background: #fcfcfc;
-    position: relative;
-    transition: 0.5s;
-
-    &:before {
-        top: -1em;
-        left: 0;
-    }
-
-    &:after {
-        top: 1em;
-        left: 0;
-    }
-
-    &:before,
-    &:after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 2.5em;
+        height: 0.2em;
         background: #fcfcfc;
+        position: relative;
         transition: 0.5s;
-    }
 
-    &.active {
-        background: rgb(0, 0, 0, 0);
-    }
+        ${isOpen
+            ? css`
+                  &:before {
+                      left: 0;
+                      width: 100% !important;
+                  }
 
-    &.active:before {
-        top: 0;
-        transform: rotate(45deg);
-    }
+                  &:after {
+                      left: 0;
+                  }
+              `
+            : css`
+                  &:before {
+                      top: -1em;
+                      left: -1.25em;
+                      width: 150% !important;
+                  }
 
-    &.active:after {
-        top: 0;
-        transform: rotate(135deg);
-    }
-`;
+                  &:after {
+                      left: 0;
+                  }
+              `};
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fcfcfc;
+            transition: 0.5s;
+        }
+
+        &.active {
+            background: rgb(0, 0, 0, 0);
+        }
+
+        &.active:before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        &.active:after {
+            top: 0;
+            transform: rotate(135deg);
+        }
+    `,
+]);
 
 const Nav = styled.nav`
     display: flex;
@@ -208,7 +224,7 @@ function Navbar() {
             <Logo></Logo>
 
             <Button onClick={() => setOpenMenu((x) => !x)}>
-                <HamburgerMenu className={classNames(openMenu && "active")}></HamburgerMenu>
+                <HamburgerMenu isOpen={openMenu} className={classNames(openMenu && "active")}></HamburgerMenu>
             </Button>
 
             <MenuWrapper data-open={openMenu}>
