@@ -37,6 +37,13 @@ const StyledSVG = styled.svg`
 
     > path {
         fill: #e5dbd1;
+        transform: translate(900px, 0) scale(3, 3);
+    }
+
+    @media (min-width: 1024px) {
+        > path {
+            transform: translate(900px, 0) scale(2, 2);
+        }
     }
 `;
 
@@ -57,7 +64,7 @@ export function MenuBackground({ isOpen }: { isOpen: boolean }) {
         <Breakout>
             <Wrapper>
                 <StyledSVG width="900" height="900" viewBox="0 0 900 900" preserveAspectRatio="xMaxYMin slice">
-                    <path ref={scope} transform="translate(900, 0) scale(2,2)" />
+                    <path ref={scope} />
                 </StyledSVG>
             </Wrapper>
         </Breakout>

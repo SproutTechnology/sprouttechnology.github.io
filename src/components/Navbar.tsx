@@ -5,6 +5,10 @@ import styled from "@emotion/styled";
 import { MenuBackground } from "./MenuBackground";
 import { MenuButton } from "./MenuButton";
 import Logo from "./Logo";
+import { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
+import { useTheme } from "@emotion/react";
+import CardSize from "../enums/CardSize";
+import { AnchorButton } from "./Button";
 
 const Nav = styled.nav`
     display: flex;
@@ -27,13 +31,13 @@ const Nav = styled.nav`
 const MenuWrapper = styled.div`
     position: fixed;
     z-index: -1;
-    top: 0;
-    right: 0;
+    top: 50%;
+    right: 50%;
 
-    width: 200%;
-    height: 200%;
+    width: 100%;
+    height: 100%;
 
-    transform: translate(100%, -100%);
+    transform: translateX(200%) translateY(-200%);
 
     border-radius: 9999px;
 
@@ -61,36 +65,120 @@ const Quadrant = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding: 0.5rem;
 `;
 
 const empty = {};
 const inert = { tabIndex: -1, inert: "" };
 
-const NavbarItems = ({ isOpen }: { isOpen: boolean }) => {
+const NavbarMenuList = styled.ul`
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+        margin: 0.5rem;
+    }
+
+    ${CardWrapper} {
+        width: ${(props) => props.theme.cardSizes.width[CardSize.Small]};
+        height: 100%;
+    }
+
+    ${CardParagraph} {
+        display: none;
+    }
+
+    ${CardHeading} {
+        font-size: 1.2rem;
+    }
+
+    @media (min-width: 1024px) {
+        > li {
+            margin: 0 1.5rem;
+        }
+
+        ${CardWrapper} {
+            width: ${(props) => props.theme.cardSizes.width[CardSize.Medium]};
+            height: 100%;
+        }
+
+        ${CardParagraph} {
+            display: block;
+        }
+
+        ${CardHeading} {
+            font-size: ${(props) => props.theme.fontSize.h2};
+        }
+    }
+`;
+
+const MenuCTA = styled(AnchorButton)`
+    width: 100%;
+    height: unset;
+    padding: 1em;
+    text-align: center;
+
+    font-size: 0.75rem;
+    white-space: nowrap;
+
+    @media (min-width: 1024px) {
+        font-size: ${(props) => props.theme.fontSize.button};
+        white-space: nowrap;
+    }
+`;
+
+const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     const props = isOpen ? empty : inert;
+    const theme = useTheme();
+
     return (
-        <ul>
+        <NavbarMenuList>
             <li>
-                <a href="/about" {...props}>
-                    About
-                </a>
+                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
+                    <CardContent>
+                        <CardText>
+                            <CardHeading as="header">Sprout is us</CardHeading>
+                            <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
+                        </CardText>
+
+                        <MenuCTA as="a" href="/about" small {...props}>
+                            Jump to
+                        </MenuCTA>
+                    </CardContent>
+                </CardWrapper>
             </li>
             <li>
-                <a href="/employees" {...props}>
-                    Employees
-                </a>
+                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.green}>
+                    <CardContent>
+                        <CardText>
+                            <CardHeading as="header">The vision</CardHeading>
+                            <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
+                        </CardText>
+
+                        <MenuCTA as="a" href="/vision" small {...props}>
+                            Run to
+                        </MenuCTA>
+                    </CardContent>
+                </CardWrapper>
             </li>
             <li>
-                <a href="/career" {...props}>
-                    Career
-                </a>
+                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.grey}>
+                    <CardContent>
+                        <CardText>
+                            <CardHeading as="header">Get in touch</CardHeading>
+                            <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
+                        </CardText>
+
+                        <MenuCTA as="a" href="/contact" small {...props}>
+                            Drive to
+                        </MenuCTA>
+                    </CardContent>
+                </CardWrapper>
             </li>
-            <li>
-                <a href="/contact" {...props}>
-                    Contact
-                </a>
-            </li>
-        </ul>
+        </NavbarMenuList>
     );
 };
 
@@ -105,14 +193,11 @@ function Navbar() {
 
             <MenuWrapper data-open={isMenuOpen}>
                 <MenuAreas>
-                    <Quadrant />
-                    <Quadrant />
                     <Quadrant>
-                        <NavbarItems isOpen={isMenuOpen} />
+                        <NavbarMenu isOpen={isMenuOpen} />
 
                         <MenuBackground isOpen={isMenuOpen} />
                     </Quadrant>
-                    <Quadrant />
                 </MenuAreas>
             </MenuWrapper>
         </Nav>

@@ -8,6 +8,8 @@ const Button = styled.button`
     border: 0;
     background: transparent;
     font-size: 1rem;
+    padding: 1em 0.5em;
+    padding-right: 0;
 
     &:focus-within {
         // TODO: Have some actual focus-within feedback
