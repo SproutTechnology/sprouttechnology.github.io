@@ -1,6 +1,9 @@
-import { useReducer } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import styled from "@emotion/styled";
+
+import { RemoveScroll } from "react-remove-scroll";
+import ReactFocusLock from "react-focus-lock";
 
 import { MenuBackground } from "./MenuBackground";
 import { MenuButton } from "./MenuButton";
@@ -183,19 +186,37 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
 };
 
 function Navbar() {
-    const [isMenuOpen, toggle] = useReducer((x) => !x, false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    useEffect(() => {
+        function handleKeyDown(event: KeyboardEvent) {
+            if (event.code === "Escape") {
+                setIsMenuOpen(false);
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
+
+    const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
 
     return (
         <Nav>
-            <Logo></Logo>
+            <Logo />
 
             <MenuButton isOpen={isMenuOpen} toggle={toggle} />
-
             <MenuWrapper data-open={isMenuOpen}>
                 <MenuAreas>
                     <Quadrant>
-                        <NavbarMenu isOpen={isMenuOpen} />
-
+                        <ReactFocusLock disabled={!isMenuOpen} returnFocus>
+                            <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
+                                <NavbarMenu isOpen={isMenuOpen} />
+                            </RemoveScroll>
+                        </ReactFocusLock>
                         <MenuBackground isOpen={isMenuOpen} />
                     </Quadrant>
                 </MenuAreas>
