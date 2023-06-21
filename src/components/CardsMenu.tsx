@@ -1,7 +1,7 @@
 import Card from "./Card";
 import CardSize from "../enums/CardSize";
 import styled from "@emotion/styled";
-import { Theme, useTheme } from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
 
 interface MenuItem {

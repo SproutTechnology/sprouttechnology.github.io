@@ -1,5 +1,5 @@
 import MainContent from "./components/MainContent";
-import { ThemeProvider, useTheme } from "@emotion/react";
+import { Global, ThemeProvider, css } from "@emotion/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -9,6 +9,13 @@ import HeadingWithSubheading from "./components/HeadingWithSubheading";
 function App() {
     return (
         <ThemeProvider theme={theme}>
+            <Global
+                styles={css`
+                    body {
+                        background-color: ${theme.backgroundColors.charcoal};
+                    }
+                `}
+            />
             <Navbar />
             <Hero />
             <HeadingWithSubheading
