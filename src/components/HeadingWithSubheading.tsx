@@ -43,7 +43,7 @@ const MainHeading = styled.h1`
 `
 
 const SubHeading = styled.h2`
-  font-size: ${props => props.theme.fontSize.h2};
+  font-size: ${props => props.theme.fontSize.p};
   color : ${props => props.color};
   margin : unset;
   margin-left : min(0px, 30rem, 40cqi);

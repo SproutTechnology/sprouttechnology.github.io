@@ -45,7 +45,7 @@ export function SubPage({heroImage, title, children} : Props) {
             </ContentSubPage>
 
             <Footer light={true}>
-                <Gap15/>
+                <Gap10/>
                 <HeadingWithSubheading
                     backgroundColor={"#0000"}
                     textColor={theme.backgroundColors.charcoal}
@@ -63,8 +63,8 @@ export function SubPage({heroImage, title, children} : Props) {
 const ContentSubPage = styled.div`
   background-color: ${props => props.theme.backgroundColors.charcoal};
   color: ${props => props.theme.backgroundColors.livingRoom};
-  padding-left: clamp(2rem, 6vw, 6rem);
-  padding-right: clamp(2rem, 6vw, 6rem);
+  padding-left: clamp(1rem, 2vw, 2rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
 `
 
 const ContentInner = styled.div`
@@ -80,7 +80,7 @@ const Title = styled.h1`
 
 const BodyTextHolder = styled.div`
     font-size: ${(props) => props.theme.fontSize.p};
-    padding-left: clamp(2rem, 10vw, 10rem);
+    padding-left: clamp(1rem, 6vw, 8rem);
 `
 
 const Gap5 = styled.div`
@@ -88,7 +88,7 @@ const Gap5 = styled.div`
 `
 
 
-const Gap15 = styled.div`
-    height: 15rem;
+const Gap10 = styled.div`
+    height: 10rem;
 `
 

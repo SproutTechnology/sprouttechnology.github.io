@@ -12,7 +12,7 @@ function HeroSubPage({image} : Props) {
       <Image src={image}/>
 
       <AbsoluteTop>
-        <Navbar />
+        <Navbar backgroundColor={"#0000"}/>
       </AbsoluteTop>
 
       <AbsoluteBottom>

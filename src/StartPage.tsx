@@ -23,7 +23,7 @@ export function StartPage() {
                     }
                 `}
             />
-            <Navbar />
+            <Navbar backgroundColor={theme.backgroundColors.charcoal}/>
             <Hero />
             <HeadingWithSubheading
                 backgroundColor={theme.backgroundColors.charcoal}

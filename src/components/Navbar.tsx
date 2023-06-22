@@ -15,10 +15,13 @@ import { AnchorButton } from "./Button";
 import {Link} from "react-router-dom";
 import LinkToPage from "../enums/LinkToPage";
 
+interface Props {
+    backgroundColor: string;
+}
 
 const Nav = styled.nav`
     display: flex;
-    background-color: #0000;
+    background-color: ${(props: Props) => props.backgroundColor};;
     padding-left: ${(props) => props.theme.spacing.large};
     padding-right: ${(props) => props.theme.spacing.large};
     align-items: center;
@@ -188,7 +191,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     );
 };
 
-function Navbar() {
+function Navbar({backgroundColor} : Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -208,7 +211,7 @@ function Navbar() {
     const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
 
     return (
-        <Nav>
+        <Nav backgroundColor={backgroundColor}>
             <Link to={LinkToPage.StartPage}>
                 <Logo/>
             </Link>
