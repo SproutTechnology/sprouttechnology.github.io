@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import styled from "@emotion/styled";
 import CardsMenu from "./components/CardsMenu";
 import HeroSubPage from "./components/HeroSubPage";
-import {ReactNode} from "react";
+import {ReactNode, useEffect} from "react";
 import {Global, ThemeProvider, css} from "@emotion/react";
 
 
@@ -15,6 +15,11 @@ interface Props {
 }
 
 export function SubPage({heroImage, title, children} : Props) {
+
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             <Global
