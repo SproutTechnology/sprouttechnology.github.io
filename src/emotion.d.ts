@@ -71,9 +71,9 @@ export default {
         grey: "#6E686D"
     },
     fontSize: {
-        p : "16px",
-        h1: "96px",
-        h2: "32px",
+        p : "clamp(1.2rem, 1.8vw, 2rem)",
+        h1: "clamp(3rem, 6vw, 6rem)",
+        h2: "clamp(2rem, 3vw, 3rem)",
         button : "16px"
     },
     spacing: {

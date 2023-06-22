@@ -61,9 +61,10 @@ export function SubPage({heroImage, title, children} : Props) {
 
 
 const ContentSubPage = styled.div`
-  margin : unset;
   background-color: ${props => props.theme.backgroundColors.charcoal};
   color: ${props => props.theme.backgroundColors.livingRoom};
+  padding-left: clamp(2rem, 6vw, 6rem);
+  padding-right: clamp(2rem, 6vw, 6rem);
 `
 
 const ContentInner = styled.div`
@@ -78,8 +79,8 @@ const Title = styled.h1`
 `
 
 const BodyTextHolder = styled.div`
-    padding-left: 10rem;
-    font-size: 1.3em;
+    font-size: ${(props) => props.theme.fontSize.p};
+    padding-left: clamp(2rem, 10vw, 10rem);
 `
 
 const Gap5 = styled.div`

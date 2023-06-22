@@ -16,7 +16,7 @@ body {
 }
 
 body * {
-    font-family: Sen;
+    font-family: Sen, sans-serif;
 }
 
 :root {
