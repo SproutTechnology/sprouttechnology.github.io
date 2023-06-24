@@ -133,6 +133,14 @@ const MenuCTA = styled(AnchorButton)`
     }
 `;
 
+const MenuItemWrapper = styled.div`
+    display: flex;
+    z-index: 2;
+    position: relative;
+    justify-content: center;
+    margin-top: 100px;
+`;
+
 const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     const props = isOpen ? empty : inert;
     const theme = useTheme();
@@ -205,23 +213,27 @@ function Navbar() {
     const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
 
     return (
-        <Nav>
-            <Logo />
+        <>
+            <Nav>
+                <Logo />
 
-            <MenuButton isOpen={isMenuOpen} toggle={toggle} />
-            <MenuWrapper data-open={isMenuOpen}>
-                <MenuAreas>
-                    <Quadrant>
-                        <ReactFocusLock disabled={!isMenuOpen} returnFocus>
-                            <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
-                                <NavbarMenu isOpen={isMenuOpen} />
-                            </RemoveScroll>
-                        </ReactFocusLock>
-                        <MenuBackground isOpen={isMenuOpen} />
-                    </Quadrant>
-                </MenuAreas>
-            </MenuWrapper>
-        </Nav>
+                <MenuButton isOpen={isMenuOpen} toggle={toggle} />
+                <MenuWrapper data-open={isMenuOpen}>
+                    <MenuAreas>
+                        <Quadrant>
+                            <MenuBackground isOpen={isMenuOpen} />
+                        </Quadrant>
+                    </MenuAreas>
+                </MenuWrapper>
+            </Nav>
+            <MenuItemWrapper>
+                <ReactFocusLock disabled={!isMenuOpen} returnFocus>
+                    <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
+                        <NavbarMenu isOpen={isMenuOpen} />
+                    </RemoveScroll>
+                </ReactFocusLock>
+            </MenuItemWrapper>
+        </>
     );
 }
 

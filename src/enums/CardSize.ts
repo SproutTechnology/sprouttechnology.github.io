@@ -1,7 +1,7 @@
-enum CardSize {   
+enum CardSize {
     Small = "small",
     Medium = "medium",
-    Large = "large"     
+    Large = "large",
 }
 
-export default CardSize
+export default CardSize;
