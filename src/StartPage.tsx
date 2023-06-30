@@ -6,13 +6,8 @@ import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
 import {Global, ThemeProvider, css} from "@emotion/react";
 import CardsMenu from "./components/CardsMenu";
-import {useEffect, useRef} from "react";
 
 export function StartPage() {
-
-    useEffect(() => {
-        window.scrollTo(0,0)
-    }, []);
 
     return (
         <ThemeProvider theme={theme}>

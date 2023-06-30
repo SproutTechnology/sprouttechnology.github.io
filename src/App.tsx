@@ -1,11 +1,19 @@
-import {Outlet, Route, Routes} from "react-router-dom";
+import {Outlet, Route, Routes, useLocation} from "react-router-dom";
 import {StartPage} from "./StartPage";
 import theme from "./emotion.d";
 import {ThemeProvider } from "@emotion/react";
 import {SproutIsUs} from "./SproutIsUs";
 import {TheVision} from "./TheVision";
+import {useLayoutEffect} from "react";
 
 function App() {
+
+    const location = useLocation();
+    // Scroll to top if path changes
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <ThemeProvider theme={theme}>
 
