@@ -6,13 +6,19 @@ import ArticleSection  from "./ArticleSection";
 import CurveBackground from "../enums/CurveBackground";
 import styled from "@emotion/styled";
 
+interface Props {
+    backgroundColor: string,
+}
+
+
 const Main = styled.div`
-    margin-bottom : 10rem;
+    padding-bottom : 10rem;
+    background-color: ${(props : Props) => props.backgroundColor};
 `
 
-const MainContent = () => (
-    <Main> 
-        <FluidCenterContainer curveBackground={CurveBackground.Top} padTop={true} centerContent={false}>
+const MainContent = ({ backgroundColor }: Props) => (
+    <Main backgroundColor={backgroundColor}>
+        <FluidCenterContainer light={false} curveBackground={CurveBackground.Top} padTop={true} centerContent={false}>
             <ArticleSection></ArticleSection>
         </FluidCenterContainer>
     </Main>

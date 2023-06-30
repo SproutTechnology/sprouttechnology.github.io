@@ -1,39 +1,38 @@
-import MainContent from "./components/MainContent";
-import { Global, ThemeProvider, css } from "@emotion/react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
+import {Outlet, Route, Routes, useLocation} from "react-router-dom";
+import {StartPage} from "./StartPage";
 import theme from "./emotion.d";
-import HeadingWithSubheading from "./components/HeadingWithSubheading";
+import {ThemeProvider } from "@emotion/react";
+import {SproutIsUs} from "./SproutIsUs";
+import {TheVision} from "./TheVision";
+import {useLayoutEffect} from "react";
 
 function App() {
+
+    const location = useLocation();
+    // Scroll to top if path changes
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <ThemeProvider theme={theme}>
-            <Global
-                styles={css`
-                    body {
-                        background-color: ${theme.backgroundColors.charcoal};
-                    }
-                `}
-            />
-            <Navbar />
-            <Hero />
-            <HeadingWithSubheading
-                backgroundColor={theme.backgroundColors.charcoal}
-                textColor={theme.backgroundColors.livingRoom}
-                text="We are Sprout"
-                subheading="Welcome to our universe. A growing ecosystem of collaborating people, ideas and initiatives"
-            />
-            <MainContent />
-            <HeadingWithSubheading
-                backgroundColor={theme.backgroundColors.livingRoom}
-                textColor={theme.backgroundColors.charcoal}
-                text="Next up"
-                subheading="What would you like to know"
-            />
-            <Footer />
+
+        <Routes>
+            <Route path="/" element={<Outlet/>}>
+                <Route index element={<StartPage/>}/>
+                <Route path="sprout-is-us" element={<SproutIsUs/>}/>
+                <Route path="the-vision" element={<TheVision/>}/>
+
+                {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+                <Route path="*" element={<StartPage/>}/>
+            </Route>
+        </Routes>
         </ThemeProvider>
     );
 }
+
+
 
 export default App;

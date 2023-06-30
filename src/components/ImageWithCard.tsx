@@ -1,11 +1,12 @@
 import Card from "./Card";
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
+import LinkToPage from "../enums/LinkToPage";
 interface Props {
   mirror? : Boolean,
   text : string,
   title : string
- 
+  linkTo: LinkToPage
 }
 
 interface ImageWithCardContainerProps {
@@ -33,8 +34,6 @@ max-width: 100%;
 height: 100%;
 object-fit: scale-down;
 border-radius: 2rem;
-}
-  
 `
 
 const Image = styled.img`
@@ -45,9 +44,9 @@ border-radius: 2rem;
 `
 
 
-const ImageWithCard = ( {mirror, text, title} : Props) => (
+const ImageWithCard = ( {mirror, text, title, linkTo} : Props) => (
     <ImageWithCardContainer mirror={mirror || false} >
-        <Card size={CardSize.Large} text={text} color="#C8B9AB" title={title}></Card>    
+        <Card size={CardSize.Large} text={text} color="#C8B9AB" title={title} linkTo={linkTo}></Card>
         <ImageWrapper>
           <Image src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"></Image>
         </ImageWrapper>

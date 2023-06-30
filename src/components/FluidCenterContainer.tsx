@@ -8,7 +8,7 @@ interface Props {
     padTop: Boolean,
     centerContent: Boolean,
     curveBackground? : CurveBackground
-
+    light: Boolean,
 }
 
 interface StyleProps {
@@ -26,8 +26,6 @@ const StyledContainer = styled('div')`
     flex-direction : column;
     height : 100%;
     align-items : ${(props: StyleProps) => props.centerContent ? 'center' : 'stretch'};
-    margin-right : 1rem;
-    margin-left : 1rem;
     @media only screen and (min-width: 1200px) { 
         margin-right : clamp(1rem, 20vw, 15rem);
         margin-left : clamp(1rem, 20vw, 15rem);
@@ -39,7 +37,7 @@ const StyledContainer = styled('div')`
         
     }
 `
-const TopCurveBackground = styled('div')`
+const TopCurveBackgroundLight = styled('div')`
     background-image:  url("/curve_left.svg");
     background-position: top;
     background-repeat: no-repeat;
@@ -48,7 +46,17 @@ const TopCurveBackground = styled('div')`
     container-type : inline-size;
 `
 
-const BottomCurveBackground = styled('div')`
+const BottomCurveBackgroundLight = styled('div')`
+    background-image:  url("/curve_right_light.svg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-color : #E5DBD1;
+    background-size : 100%;
+    container-type : inline-size;
+    min-height : 60vh;
+`
+
+const BottomCurveBackgroundDark = styled('div')`
     background-image:  url("/curve_right.svg");
     background-position: top;
     background-repeat: no-repeat;
@@ -58,25 +66,30 @@ const BottomCurveBackground = styled('div')`
     min-height : 60vh;
 `
 
-
-
-
-
-function Container({ children, centerContent, padTop, curveBackground }: Props) {
-
-    if (curveBackground === CurveBackground.Bottom) return (
-    <BottomCurveBackground>
-        <StyledContainer centerContent={centerContent} padTop={padTop}  >
-            {children}
-        </StyledContainer>
-    </BottomCurveBackground>)
+function Container({ children, centerContent, padTop, curveBackground, light }: Props) {
 
     if (curveBackground === CurveBackground.Top) return (
-        <TopCurveBackground>
+        <TopCurveBackgroundLight>
             <StyledContainer centerContent={centerContent} padTop={padTop}  >
                 {children}
             </StyledContainer>
-        </TopCurveBackground>
+        </TopCurveBackgroundLight>
+    )
+
+    if (curveBackground === CurveBackground.Bottom && light) return (
+        <BottomCurveBackgroundLight>
+            <StyledContainer centerContent={centerContent} padTop={padTop}  >
+                {children}
+            </StyledContainer>
+        </BottomCurveBackgroundLight>
+    )
+
+    if (curveBackground === CurveBackground.Bottom && !light) return (
+        <BottomCurveBackgroundDark>
+            <StyledContainer centerContent={centerContent} padTop={padTop}  >
+                {children}
+            </StyledContainer>
+        </BottomCurveBackgroundDark>
     )
 
     return (

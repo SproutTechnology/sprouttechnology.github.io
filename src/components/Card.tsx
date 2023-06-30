@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
 import Button from "./Button";
+import {Link} from "react-router-dom";
 interface Card {
     color: string;
     title: string;
     size: CardSize;
     text: string;
     buttonText?: string;
+    linkTo: string;
 }
 
 interface StyledCard {
@@ -50,7 +52,7 @@ export const CardParagraph = styled.p`
 
 export const CardText = styled.div``;
 
-function Card({ color, size, title, text, buttonText }: Card) {
+function Card({ color, size, title, text, buttonText, linkTo }: Card) {
     return (
         <CardWrapper size={size} color={color}>
             <CardContent>
@@ -58,7 +60,9 @@ function Card({ color, size, title, text, buttonText }: Card) {
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
                 </CardText>
+              <Link to={linkTo}>
                 <Button text={buttonText} small={size === CardSize.Small}></Button>
+              </Link>
             </CardContent>
         </CardWrapper>
     );
