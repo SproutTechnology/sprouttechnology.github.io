@@ -8,10 +8,21 @@ import ReactFocusLock from "react-focus-lock";
 import { MenuBackground } from "./MenuBackground";
 import { MenuButton } from "./MenuButton";
 import Logo from "./Logo";
-import { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
-import { useTheme } from "@emotion/react";
+import Card, { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
+import { css, useTheme } from "@emotion/react";
 import CardSize from "../enums/CardSize";
 import { AnchorButton } from "./Button";
+import { keyframes } from "@emotion/react";
+
+const fadeIn = keyframes({
+    "0%": { opacity: 0, bottom: "55%" },
+    "100%": { opacity: 1, bottom: "50%" },
+});
+
+const fadeOut = keyframes({
+    "0%": { opacity: 1, top: "50%" },
+    "100%": { opacity: 0, top: "55%" },
+});
 
 const Nav = styled.nav`
     display: flex;
@@ -133,13 +144,39 @@ const MenuCTA = styled(AnchorButton)`
     }
 `;
 
-const MenuItemWrapper = styled.div`
-    display: flex;
-    z-index: 2;
-    position: relative;
-    justify-content: center;
-    margin-top: 100px;
-`;
+const MenuItemWrapper = styled.div<{ isOpen: boolean }>(({ isOpen }) =>
+    !isOpen
+        ? [
+              css`
+                  display: none;
+                  opacity: 0;
+                  ${isOpen &&
+                  css`
+                      animation: ${fadeOut} 0.35s 0.5s cubic-bezier(0.36, 0, 0.09, 1) forwards;
+                  `}
+              `,
+          ]
+        : [
+              css`
+                  display: flex;
+                  z-index: 2;
+                  position: absolute;
+                  justify-content: center;
+                  margin-top: 100px;
+                  opacity: 0;
+
+                  margin-left: auto;
+                  margin-right: auto;
+                  left: 0;
+                  right: 0;
+
+                  ${isOpen &&
+                  css`
+                      animation: ${fadeIn} 0.35s 0.5s cubic-bezier(0.36, 0, 0.09, 1) forwards;
+                  `}
+              `,
+          ],
+);
 
 const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     const props = isOpen ? empty : inert;
@@ -148,7 +185,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     return (
         <NavbarMenuList>
             <li>
-                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
+                {/* <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
                     <CardContent>
                         <CardText>
                             <CardHeading as="header">Sprout is us</CardHeading>
@@ -159,7 +196,15 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             Jump to
                         </MenuCTA>
                     </CardContent>
-                </CardWrapper>
+                </CardWrapper> */}
+                <Card
+                    key={1}
+                    buttonText={"Jump to"}
+                    size={CardSize.Medium}
+                    color={theme.cardColors.beige}
+                    title={"Sprout is us"}
+                    text="We've all been in the business for a few years. Colleagues have come and gone."
+                />
             </li>
             <li>
                 <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.green}>
@@ -226,7 +271,7 @@ function Navbar() {
                     </MenuAreas>
                 </MenuWrapper>
             </Nav>
-            <MenuItemWrapper>
+            <MenuItemWrapper isOpen={isMenuOpen}>
                 <ReactFocusLock disabled={!isMenuOpen} returnFocus>
                     <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
                         <NavbarMenu isOpen={isMenuOpen} />

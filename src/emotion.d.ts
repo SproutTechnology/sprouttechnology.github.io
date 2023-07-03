@@ -73,7 +73,7 @@ export default {
     fontSize: {
         p: "16px",
         h1: "96px",
-        h2: "32px",
+        h2: "24px",
         button: "16px",
     },
     spacing: {

@@ -42,15 +42,15 @@ const SubHeading = styled.h2`
     font-size: ${(props) => props.theme.fontSize.h2};
     color: ${(props) => props.color};
     margin: unset;
-    padding-top: 10rem;
     margin-left: min(0px, 30rem, 40cqi);
     max-width: 30rem;
-    text-align: end;
     grid-row: 2;
     justify-self: center;
     grid-column: 1 / -1;
     @container (width > 450px) {
-        grid-column: 2 / -1;
+        text-align: left;
+        grid-column: 2 / span 2;
+        width: 100%;
     }
 `;
 

@@ -1,32 +1,35 @@
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
 import Button from "./Button";
-interface Card {
-    color: string;
-    title: string;
-    size: CardSize;
-    text: string;
-    buttonText?: string;
-}
+import { css } from "@emotion/react";
 
 interface StyledCard {
     color: string;
     size: CardSize;
 }
+interface Card extends StyledCard {
+    title: string;
+    text: string;
+    buttonText?: string;
+    reverted?: boolean;
+}
 
-export const CardWrapper = styled.div`
-    container-type: inline-size;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    color: black;
-    flex-shrink: 0;
-    border-radius: ${(props) => props.theme.borderRadius};
-    width: ${(props) => props.theme.cardSizes.width[props.size]};
-    height: ${(props) => props.theme.cardSizes.height[props.size]};
-    background-color: ${(props: StyledCard) => props.color};
-`;
+export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, size, color }) => [
+    css`
+        container-type: inline-size;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        color: ${reverted ? "white" : "black"};
+        flex-shrink: 0;
+
+        border-radius: ${theme.borderRadius};
+        width: ${theme.cardSizes.width[size]};
+        height: ${theme.cardSizes.height[size]};
+        background-color: ${color};
+    `,
+]);
 
 export const CardHeading = styled.h1`
     margin-bottom: 2.5rem;
@@ -50,9 +53,9 @@ export const CardParagraph = styled.p`
 
 export const CardText = styled.div``;
 
-function Card({ color, size, title, text, buttonText }: Card) {
+function Card({ color, size, title, text, buttonText, reverted }: Card) {
     return (
-        <CardWrapper size={size} color={color}>
+        <CardWrapper size={size} color={color} reverted={reverted}>
             <CardContent>
                 <CardText>
                     <CardHeading>{title}</CardHeading>

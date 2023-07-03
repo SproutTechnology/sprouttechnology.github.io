@@ -26,22 +26,17 @@ function CardsMenu() {
         () => [
             {
                 color: theme.cardColors.beige,
-                buttonText: "Slide to",
-                title: "Cases",
-            },
-            {
-                color: theme.cardColors.brown,
-                buttonText: "Jump to",
-                title: "The people",
+                buttonText: "Read more",
+                title: "Sprout is us",
             },
             {
                 color: theme.cardColors.green,
-                buttonText: "Run to",
-                title: "The way",
+                buttonText: "Read more",
+                title: "The vision",
             },
             {
                 color: theme.cardColors.grey,
-                buttonText: "Drive to",
+                buttonText: "Read more",
                 title: "Get in touch",
             },
         ],

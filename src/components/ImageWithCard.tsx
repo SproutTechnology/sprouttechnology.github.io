@@ -32,16 +32,15 @@ const ImageWithCardContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-max-width: 100%;
-height: 100%;
-object-fit: scale-down;
-border-radius: 2rem;
+    height: 100%;
+    object-fit: scale-down;
+    border-radius: 2rem;
 }
   
 `;
 
 const Image = styled.img`
-    width: 100%;
+    max-width: 720px;
     height: 100%;
     object-fit: cover;
     border-radius: 2rem;
