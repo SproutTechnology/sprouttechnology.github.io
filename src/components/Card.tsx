@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
 
 interface StyledCard {
+    color: string;
+    size: CardSize;
+}
+
+interface Card {
     color: string;
     size: CardSize;
 }
@@ -12,6 +18,7 @@ interface Card extends StyledCard {
     text: string;
     buttonText?: string;
     reverted?: boolean;
+    linkTo: string;
 }
 
 export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, size, color }) => [
@@ -53,7 +60,7 @@ export const CardParagraph = styled.p`
 
 export const CardText = styled.div``;
 
-function Card({ color, size, title, text, buttonText, reverted }: Card) {
+function Card({ color, size, title, text, buttonText, linkTo, reverted }: Card) {
     return (
         <CardWrapper size={size} color={color} reverted={reverted}>
             <CardContent>
@@ -61,7 +68,9 @@ function Card({ color, size, title, text, buttonText, reverted }: Card) {
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
                 </CardText>
-                <Button text={buttonText} small={size === CardSize.Small}></Button>
+                <Link to={linkTo}>
+                    <Button text={buttonText} small={size === CardSize.Small}></Button>
+                </Link>
             </CardContent>
         </CardWrapper>
     );

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import ImageWithCard from "./ImageWithCard";
-import Colors from "../enums/Colors";
+import LinkToPage from "../enums/LinkToPage";
 
 const StyledArticleSection = styled.div`
     display: flex;
@@ -12,16 +12,17 @@ const StyledArticleSection = styled.div`
 const ArticleSection = () => (
     <StyledArticleSection>
         <ImageWithCard
+            linkTo={LinkToPage.SproutIsUs}
             title="Sprout is us"
             text="We've all been in the business for a few years. Colleagues have come and gone, projects and companies have changed in a world where technology is ever evolving. We've stayed on that path, with its ups and downs, following our passion for software..."
-            imageUrl={"https://cdn.pixabay.com/photo/2023/06/16/11/47/books-8067850_960_720.jpg"}
+            imageUrl="https://cdn.pixabay.com/photo/2020/10/21/18/07/laptop-5673901_960_720.jpg"
         />
         <ImageWithCard
-            cardColor={Colors.green}
+            linkTo={LinkToPage.TheVision}
             mirror={true}
             title="The vision"
             text="We've all been in the business for a few years. Colleagues have come and gone, projects and companies have changed in a world where technology is ever evolving. We've stayed on that path, with its ups and downs, following our passion for software..."
-            imageUrl={"https://cdn.pixabay.com/photo/2021/10/30/12/41/mountains-6754215_1280.jpg"}
+            imageUrl={"https://cdn.pixabay.com/photo/2023/05/20/16/05/island-8006762_960_720.jpg"}
         />
     </StyledArticleSection>
 );

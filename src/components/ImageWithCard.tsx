@@ -10,6 +10,7 @@ interface Props {
     title: string;
     cardColor?: string;
     imageUrl: string;
+    linkTo: string;
 }
 
 interface ImageWithCardContainerProps {
@@ -46,9 +47,9 @@ const Image = styled.img`
     border-radius: 2rem;
 `;
 
-const ImageWithCard = ({ mirror, text, title, cardColor = Colors.beige, imageUrl = BACKUP_IMAGE }: Props) => (
+const ImageWithCard = ({ mirror, text, title, cardColor = Colors.beige, imageUrl = BACKUP_IMAGE, linkTo }: Props) => (
     <ImageWithCardContainer mirror={mirror || false}>
-        <Card size={CardSize.Large} text={text} color={cardColor} title={title}></Card>
+        <Card size={CardSize.Large} text={text} color={cardColor} title={title} linkTo={linkTo}/>
         <ImageWrapper>
             <Image src={imageUrl}></Image>
         </ImageWrapper>

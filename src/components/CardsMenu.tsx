@@ -3,11 +3,13 @@ import CardSize from "../enums/CardSize";
 import styled from "@emotion/styled";
 import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
+import LinkToPage from "../enums/LinkToPage";
 
 interface MenuItem {
     color: string;
     title: string;
     buttonText: string;
+    linkTo: LinkToPage;
 }
 
 const StyledList = styled.ul`
@@ -28,16 +30,19 @@ function CardsMenu() {
                 color: theme.cardColors.beige,
                 buttonText: "Read more",
                 title: "Sprout is us",
+                linkTo: LinkToPage.StartPage,
             },
             {
                 color: theme.cardColors.green,
                 buttonText: "Read more",
                 title: "The vision",
+                linkTo: LinkToPage.SproutIsUs,
             },
             {
                 color: theme.cardColors.grey,
                 buttonText: "Read more",
                 title: "Get in touch",
+                linkTo: LinkToPage.TheVision,
             },
         ],
         [theme],
@@ -46,10 +51,11 @@ function CardsMenu() {
     return (
         <nav>
             <StyledList>
-                {menuItems.map(({ title, color, buttonText }) => (
+                {menuItems.map(({ title, color, buttonText, linkTo }) => (
                     <Card
                         key={title}
                         buttonText={buttonText}
+                        linkTo={linkTo}
                         text="We've all been in the business for a few years. Colleagues have come and gone. "
                         size={CardSize.Medium}
                         color={color}

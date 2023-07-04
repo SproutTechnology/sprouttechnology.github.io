@@ -1,12 +1,20 @@
 import CardsMenu from "./CardsMenu";
 import FluidCenterContainer from "./FluidCenterContainer"
 import CurveBackground from "../enums/CurveBackground";
+import {ReactNode} from "react";
 
-function Footer() {
+
+interface Props {
+    children?: ReactNode,
+    light: Boolean
+}
+
+
+function Footer({children, light }: Props) {
   return (
     <footer >   
-        <FluidCenterContainer curveBackground={CurveBackground.Bottom}  centerContent={false} padTop={false}>
-            <CardsMenu></CardsMenu>
+        <FluidCenterContainer light={light} curveBackground={CurveBackground.Bottom}  centerContent={false} padTop={false}>
+            {children}
         </FluidCenterContainer>
     </footer>
   );

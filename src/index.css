@@ -16,7 +16,7 @@ body {
 }
 
 body * {
-    font-family: Sen;
+    font-family: Sen, sans-serif;
 }
 
 :root {
@@ -39,8 +39,11 @@ body * {
         color: #213547;
         /* background-color: #e5dbd1; */
     }
+    a, a:visited {
+        color: #e5dbd1;
+    }
     a:hover {
-        color: #747bff;
+        color: #FFF;
     }
     button {
         background-color: #f9f9f9;
