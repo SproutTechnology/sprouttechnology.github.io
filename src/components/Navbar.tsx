@@ -8,12 +8,23 @@ import ReactFocusLock from "react-focus-lock";
 import { MenuBackground } from "./MenuBackground";
 import { MenuButton } from "./MenuButton";
 import Logo from "./Logo";
-import { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
-import { useTheme } from "@emotion/react";
+import Card, { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
+import { css, useTheme } from "@emotion/react";
 import CardSize from "../enums/CardSize";
 import { AnchorButton } from "./Button";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import LinkToPage from "../enums/LinkToPage";
+import { keyframes } from "@emotion/react";
+
+const fadeIn = keyframes({
+    "0%": { opacity: 0, bottom: "55%" },
+    "100%": { opacity: 1, bottom: "50%" },
+});
+
+const fadeOut = keyframes({
+    "0%": { opacity: 1, top: "50%" },
+    "100%": { opacity: 0, top: "55%" },
+});
 
 interface Props {
     backgroundColor: string;
@@ -21,7 +32,7 @@ interface Props {
 
 const Nav = styled.nav`
     display: flex;
-    background-color: ${(props: Props) => props.backgroundColor};;
+    background-color: ${(props: Props) => props.backgroundColor};
     padding-left: ${(props) => props.theme.spacing.large};
     padding-right: ${(props) => props.theme.spacing.large};
     align-items: center;
@@ -139,6 +150,40 @@ const MenuCTA = styled(AnchorButton)`
     }
 `;
 
+const MenuItemWrapper = styled.div<{ isOpen: boolean }>(({ isOpen }) =>
+    !isOpen
+        ? [
+              css`
+                  display: none;
+                  opacity: 0;
+                  ${isOpen &&
+                  css`
+                      animation: ${fadeOut} 0.35s 0.5s cubic-bezier(0.36, 0, 0.09, 1) forwards;
+                  `}
+              `,
+          ]
+        : [
+              css`
+                  display: flex;
+                  z-index: 2;
+                  position: absolute;
+                  justify-content: center;
+                  margin-top: 100px;
+                  opacity: 0;
+
+                  margin-left: auto;
+                  margin-right: auto;
+                  left: 0;
+                  right: 0;
+
+                  ${isOpen &&
+                  css`
+                      animation: ${fadeIn} 0.35s 0.5s cubic-bezier(0.36, 0, 0.09, 1) forwards;
+                  `}
+              `,
+          ],
+);
+
 const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     const props = isOpen ? empty : inert;
     const theme = useTheme();
@@ -146,7 +191,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     return (
         <NavbarMenuList>
             <li>
-                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
+                {/* <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
                     <CardContent>
                         <CardText>
                             <CardHeading as="header">Sprout is us</CardHeading>
@@ -157,7 +202,16 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             Jump to
                         </MenuCTA>
                     </CardContent>
-                </CardWrapper>
+                </CardWrapper> */}
+                <Card
+                    key={1}
+                    buttonText={"Jump to"}
+                    size={CardSize.Medium}
+                    color={theme.cardColors.beige}
+                    title={"Sprout is us"}
+                    text="We've all been in the business for a few years. Colleagues have come and gone."
+                    linkTo={""}
+                />
             </li>
             <li>
                 <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.green}>
@@ -191,7 +245,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     );
 };
 
-function Navbar({backgroundColor} : Props) {
+function Navbar({ backgroundColor }: Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -211,25 +265,29 @@ function Navbar({backgroundColor} : Props) {
     const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
 
     return (
-        <Nav backgroundColor={backgroundColor}>
-            <Link to={LinkToPage.StartPage}>
-                <Logo/>
-            </Link>
+        <>
+            <Nav backgroundColor={backgroundColor}>
+                <Link to={LinkToPage.StartPage}>
+                    <Logo />
+                </Link>
 
-            <MenuButton isOpen={isMenuOpen} toggle={toggle} />
-            <MenuWrapper data-open={isMenuOpen}>
-                <MenuAreas>
-                    <Quadrant>
-                        <ReactFocusLock disabled={!isMenuOpen} returnFocus>
-                            <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
-                                <NavbarMenu isOpen={isMenuOpen} />
-                            </RemoveScroll>
-                        </ReactFocusLock>
-                        <MenuBackground isOpen={isMenuOpen} />
-                    </Quadrant>
-                </MenuAreas>
-            </MenuWrapper>
-        </Nav>
+                <MenuButton isOpen={isMenuOpen} toggle={toggle} />
+                <MenuWrapper data-open={isMenuOpen}>
+                    <MenuAreas>
+                        <Quadrant>
+                            <MenuBackground isOpen={isMenuOpen} />
+                        </Quadrant>
+                    </MenuAreas>
+                </MenuWrapper>
+            </Nav>
+            <MenuItemWrapper isOpen={isMenuOpen}>
+                <ReactFocusLock disabled={!isMenuOpen} returnFocus>
+                    <RemoveScroll enabled={isMenuOpen} removeScrollBar={false}>
+                        <NavbarMenu isOpen={isMenuOpen} />
+                    </RemoveScroll>
+                </ReactFocusLock>
+            </MenuItemWrapper>
+        </>
     );
 }
 

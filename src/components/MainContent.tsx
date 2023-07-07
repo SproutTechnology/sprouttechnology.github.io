@@ -1,8 +1,5 @@
-
-
-
 import FluidCenterContainer from "./FluidCenterContainer";
-import ArticleSection  from "./ArticleSection";
+import ArticleSection from "./ArticleSection";
 import CurveBackground from "../enums/CurveBackground";
 import styled from "@emotion/styled";
 
@@ -22,6 +19,6 @@ const MainContent = ({ backgroundColor }: Props) => (
             <ArticleSection></ArticleSection>
         </FluidCenterContainer>
     </Main>
-)
+);
 
-export default MainContent
+export default MainContent;

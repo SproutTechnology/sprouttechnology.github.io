@@ -28,21 +28,21 @@ function CardsMenu() {
         () => [
             {
                 color: theme.cardColors.beige,
-                buttonText: "Slide to",
-                title: "Cases",
-                linkTo: LinkToPage.StartPage
-            },
-            {
-                color: theme.cardColors.brown,
-                buttonText: "Jump to",
-                title: "The people",
-                linkTo: LinkToPage.SproutIsUs
+                buttonText: "Read more",
+                title: "Sprout is us",
+                linkTo: LinkToPage.StartPage,
             },
             {
                 color: theme.cardColors.green,
-                buttonText: "Run to",
-                title: "The way",
-                linkTo: LinkToPage.TheVision
+                buttonText: "Read more",
+                title: "The vision",
+                linkTo: LinkToPage.SproutIsUs,
+            },
+            {
+                color: theme.cardColors.grey,
+                buttonText: "Read more",
+                title: "Get in touch",
+                linkTo: LinkToPage.TheVision,
             },
         ],
         [theme],
@@ -51,7 +51,7 @@ function CardsMenu() {
     return (
         <nav>
             <StyledList>
-                {menuItems.map(({ title, color, buttonText , linkTo}) => (
+                {menuItems.map(({ title, color, buttonText, linkTo }) => (
                     <Card
                         key={title}
                         buttonText={buttonText}
