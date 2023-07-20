@@ -53,7 +53,10 @@ const BottomCurveBackgroundLight = styled('div')`
     background-color : #E5DBD1;
     background-size : 100%;
     container-type : inline-size;
-    min-height : 20vh;
+    min-height : 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 `
 
 const BottomCurveBackgroundDark = styled('div')`
@@ -63,7 +66,10 @@ const BottomCurveBackgroundDark = styled('div')`
     background-color : #1D1D1D;
     background-size : 100%;
     container-type : inline-size;
-    min-height : 20vh;
+    min-height : 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 `
 
 function Container({ children, centerContent, padTop, curveBackground, light }: Props) {
