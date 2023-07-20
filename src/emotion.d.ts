@@ -30,6 +30,7 @@ declare module "@emotion/react" {
             p: string;
             h1: string;
             h2: string;
+            h3 : string,
             button: string;
         };
         spacing: {
@@ -51,12 +52,12 @@ export default {
     borderRadius: "2rem",
     cardSizes: {
         width: {
-            [CardSize.Large]: "21.5rem",
+            [CardSize.Large]: "26.5rem",
             [CardSize.Medium]: "16.5rem",
             [CardSize.Small]: "10.25rem",
         },
         height: {
-            [CardSize.Large]: "30rem",
+            [CardSize.Large]: "35rem",
             [CardSize.Medium]: "25rem",
             [CardSize.Small]: "16.5rem",
         },
@@ -71,9 +72,10 @@ export default {
         grey: Colors.grey,
     },
     fontSize: {
-        p : "clamp(0.75rem, 1.25vw, 1rem)",
-        h1: "clamp(3rem, 4vw, 6rem)",
-        h2: "clamp(1.5rem, 1.75vw, 2rem)",
+        p : "clamp(0.75rem, 4cqw, 1rem)",
+        h1: "clamp(3rem, 16vw, 6rem)",
+        h2: "clamp(1.5rem, 6cqw, 1rem)",
+        h3: "clamp(2rem, 8cqw, 4rem)",
         button : "16px"
     },
     spacing: {

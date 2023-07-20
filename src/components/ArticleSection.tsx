@@ -3,6 +3,8 @@ import ImageWithCard from "./ImageWithCard";
 import LinkToPage from "../enums/LinkToPage";
 
 const StyledArticleSection = styled.div`
+    container-type : inline-size;
+    width : 100%;  
     display: flex;
     flex-direction: column;
     align-items: center;

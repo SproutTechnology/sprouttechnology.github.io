@@ -6,12 +6,13 @@ import { css } from "@emotion/react";
 
 interface StyledCard {
     color: string;
-    size: CardSize;
+    initialWidth: CardSize;
 }
 
 interface Card {
     color: string;
-    size: CardSize;
+    initialWidth: CardSize;
+    className? : string,
 }
 interface Card extends StyledCard {
     title: string;
@@ -21,7 +22,7 @@ interface Card extends StyledCard {
     linkTo: string;
 }
 
-export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, size, color }) => [
+export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, initialWidth, color }) => [
     css`
         container-type: inline-size;
         display: flex;
@@ -30,23 +31,32 @@ export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ th
         justify-content: space-between;
         color: ${reverted ? "white" : "black"};
         flex-shrink: 0;
-
         border-radius: ${theme.borderRadius};
-        width: ${theme.cardSizes.width[size]};
-        height: ${theme.cardSizes.height[size]};
+        min-width : ${theme.cardSizes.width[initialWidth]};
+        min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
         background-color: ${color};
+        @container (width < 1600px) {
+            min-width : ${theme.cardSizes.width[CardSize.Medium]};
+            min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
+          
+        }
+        @container (width < 700px) {
+            min-width : ${theme.cardSizes.width[CardSize.Medium]};
+            min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
+        }
     `,
 ]);
 
-export const CardHeading = styled.h1`
+export const CardHeading = styled.h3`
     margin-bottom: 2.5rem;
     margin-top: unset;
     text-align: left;
-    font-size: ${(props) => props.theme.fontSize.h2};
+    font-size: ${(props) => props.theme.fontSize.h3};
 `;
 
 export const CardContent = styled.div`
-    height: 100%;
+    flex-grow : 1;
+    height : 100%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -60,16 +70,16 @@ export const CardParagraph = styled.p`
 
 export const CardText = styled.div``;
 
-function Card({ color, size, title, text, buttonText, linkTo, reverted }: Card) {
+function Card({ color, initialWidth, title, text, buttonText, linkTo, reverted, className }: Card) {
     return (
-        <CardWrapper size={size} color={color} reverted={reverted}>
+        <CardWrapper className={className} initialWidth={initialWidth} color={color} reverted={reverted}>
             <CardContent>
                 <CardText>
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
                 </CardText>
                 <Link to={linkTo}>
-                    <Button text={buttonText} small={size === CardSize.Small}></Button>
+                    <Button text={buttonText} small={initialWidth === CardSize.Small}></Button>
                 </Link>
             </CardContent>
         </CardWrapper>
