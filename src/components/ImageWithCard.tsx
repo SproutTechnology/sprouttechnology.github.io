@@ -14,12 +14,12 @@ interface Props {
 }
 
 interface ImageWithCardContainerProps {
-    mirror: Boolean;
+    mirror?: Boolean;
 }
 
 const ImageWithCardContainer = styled.div`
     container-type: inline-size;
-    width: ${(props) => props.theme.cardSizes.width[CardSize.Large]};
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,33 +27,54 @@ const ImageWithCardContainer = styled.div`
     align-items: center;
     @container (width > 700px) {
         width: 100%;
-        height: ${(props) => props.theme.cardSizes.height[CardSize.Large]};
+        height: 60cqh;
         flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
     }
 `;
 
 const ImageWrapper = styled.div`
     height: 100%;
+    width : 100%;
     object-fit: scale-down;
     border-radius: 2rem;
+    @container (width > 700px) {
+        height: 60vh;
+        width : 65cqw;
+        flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
+    }
 }
   
 `;
 
+
+
+const StyledCard = styled(Card)`
+    height: 100%;
+    width : 100%;
+    @container (width > 700px) {
+        width : 35cqw;
+        height: 60vh;
+        flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
+    }
+`
 const Image = styled.img`
-    max-width: 720px;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 2rem;
 `;
 
+
+
 const ImageWithCard = ({ mirror, text, title, cardColor = Colors.beige, imageUrl = BACKUP_IMAGE, linkTo }: Props) => (
-    <ImageWithCardContainer mirror={mirror || false}>
-        <Card size={CardSize.Large} text={text} color={cardColor} title={title} linkTo={linkTo}/>
-        <ImageWrapper>
-            <Image src={imageUrl}></Image>
-        </ImageWrapper>
-    </ImageWithCardContainer>
+    
+        <ImageWithCardContainer mirror={mirror || false}>
+            <StyledCard initialWidth={CardSize.Large} text={text} color={cardColor} title={title} linkTo={linkTo}/>
+            <ImageWrapper>
+                <Image src={imageUrl}></Image>
+            </ImageWrapper>
+        </ImageWithCardContainer>
+    
 );
 
 export default ImageWithCard;

@@ -206,7 +206,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                 <Card
                     key={1}
                     buttonText={"Jump to"}
-                    size={CardSize.Medium}
+                    initialWidth={CardSize.Medium}
                     color={theme.cardColors.beige}
                     title={"Sprout is us"}
                     text="We've all been in the business for a few years. Colleagues have come and gone."
@@ -214,7 +214,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                 />
             </li>
             <li>
-                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.green}>
+                <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.green}>
                     <CardContent>
                         <CardText>
                             <CardHeading as="header">The vision</CardHeading>
@@ -228,7 +228,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                 </CardWrapper>
             </li>
             <li>
-                <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.grey}>
+                <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.grey}>
                     <CardContent>
                         <CardText>
                             <CardHeading as="header">Get in touch</CardHeading>

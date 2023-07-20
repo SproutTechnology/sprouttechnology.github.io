@@ -33,7 +33,7 @@ export function StartPage() {
 
             <MainContent backgroundColor={theme.backgroundColors.livingRoom} />
             <Footer light={false}>
-                <Gap10 />
+              
                 <GetInTouch />
             </Footer>
         </ThemeProvider>
