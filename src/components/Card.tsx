@@ -78,9 +78,9 @@ function Card({ color, initialWidth, title, text, buttonText, linkTo, reverted, 
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
                 </CardText>
-                <Link to={linkTo}>
-                    <Button text={buttonText} small={initialWidth === CardSize.Small}></Button>
-                </Link>
+               
+                    <Button linkTo={linkTo} text={buttonText} small={initialWidth === CardSize.Small}></Button>
+               
             </CardContent>
         </CardWrapper>
     );
