@@ -78,7 +78,7 @@ const HamburgerMenu = styled.span<{ isOpen: boolean }>(({ isOpen }) => [
 
 export function MenuButton({ toggle, isOpen }: { isOpen: boolean; toggle: VoidFunction }) {
     return (
-        <Button onClick={toggle}>
+        <Button aria-label="Open menu" onClick={toggle}>
             <HamburgerMenu isOpen={isOpen} className={classNames(isOpen && "active")} />
         </Button>
     );

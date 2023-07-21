@@ -267,7 +267,7 @@ function Navbar({ backgroundColor }: Props) {
     return (
         <>
             <Nav backgroundColor={backgroundColor}>
-                <Link to={LinkToPage.StartPage}>
+                <Link aria-label="Navigate to start page" to={LinkToPage.StartPage}>
                     <Logo />
                 </Link>
 
