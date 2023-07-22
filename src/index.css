@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Sen";
+    src: local("Sen"), url("./fonts/Sen-Regular.ttf") format("truetype");
+    font-weight: bold;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body * {
+    font-family: Sen, sans-serif;
+}
+
+:root {
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    /* background-color: rgb(223, 223, 223); */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    color: black;
+    overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        /* background-color: #e5dbd1; */
+    }
+    a, a:visited {
+        color: #e5dbd1;
+    }
+    a:hover {
+        color: #FFF;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+}
+
+@font-face {
+    font-family: "SproutLogoGlyphA";
+    src: url("/custom-fonts/sprout-logo/Sprout-logo-glyph.eot");
+    src: url("/custom-fonts/sprout-logo/Sprout-logo-glyph.eot?#iefix") format("embedded-opentype"),
+        url("/custom-fonts/sprout-logo/Sprout-logo-glyph.woff") format("woff"), url("/custom-fonts/sprout-logo/Sprout-logo-glyph.ttf") format("truetype"),
+        url("/custom-fonts/sprout-logo/Sprout-logo-glyph.svg#Sprout-logo-glyph") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}

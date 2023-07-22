@@ -1,0 +1,42 @@
+{
+    "name": "sprouttechnology.github.io",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.11.0",
+        "@fortawesome/fontawesome-svg-core": "^6.3.0",
+        "@fortawesome/free-solid-svg-icons": "^6.3.0",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@react-three/drei": "9.57.3",
+        "@react-three/fiber": "8.13.3",
+        "@types/three": "^0.149.0",
+        "classnames": "^2.3.2",
+        "framer-motion": "10.12.16",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-focus-lock": "2.9.4",
+        "react-remove-scroll": "2.5.6",
+        "three": "0.153.0",
+        "react-router-dom": "^6.13.0",
+        "three-full": "^28.0.2",
+        "three-stdlib": "^2.21.8"
+    },
+    "devDependencies": {
+        "@emotion/styled": "^11.11.0",
+        "@swc/plugin-emotion": "2.5.68",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "@vitejs/plugin-react-swc": "^3.0.0",
+        "autoprefixer": "^10.4.14",
+        "postcss": "^8.4.21",
+        "prettier": "2.8.8",
+        "typescript": "^4.9.3",
+        "vite": "^4.1.0"
+    }
+}
