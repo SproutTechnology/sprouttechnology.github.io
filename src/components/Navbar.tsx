@@ -15,6 +15,7 @@ import { AnchorButton } from "./Button";
 import { Link } from "react-router-dom";
 import LinkToPage from "../enums/LinkToPage";
 import { keyframes } from "@emotion/react";
+import GetInTouch from "./GetInTouch";
 
 const fadeIn = keyframes({
     "0%": { opacity: 0, bottom: "55%" },
@@ -210,7 +211,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                     color={theme.cardColors.beige}
                     title={"Sprout is us"}
                     text="We've all been in the business for a few years. Colleagues have come and gone."
-                    linkTo={""}
+                    linkTo={LinkToPage.SproutIsUs}
                 />
             </li>
             <li>
@@ -221,7 +222,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
                         </CardText>
 
-                        <MenuCTA as="a" href="/the-vision" small {...props}>
+                        <MenuCTA as="a" href={LinkToPage.TheVision} small {...props}>
                             Run to
                         </MenuCTA>
                     </CardContent>
@@ -235,7 +236,7 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
                         </CardText>
 
-                        <MenuCTA as="a" href="/" small {...props}>
+                        <MenuCTA as="a" href={LinkToPage.GetInTouch} small {...props}>
                             Drive to
                         </MenuCTA>
                     </CardContent>

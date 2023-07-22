@@ -11,8 +11,12 @@ function App() {
     const location = useLocation();
     // Scroll to top if path changes
     useLayoutEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
+        if(location.hash === "#bottom") {
+            window.scrollTo(0, document.documentElement.scrollHeight);
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location.pathname, location.hash]);
 
     return (
         <ThemeProvider theme={theme}>
