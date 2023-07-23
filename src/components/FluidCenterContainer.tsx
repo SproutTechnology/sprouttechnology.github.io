@@ -16,7 +16,7 @@ interface StyleProps {
     centerContent: Boolean,
 }
 
-const StyledContainer = styled('div')`
+const StyledContainer = styled.div`
     margin-right : 1rem;
     margin-left : 1rem;
     padding-top : ${(props: StyleProps) => props.padTop ? '1rem' : '0'};

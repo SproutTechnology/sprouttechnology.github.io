@@ -1,7 +1,7 @@
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { AsciiEffect } from "./AsciiEffect.js";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Text3D } from "@react-three/drei/core/Text3D";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 const asciiRenderOptions = {
     fgColor: "rgb(255,255,255,0)",

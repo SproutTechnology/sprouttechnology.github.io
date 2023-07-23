@@ -30,23 +30,25 @@ interface Props {
     backgroundColor: string;
 }
 
-const Nav = styled.nav`
-    display: flex;
-    background-color: ${(props: Props) => props.backgroundColor};
-    padding-left: ${(props) => props.theme.spacing.large};
-    padding-right: ${(props) => props.theme.spacing.large};
-    align-items: center;
-    justify-content: space-between;
-    height: 10vh;
+const Nav = styled.nav<{ isOpen: boolean; backgroundColor: string }>(({ isOpen, theme, backgroundColor }) => [
+    css`
+        display: flex;
+        background-color: ${backgroundColor};
+        padding-left: ${theme.spacing.large};
+        padding-right: ${theme.spacing.large};
+        align-items: center;
+        justify-content: space-between;
+        height: 10vh;
 
-    position: sticky;
-    top: 0;
-    z-index: 1;
+        position: sticky;
+        top: 0;
+        z-index: ${isOpen ? "1" : "0"};
 
-    > svg {
-        z-index: 100;
-    }
-`;
+        > svg {
+            z-index: 100;
+        }
+    `,
+]);
 
 const MenuWrapper = styled.div`
     position: fixed;
@@ -247,6 +249,8 @@ const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
 
 function Navbar({ backgroundColor }: Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // const [animationCloser, setAnimationCloser] = useState(false); // TODO rethink best approch
+    // const startTimer = () => setTimeout(() => setAnimationCloser(false), 1);
 
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
@@ -262,11 +266,13 @@ function Navbar({ backgroundColor }: Props) {
         };
     }, []);
 
-    const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
+    const toggle = useCallback(() => {
+        setIsMenuOpen((x) => !x);
+    }, []);
 
     return (
         <>
-            <Nav backgroundColor={backgroundColor}>
+            <Nav backgroundColor={backgroundColor} isOpen={isMenuOpen}>
                 <Link to={LinkToPage.StartPage}>
                     <Logo />
                 </Link>
