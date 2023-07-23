@@ -9,7 +9,7 @@ interface Props {
 
 
 const Main = styled.div`
-    padding-bottom : 10rem;
+   
     background-color: ${(props : Props) => props.backgroundColor};
 `
 
