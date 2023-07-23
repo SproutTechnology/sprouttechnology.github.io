@@ -28,11 +28,7 @@ function App() {
                         <Route index element={<AnimatedRoute><StartPage /></AnimatedRoute>} />
                         <Route path="sprout-is-us" element={<AnimatedRoute><SproutIsUs /></AnimatedRoute>} />
                         <Route path="the-vision" element={<AnimatedRoute><TheVision /></AnimatedRoute>} />
-
-                        {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
-                        <Route path="*" element={<StartPage />} />
+                        <Route path="*" element={<AnimatedRoute><StartPage /></AnimatedRoute>} />
                     </Route>
                 </Routes>
             </AnimatePresence>
