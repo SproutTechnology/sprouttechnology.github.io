@@ -6,10 +6,20 @@ import { SproutIsUs } from "./SproutIsUs";
 import { TheVision } from "./TheVision";
 import { AnimatePresence } from "framer-motion";
 import {AnimatedRoute} from "./AnimatedRoute"
+import { useLayoutEffect } from "react";
 
 
 function App() {
     const location = useLocation();
+    // Scroll to top if path changes
+    useLayoutEffect(() => {
+        if(location.hash === "#bottom") {
+            window.scrollTo(0, document.documentElement.scrollHeight);
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location.pathname, location.hash]);
+
     return (
         <ThemeProvider theme={theme}>
             <AnimatePresence mode="wait">
