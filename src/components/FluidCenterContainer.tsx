@@ -17,8 +17,8 @@ interface StyleProps {
 }
 
 const StyledContainer = styled('div')`
-    margin-right : 1rem;
-    margin-left : 1rem;
+    margin-right : 2rem;
+    margin-left : 2rem;
     padding-top : ${(props: StyleProps) => props.padTop ? '1rem' : '0'};
     padding-bottom : 1rem;
     display : flex;
@@ -53,7 +53,7 @@ const BottomCurveBackgroundLight = styled('div')`
     background-color : #E5DBD1;
     background-size : 100%;
     container-type : inline-size;
-    min-height : 70vh;
+    min-height : 35rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -66,7 +66,7 @@ const BottomCurveBackgroundDark = styled('div')`
     background-color : #1D1D1D;
     background-size : 100%;
     container-type : inline-size;
-    min-height : 70vh;
+    min-height : 35rem;
     display: flex;
     flex-direction: column;
     justify-content: end;

@@ -72,10 +72,11 @@ export default {
         grey: Colors.grey,
     },
     fontSize: {
-        p : "clamp(0.75rem, 4cqw, 1rem)",
+     
+        p : "clamp(0.75rem, 4cqw, 1.5rem)",
         h1: "clamp(3rem, 16vw, 6rem)",
         h2: "clamp(1.5rem, 6cqw, 1rem)",
-        h3: "clamp(2rem, 8cqw, 4rem)",
+        h3: "clamp(2rem, 6cqw, 8rem)",
         button : "16px"
     },
     spacing: {

@@ -75,6 +75,7 @@ const Title = styled.h1`
 `
 
 const BodyTextHolder = styled.div`
+    container-type : inline-size;
     font-size: ${(props) => props.theme.fontSize.p};
     padding-left: clamp(1rem, 6vw, 8rem);
 `
