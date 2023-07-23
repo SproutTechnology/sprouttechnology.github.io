@@ -57,7 +57,7 @@ function CardsMenu() {
                         buttonText={buttonText}
                         linkTo={linkTo}
                         text="We've all been in the business for a few years. Colleagues have come and gone. "
-                        size={CardSize.Medium}
+                        initialWidth={CardSize.Medium}
                         color={color}
                         title={title}
                     />
