@@ -30,20 +30,16 @@ export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ th
         align-items: center;
         justify-content: space-between;
         color: ${reverted ? "white" : "black"};
-        flex-shrink: 0;
         border-radius: ${theme.borderRadius};
-        min-width : ${theme.cardSizes.width[initialWidth]};
-        min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
+        min-height : ${theme.cardSizes.height[initialWidth]};
+        width : 100%;
+        height : 100%;
         background-color: ${color};
-        @container (width < 1600px) {
-            min-width : ${theme.cardSizes.width[CardSize.Medium]};
-            min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
-          
+        @media only screen and (min-width: ${theme.breakpoints.md}) { 
+            max-width :${theme.cardSizes.width[initialWidth]};
         }
-        @container (width < 700px) {
-            min-width : ${theme.cardSizes.width[CardSize.Medium]};
-            min-height : ${theme.cardSizes.height[CardSize.Medium]}; 
-        }
+
+      
     `,
 ]);
 

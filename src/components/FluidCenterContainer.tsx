@@ -19,20 +19,28 @@ interface StyleProps {
 const StyledContainer = styled('div')`
     margin-right : 2rem;
     margin-left : 2rem;
-    padding-top : ${(props: StyleProps) => props.padTop ? '1rem' : '0'};
+    padding-top : ${(props) => props.padTop ? '1rem' : '0'};
     padding-bottom : 1rem;
     display : flex;
     justify-content : center;
     flex-direction : column;
     height : 100%;
-    align-items : ${(props: StyleProps) => props.centerContent ? 'center' : 'stretch'};
-    @media only screen and (min-width: 1200px) { 
-        margin-right : clamp(1rem, 20vw, 15rem);
-        margin-left : clamp(1rem, 20vw, 15rem);
+    align-items : ${(props) => props.centerContent ? 'center' : 'stretch'};
+    @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) { 
+        margin-right : 6rem;
+        margin-left : 6rem;
+    }
+    @media only screen and (min-width: ${(props) => props.theme.breakpoints.md}) { 
+        margin-right : 6rem;
+        margin-left : 6rem;
+    }
+    @media only screen and (min-width: ${(props) => props.theme.breakpoints.lg}) { 
+        margin-right : 7rem;
+        margin-left : 7rem;
         display : flex;
         justify-content : center;
         flex-direction : column;
-        container-type : inline-size;
+       
         padding-top : ${(props: StyleProps) => props.padTop ? '6rem' : '0'};
         
     }
@@ -43,7 +51,8 @@ const TopCurveBackgroundLight = styled('div')`
     background-repeat: no-repeat;
     background-color : #E5DBD1;
     background-size : 100%;
-    container-type : inline-size;
+   
+   
 `
 
 const BottomCurveBackgroundLight = styled('div')`
@@ -52,11 +61,13 @@ const BottomCurveBackgroundLight = styled('div')`
     background-repeat: no-repeat;
     background-color : #E5DBD1;
     background-size : 100%;
-    container-type : inline-size;
+  
     min-height : 35rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
+    
+    
 `
 
 const BottomCurveBackgroundDark = styled('div')`
@@ -65,11 +76,12 @@ const BottomCurveBackgroundDark = styled('div')`
     background-repeat: no-repeat;
     background-color : #1D1D1D;
     background-size : 100%;
-    container-type : inline-size;
+ 
     min-height : 35rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
+  
 `
 
 function Container({ children, centerContent, padTop, curveBackground, light }: Props) {

@@ -4,6 +4,11 @@ import Colors from "./enums/Colors";
 
 declare module "@emotion/react" {
     export interface Theme {
+        breakpoints : {
+            lg : string;
+            md : string;
+            sm :string;
+        },
         backgroundColors: {
             charcoal: string;
             livingRoom: string;
@@ -45,6 +50,12 @@ declare module "@emotion/react" {
 }
 
 export default {
+    breakpoints : {
+        lg : "1920px",
+        md : "1280px",
+        sm : "1024px",
+        xs : "640px"
+    },
     backgroundColors: {
         charcoal: "#1D1D1D",
         livingRoom: "#E5DBD1",
@@ -57,7 +68,7 @@ export default {
             [CardSize.Small]: "10.25rem",
         },
         height: {
-            [CardSize.Large]: "35rem",
+            [CardSize.Large]: "40rem",
             [CardSize.Medium]: "25rem",
             [CardSize.Small]: "16.5rem",
         },
@@ -72,12 +83,11 @@ export default {
         grey: Colors.grey,
     },
     fontSize: {
-     
-        p : "clamp(0.75rem, 4cqw, 1.5rem)",
+        p : "1rem",
         h1: "clamp(3rem, 16vw, 6rem)",
         h2: "clamp(1.5rem, 6cqw, 1rem)",
-        h3: "clamp(2rem, 6cqw, 8rem)",
-        button : "16px"
+        h3: "2rem",
+        button : "2rem"
     },
     spacing: {
         small: "0.5rem",

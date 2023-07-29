@@ -27,55 +27,31 @@ const ImageWithCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
-    align-items: center;
-    @container (width > 700px) {
+    align-items : stretch;
+    gap: 1.5rem;    
+    @media only screen and (min-width: ${(props) => props.theme.breakpoints.sm}) { 
         width: 100%;
-        height: 60cqh;
         flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
     }
 `;
 
-const ImageWrapper = styled.div`
-    height: 100%;
-    width : 100%;
-    object-fit: scale-down;
-    border-radius: 2rem;
-    @container (width > 700px) {
-        height: 60vh;
-        width : 65cqw;
-        flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
-    }
-}
-  
-`;
-
-
-
-const StyledCard = styled(Card)`
-    height: 100%;
-    width : 100%;
-    @container (width > 700px) {
-        width : 35cqw;
-        height: 60vh;
-        flex-direction: ${(props: ImageWithCardContainerProps) => (props.mirror ? "row-reverse" : "row")};
-    }
-`
 const Image = styled.img`
-    width: 100%;
-    height: 100%;
+    width : 100%;
+    height : 100%;
+    flex-basis : 100%;
     object-fit: cover;
     border-radius: 2rem;
+    
 `;
 
 
 
 const ImageWithCard = ({ mirror, text, title, cardColor = Colors.beige, imageUrl = BACKUP_IMAGE.url, linkTo, imageAlt = BACKUP_IMAGE.alt }: Props) => (
         <ImageWithCardContainer mirror={mirror || false}>
-            <StyledCard initialWidth={CardSize.Large} text={text} color={cardColor} title={title} linkTo={linkTo}/>
-            <ImageWrapper>
+            <Card initialWidth={CardSize.Large} text={text} color={cardColor} title={title} linkTo={linkTo}/>
+            <div>
                 <Image alt={imageAlt} src={imageUrl}></Image>
-            </ImageWrapper>
+            </div>
         </ImageWithCardContainer>
     
 );
