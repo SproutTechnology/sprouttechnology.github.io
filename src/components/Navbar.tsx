@@ -39,8 +39,8 @@ const Nav = styled.nav`
     align-items: center;
     justify-content: space-between;
     height: 10vh;
-
-    position: sticky;
+    width : 100%;
+    position: relative;
     top: 0;
     z-index: 1;
 

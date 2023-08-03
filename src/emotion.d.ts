@@ -87,7 +87,7 @@ export default {
         h1: "clamp(3rem, 16vw, 6rem)",
         h2: "clamp(1.5rem, 6cqw, 1rem)",
         h3: "2rem",
-        button : "2rem"
+        button : "1rem"
     },
     spacing: {
         small: "0.5rem",
