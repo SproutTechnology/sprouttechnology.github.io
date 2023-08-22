@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import ImageWithCard from "./ImageWithCard";
-import LinkToPage from "../enums/LinkToPage";
+import LinkToPage from "../../enums/LinkToPage";
+import theme from "../../emotion.d";
 
 const StyledArticleSection = styled.div`
     container-type : inline-size;
@@ -8,7 +9,10 @@ const StyledArticleSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: ${(props) => props.theme.spacing.large};
+
+    // @media (min-width: 768px) {
+    //     gap: 6.5rem;
+    // }
 `;
 
 const ArticleSection = () => (
@@ -21,6 +25,7 @@ const ArticleSection = () => (
             imageAlt="A half closed laptop with some flashy light effects"
         />
         <ImageWithCard
+            cardColor={theme.cardColors.green}
             linkTo={LinkToPage.TheVision}
             mirror={true}
             title="The vision"

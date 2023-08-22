@@ -1,20 +1,15 @@
 import FluidCenterContainer from "./FluidCenterContainer";
-import ArticleSection from "./ArticleSection";
+import ArticleSection from "./article/ArticleSection";
 import CurveBackground from "../enums/CurveBackground";
 import styled from "@emotion/styled";
-
-interface Props {
-    backgroundColor: string,
-}
-
+import theme from "../emotion.d";
 
 const Main = styled.div`
-   
-    background-color: ${(props : Props) => props.backgroundColor};
-`
+    background-color: ${theme.backgroundColors.livingRoom};
+`;
 
-const MainContent = ({ backgroundColor }: Props) => (
-    <Main backgroundColor={backgroundColor}>
+const MainContent = () => (
+    <Main>
         <FluidCenterContainer light={false} curveBackground={CurveBackground.Top} padTop={true} centerContent={false}>
             <ArticleSection></ArticleSection>
         </FluidCenterContainer>

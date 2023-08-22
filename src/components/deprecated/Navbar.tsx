@@ -7,15 +7,14 @@ import ReactFocusLock from "react-focus-lock";
 
 import { MenuBackground } from "./MenuBackground";
 import { MenuButton } from "./MenuButton";
-import Logo from "./Logo";
-import Card, { CardWrapper, CardContent, CardText, CardHeading, CardParagraph } from "./Card";
+import Logo from "../Logo";
+import Card, { CardWrapper, CardContent, CardHeading, CardParagraph } from "../Card";
 import { css, useTheme } from "@emotion/react";
-import CardSize from "../enums/CardSize";
-import { AnchorButton } from "./Button";
+import CardSize from "../../enums/CardSize";
+import { AnchorButton } from "../Button";
 import { Link } from "react-router-dom";
-import LinkToPage from "../enums/LinkToPage";
+import LinkToPage from "../../enums/LinkToPage";
 import { keyframes } from "@emotion/react";
-import GetInTouch from "./GetInTouch";
 
 const fadeIn = keyframes({
     "0%": { opacity: 0, bottom: "55%" },
@@ -31,23 +30,30 @@ interface Props {
     backgroundColor: string;
 }
 
-const Nav = styled.nav`
-    display: flex;
-    background-color: ${(props: Props) => props.backgroundColor};
-    padding-left: ${(props) => props.theme.spacing.large};
-    padding-right: ${(props) => props.theme.spacing.large};
-    align-items: center;
-    justify-content: space-between;
-    height: 10vh;
-    width : 100%;
-    position: relative;
-    top: 0;
-    z-index: 1;
+const Nav = styled.nav<{ isOpen: boolean; backgroundColor: string }>(({ isOpen, theme, backgroundColor }) => [
+    css`
+        position: absolute;
+        width: 100%;
 
-    > svg {
-        z-index: 100;
-    }
-`;
+        display: flex;
+        background-color: ${backgroundColor};
+        padding-left: ${theme.spacing.large};
+        padding-right: ${theme.spacing.large};
+        align-items: center;
+        justify-content: space-between;
+        height: 10vh;
+
+        position: absolute;
+        top: 0;
+        // z-index: ${isOpen ? "1" : "0"};
+        z-index: 11;
+        background: transparent;
+
+        > svg {
+            z-index: 100;
+        }
+    `,
+]);
 
 const MenuWrapper = styled.div`
     position: fixed;
@@ -166,7 +172,7 @@ const MenuItemWrapper = styled.div<{ isOpen: boolean }>(({ isOpen }) =>
         : [
               css`
                   display: flex;
-                  z-index: 2;
+                  z-index: 12;
                   position: absolute;
                   justify-content: center;
                   margin-top: 100px;
@@ -177,6 +183,14 @@ const MenuItemWrapper = styled.div<{ isOpen: boolean }>(({ isOpen }) =>
                   left: 0;
                   right: 0;
 
+                  //   width: 100%;
+                  //   justify-content: center;
+                  //   height: 80vh;
+                  //   align-items: center;
+                  //   display: flex;
+                  //   z-index: 12;
+                  //   position: relative;
+
                   ${isOpen &&
                   css`
                       animation: ${fadeIn} 0.35s 0.5s cubic-bezier(0.36, 0, 0.09, 1) forwards;
@@ -185,64 +199,75 @@ const MenuItemWrapper = styled.div<{ isOpen: boolean }>(({ isOpen }) =>
           ],
 );
 
+const MainHeading = styled.h1`
+    font-size: ${(props) => props.theme.fontSize.h1};
+    color: ${(props) => props.color};
+    margin: unset;
+    grid-row: 1;
+    grid-column: -1 / 1;
+`;
+
 const NavbarMenu = ({ isOpen }: { isOpen: boolean }) => {
     const props = isOpen ? empty : inert;
     const theme = useTheme();
 
     return (
-        <NavbarMenuList>
-            <li>
-                {/* <CardWrapper as="article" size={CardSize.Medium} color={theme.cardColors.beige}>
+        <>
+            <MainHeading>Menu</MainHeading>
+            <NavbarMenuList>
+                <li>
+                    {/* <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.beige}>
                     <CardContent>
-                        <CardText>
+                        <div>
                             <CardHeading as="header">Sprout is us</CardHeading>
                             <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
-                        </CardText>
+                        </div>
 
                         <MenuCTA as="a" href="/sprout-is-us" small {...props}>
                             Jump to
                         </MenuCTA>
                     </CardContent>
                 </CardWrapper> */}
-                <Card
-                    key={1}
-                    buttonText={"Jump to"}
-                    initialWidth={CardSize.Medium}
-                    color={theme.cardColors.beige}
-                    title={"Sprout is us"}
-                    text="We've all been in the business for a few years. Colleagues have come and gone."
-                    linkTo={LinkToPage.SproutIsUs}
-                />
-            </li>
-            <li>
-                <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.green}>
-                    <CardContent>
-                        <CardText>
-                            <CardHeading as="header">The vision</CardHeading>
-                            <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
-                        </CardText>
+                    <Card
+                        key={1}
+                        buttonText={"Jump to"}
+                        initialWidth={CardSize.Medium}
+                        color={theme.cardColors.beige}
+                        title={"Sprout is us"}
+                        text="We've all been in the business for a few years. Colleagues have come and gone."
+                        linkTo={""}
+                    />
+                </li>
+                <li>
+                    <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.green}>
+                        <CardContent>
+                            <div>
+                                <CardHeading as="header">The vision</CardHeading>
+                                <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
+                            </div>
 
-                        <MenuCTA as="a" href={LinkToPage.TheVision} small {...props}>
-                            Run to
-                        </MenuCTA>
-                    </CardContent>
-                </CardWrapper>
-            </li>
-            <li>
-                <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.grey}>
-                    <CardContent>
-                        <CardText>
-                            <CardHeading as="header">Get in touch</CardHeading>
-                            <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
-                        </CardText>
+                            <MenuCTA as="a" href="/the-vision" small {...props}>
+                                Run to
+                            </MenuCTA>
+                        </CardContent>
+                    </CardWrapper>
+                </li>
+                <li>
+                    <CardWrapper as="article" initialWidth={CardSize.Medium} color={theme.cardColors.grey}>
+                        <CardContent>
+                            <div>
+                                <CardHeading as="header">Get in touch</CardHeading>
+                                <CardParagraph>We've all been in the business for a few years. Colleagues have come and gone. </CardParagraph>
+                            </div>
 
-                        <MenuCTA as="a" href={LinkToPage.GetInTouch} small {...props}>
-                            Drive to
-                        </MenuCTA>
-                    </CardContent>
-                </CardWrapper>
-            </li>
-        </NavbarMenuList>
+                            <MenuCTA as="a" href="/" small {...props}>
+                                Drive to
+                            </MenuCTA>
+                        </CardContent>
+                    </CardWrapper>
+                </li>
+            </NavbarMenuList>
+        </>
     );
 };
 
@@ -263,12 +288,14 @@ function Navbar({ backgroundColor }: Props) {
         };
     }, []);
 
-    const toggle = useCallback(() => setIsMenuOpen((x) => !x), []);
+    const toggle = useCallback(() => {
+        setIsMenuOpen((x) => !x);
+    }, []);
 
     return (
         <>
-            <Nav backgroundColor={backgroundColor}>
-                <Link aria-label="Navigate to start page" to={LinkToPage.StartPage}>
+            <Nav backgroundColor={backgroundColor} isOpen={isMenuOpen}>
+                <Link to={LinkToPage.StartPage}>
                     <Logo />
                 </Link>
 

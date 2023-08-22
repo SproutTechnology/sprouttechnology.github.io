@@ -5,9 +5,10 @@ import Colors from "./enums/Colors";
 declare module "@emotion/react" {
     export interface Theme {
         breakpoints : {
-            lg : string;
-            md : string;
-            sm :string;
+            lg: string;
+            md: string;
+            sm: string;
+            xs: string;
         },
         backgroundColors: {
             charcoal: string;
@@ -54,7 +55,7 @@ export default {
         lg : "1920px",
         md : "1280px",
         sm : "1024px",
-        xs : "640px"
+        xs : "640px",
     },
     backgroundColors: {
         charcoal: "#1D1D1D",
@@ -74,7 +75,7 @@ export default {
         },
     },
     buttonColors: {
-        hover: "#48413A",
+        hover: "#FFFFFF",
     },
     cardColors: {
         beige: Colors.beige,

@@ -5,13 +5,6 @@ import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
 import LinkToPage from "../enums/LinkToPage";
 
-interface MenuItem {
-    color: string;
-    title: string;
-    buttonText: string;
-    linkTo: LinkToPage;
-}
-
 const StyledList = styled.ul`
     padding: 0px;
     container-type: inline-size;

@@ -1,49 +1,36 @@
 import styled from "@emotion/styled";
-import Navbar from "./Navbar";
 
 interface Props {
-  image: string
+    image: string;
 }
 
-function HeroSubPage({image} : Props) {
-  return (
-    <Relative>
+function HeroSubPage({ image }: Props) {
+    return (
+        <Relative>
+            <Image src={image} />
 
-      <Image src={image}/>
-
-      <AbsoluteTop>
-        <Navbar backgroundColor={"#0000"}/>
-      </AbsoluteTop>
-
-      <AbsoluteBottom>
-        <Image src={"/curve_top_transparent.svg"}/>
-      </AbsoluteBottom>
-
-    </Relative>
-  );
+            <AbsoluteBottom>
+                <Image src={"/curve_top_transparent.svg"} />
+            </AbsoluteBottom>
+        </Relative>
+    );
 }
 
 const Relative = styled.div`
-  position: relative;
-  background-color: ${props => props.theme.backgroundColors.charcoal};
-`
-
-const AbsoluteTop = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 0;
-`
+    position: relative;
+    background-color: ${(props) => props.theme.backgroundColors.charcoal};
+`;
 
 const AbsoluteBottom = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-`
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+`;
 
 const Image = styled.img`
-  width : 100%;
-  height: 100%;
-  object-fit: cover;
-`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`;
 
 export default HeroSubPage;

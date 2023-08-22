@@ -1,6 +1,5 @@
-import FluidCenterContainer from "./FluidCenterContainer";
+import FluidCenterContainer from "../FluidCenterContainer";
 import styled from "@emotion/styled";
-import { SpaceWrapper } from "./helpers/SpaceWrapper";
 
 interface Props {
     text: string;

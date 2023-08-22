@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
-import Button from "./Button";
-import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
+import NewButton from "./NewButton";
+import { useNavigate } from "react-router-dom";
 
 interface StyledCard {
     color: string;
@@ -12,7 +12,7 @@ interface StyledCard {
 interface Card {
     color: string;
     initialWidth: CardSize;
-    className? : string,
+    className?: string;
 }
 interface Card extends StyledCard {
     title: string;
@@ -31,15 +31,13 @@ export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ th
         justify-content: space-between;
         color: ${reverted ? "white" : "black"};
         border-radius: ${theme.borderRadius};
-        min-height : ${theme.cardSizes.height[initialWidth]};
-        width : 100%;
-        height : 100%;
+        width: 100%;
+        height: 100%;
         background-color: ${color};
-        @media only screen and (min-width: ${theme.breakpoints.md}) { 
-            max-width :${theme.cardSizes.width[initialWidth]};
-        }
 
-      
+        @media only screen and (min-width: ${theme.breakpoints.sm}) {
+            max-width: ${theme.cardSizes.width[initialWidth]};
+        }
     `,
 ]);
 
@@ -51,8 +49,8 @@ export const CardHeading = styled.h3`
 `;
 
 export const CardContent = styled.div`
-    flex-grow : 1;
-    height : 100%;
+    flex-grow: 1;
+    height: 100%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -67,16 +65,16 @@ export const CardParagraph = styled.p`
 export const CardText = styled.div``;
 
 function Card({ color, initialWidth, title, text, buttonText, linkTo, reverted, className }: Card) {
+    const navigate = useNavigate();
+
     return (
         <CardWrapper className={className} initialWidth={initialWidth} color={color} reverted={reverted}>
             <CardContent>
-                <CardText>
+                <div>
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
-                </CardText>
-               
-                    <Button linkTo={linkTo} text={buttonText} small={initialWidth === CardSize.Small}></Button>
-               
+                </div>
+                <NewButton label={buttonText} onClick={() => navigate(linkTo)} />
             </CardContent>
         </CardWrapper>
     );

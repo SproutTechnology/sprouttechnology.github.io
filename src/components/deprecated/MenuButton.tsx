@@ -7,7 +7,7 @@ const Button = styled.button`
     cursor: pointer;
     border: 0;
     background: transparent;
-    font-size: 1rem;
+    font-size: 0.75rem;
     padding: 1em 0.5em;
     padding-right: 0;
 
@@ -20,7 +20,7 @@ const Button = styled.button`
 const HamburgerMenu = styled.span<{ isOpen: boolean }>(({ isOpen }) => [
     css`
         display: inline-block;
-
+        z-index: 12;
         width: 2.5em;
         height: 0.2em;
         background: #fcfcfc;
@@ -65,12 +65,12 @@ const HamburgerMenu = styled.span<{ isOpen: boolean }>(({ isOpen }) => [
         }
 
         &.active:before {
-            top: 0;
+            top: -4px;
             transform: rotate(45deg);
         }
 
         &.active:after {
-            top: 0;
+            top: -4px;
             transform: rotate(135deg);
         }
     `,
