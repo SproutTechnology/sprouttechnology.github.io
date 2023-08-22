@@ -4,6 +4,12 @@ import Colors from "./enums/Colors";
 
 declare module "@emotion/react" {
     export interface Theme {
+        breakpoints : {
+            lg: string;
+            md: string;
+            sm: string;
+            xs: string;
+        },
         backgroundColors: {
             charcoal: string;
             livingRoom: string;
@@ -30,6 +36,7 @@ declare module "@emotion/react" {
             p: string;
             h1: string;
             h2: string;
+            h3 : string,
             button: string;
         };
         spacing: {
@@ -44,6 +51,12 @@ declare module "@emotion/react" {
 }
 
 export default {
+    breakpoints : {
+        lg : "1920px",
+        md : "1280px",
+        sm : "1024px",
+        xs : "640px",
+    },
     backgroundColors: {
         charcoal: "#1D1D1D",
         livingRoom: "#E5DBD1",
@@ -51,18 +64,19 @@ export default {
     borderRadius: "2rem",
     cardSizes: {
         width: {
-            [CardSize.Large]: "21.5rem",
+            [CardSize.Large]: "26.5rem",
             [CardSize.Medium]: "16.5rem",
             [CardSize.Small]: "10.25rem",
         },
         height: {
-            [CardSize.Large]: "30rem",
+            [CardSize.Large]: "40rem",
             [CardSize.Medium]: "25rem",
             [CardSize.Small]: "16.5rem",
         },
     },
     buttonColors: {
-        hover: "#48413A",
+        // hover: "#48413A",
+        hover: "#FFFFFF",
     },
     cardColors: {
         beige: Colors.beige,
@@ -71,10 +85,15 @@ export default {
         grey: Colors.grey,
     },
     fontSize: {
-        p : "clamp(0.75rem, 1.25vw, 1rem)",
-        h1: "clamp(3rem, 4vw, 6rem)",
-        h2: "clamp(1.5rem, 1.75vw, 2rem)",
-        button : "16px"
+        // p : "clamp(1rem, 1.25vw, 1rem)",
+        // h1: "clamp(3rem, 4vw, 6rem)",
+        // h2: "clamp(1.5rem, 1.75vw, 2rem)",
+        // button : "16px"
+        p : "1rem",
+        h1: "clamp(3rem, 16vw, 6rem)",
+        h2: "clamp(1.5rem, 6cqw, 1rem)",
+        h3: "2rem",
+        button : "1rem"
     },
     spacing: {
         small: "0.5rem",

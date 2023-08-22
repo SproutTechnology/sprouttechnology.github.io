@@ -17,3 +17,5 @@ export default function scrollHandler() {
         document.getElementById("dd3").className = "scroll-section-3";
     }
 }
+
+// Not in use at the moment.

@@ -1,7 +1,34 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-const Background = styled.div(({ theme }) => [
+export default function BackgroundWaves() {
+    return (
+        <Background className="rellax" data-rellax-speed="-7">
+            <div className="wave1">
+                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
+                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
+                </svg>
+            </div>
+            <div className="wave2">
+                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
+                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
+                </svg>
+            </div>
+            <div className="wave3">
+                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
+                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
+                </svg>
+            </div>
+            <div className="wave4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
+                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
+                </svg>
+            </div>
+        </Background>
+    );
+}
+
+const Background = styled.div(() => [
     css`
         position: absolute;
         z-index: 1;
@@ -9,8 +36,8 @@ const Background = styled.div(({ theme }) => [
         height: 100vh;
 
         overflow: hidden;
-        background: -webkit-linear-gradient(0, black 5%, #3b3b3b 35%);
-        background: linear-gradient(0, black 5%, #3b3b3b 35%);
+        background: -webkit-linear-gradient(0, black 5%, #2a2a2a 35%);
+        background: linear-gradient(0, black 5%, #2a2a2a 35%);
         width: 100%;
 
         .wave1 {
@@ -101,30 +128,3 @@ const Background = styled.div(({ theme }) => [
         }
     `,
 ]);
-
-export default function Test2() {
-    return (
-        <Background>
-            <div className="wave1">
-                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
-                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
-                </svg>
-            </div>
-            <div className="wave2">
-                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
-                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
-                </svg>
-            </div>
-            <div className="wave3">
-                <svg className="flipwave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
-                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
-                </svg>
-            </div>
-            <div className="wave4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193">
-                    <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 197.4 -4 58.7-3.3 0.3-3.3 0.3L1175 0V131.2z"></path>
-                </svg>
-            </div>
-        </Background>
-    );
-}

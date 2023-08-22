@@ -5,13 +5,6 @@ import { useTheme } from "@emotion/react";
 import { useMemo } from "react";
 import LinkToPage from "../enums/LinkToPage";
 
-interface MenuItem {
-    color: string;
-    title: string;
-    buttonText: string;
-    linkTo: LinkToPage;
-}
-
 const StyledList = styled.ul`
     padding: 0px;
     container-type: inline-size;
@@ -30,19 +23,19 @@ function CardsMenu() {
                 color: theme.cardColors.beige,
                 buttonText: "Read more",
                 title: "Sprout is us",
-                linkTo: LinkToPage.StartPage,
+                linkTo: LinkToPage.SproutIsUs,
             },
             {
                 color: theme.cardColors.green,
                 buttonText: "Read more",
                 title: "The vision",
-                linkTo: LinkToPage.SproutIsUs,
+                linkTo: LinkToPage.TheVision,
             },
             {
                 color: theme.cardColors.grey,
                 buttonText: "Read more",
                 title: "Get in touch",
-                linkTo: LinkToPage.TheVision,
+                linkTo: LinkToPage.GetInTouch,
             },
         ],
         [theme],
@@ -57,7 +50,7 @@ function CardsMenu() {
                         buttonText={buttonText}
                         linkTo={linkTo}
                         text="We've all been in the business for a few years. Colleagues have come and gone. "
-                        size={CardSize.Medium}
+                        initialWidth={CardSize.Medium}
                         color={color}
                         title={title}
                     />

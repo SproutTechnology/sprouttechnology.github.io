@@ -1,54 +1,23 @@
-import styled from "@emotion/styled";
-import {Gap1, Gap5} from "./Gap";
-import Logo from "./Logo";
+import { Gap10 } from "./helpers/Gap";
 
-
-interface Props {
-}
-
-const Wrapper = styled.div`
-  color: white;
-  margin: 1rem;
-`
-
-const HorizontalWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const ToTheTop = styled.div`
-  border-left: solid;
-  padding-left: 10px;
-  cursor: pointer;
-  &:after {
-    content: ' To the top'
-  }
-`
-
-function GetInTouch({}: Props) {
-    function scrollToTop() {
-        window.scrollTo(0, 0)
-    }
-
+function GetInTouch() {
     return (
-        <Wrapper>
-            <p>Get in touch</p>
-            <Gap1/>
+        <>
+            <Gap10 />
 
-            <p>
-                +46777111222 <br/>
-                info@wearesprout.se
-             </p>
-
-            <Gap5/>
-
-            <HorizontalWrapper>
-                <ToTheTop onClick={scrollToTop}/>
-                <Logo/>
-            </HorizontalWrapper>
-
-        </Wrapper>
+            <div className="animation-wrap rellax" data-rellax-percentage="0.5">
+                <div className="text--karaoke" style={{ textAlign: "center" }} data-scroll="out" data-splitting="">
+                    info@wearesprout.se
+                    <br />
+                    +46777111222
+                    <br />
+                    <br />
+                    Drottninggatan 29
+                    <br />
+                    411 14 Göteborg
+                </div>
+            </div>
+        </>
     );
 }
 

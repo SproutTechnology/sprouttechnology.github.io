@@ -1,17 +1,18 @@
 import styled from "@emotion/styled";
 import CardSize from "../enums/CardSize";
-import Button from "./Button";
-import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
+import NewButton from "./NewButton";
+import { useNavigate } from "react-router-dom";
 
 interface StyledCard {
     color: string;
-    size: CardSize;
+    initialWidth: CardSize;
 }
 
 interface Card {
     color: string;
-    size: CardSize;
+    initialWidth: CardSize;
+    className?: string;
 }
 interface Card extends StyledCard {
     title: string;
@@ -21,7 +22,7 @@ interface Card extends StyledCard {
     linkTo: string;
 }
 
-export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, size, color }) => [
+export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ theme, reverted = false, initialWidth, color }) => [
     css`
         container-type: inline-size;
         display: flex;
@@ -29,23 +30,26 @@ export const CardWrapper = styled.div<{ reverted?: boolean } & StyledCard>(({ th
         align-items: center;
         justify-content: space-between;
         color: ${reverted ? "white" : "black"};
-        flex-shrink: 0;
-
         border-radius: ${theme.borderRadius};
-        width: ${theme.cardSizes.width[size]};
-        height: ${theme.cardSizes.height[size]};
+        width: 100%;
+        height: 100%;
         background-color: ${color};
+
+        @media only screen and (min-width: ${theme.breakpoints.sm}) {
+            max-width: ${theme.cardSizes.width[initialWidth]};
+        }
     `,
 ]);
 
-export const CardHeading = styled.h1`
+export const CardHeading = styled.h3`
     margin-bottom: 2.5rem;
     margin-top: unset;
     text-align: left;
-    font-size: ${(props) => props.theme.fontSize.h2};
+    font-size: ${(props) => props.theme.fontSize.h3};
 `;
 
 export const CardContent = styled.div`
+    flex-grow: 1;
     height: 100%;
     padding: 2rem;
     display: flex;
@@ -60,17 +64,17 @@ export const CardParagraph = styled.p`
 
 export const CardText = styled.div``;
 
-function Card({ color, size, title, text, buttonText, linkTo, reverted }: Card) {
+function Card({ color, initialWidth, title, text, buttonText, linkTo, reverted, className }: Card) {
+    const navigate = useNavigate();
+
     return (
-        <CardWrapper size={size} color={color} reverted={reverted}>
+        <CardWrapper className={className} initialWidth={initialWidth} color={color} reverted={reverted}>
             <CardContent>
-                <CardText>
+                <div>
                     <CardHeading>{title}</CardHeading>
                     <CardParagraph>{text}</CardParagraph>
-                </CardText>
-                <Link to={linkTo}>
-                    <Button text={buttonText} small={size === CardSize.Small}></Button>
-                </Link>
+                </div>
+                <NewButton label={buttonText} onClick={() => navigate(linkTo)} />
             </CardContent>
         </CardWrapper>
     );
