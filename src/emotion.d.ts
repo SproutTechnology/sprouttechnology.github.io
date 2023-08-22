@@ -75,7 +75,6 @@ export default {
         },
     },
     buttonColors: {
-        // hover: "#48413A",
         hover: "#FFFFFF",
     },
     cardColors: {
@@ -85,10 +84,6 @@ export default {
         grey: Colors.grey,
     },
     fontSize: {
-        // p : "clamp(1rem, 1.25vw, 1rem)",
-        // h1: "clamp(3rem, 4vw, 6rem)",
-        // h2: "clamp(1.5rem, 1.75vw, 2rem)",
-        // button : "16px"
         p : "1rem",
         h1: "clamp(3rem, 16vw, 6rem)",
         h2: "clamp(1.5rem, 6cqw, 1rem)",

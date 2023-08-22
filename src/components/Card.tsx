@@ -59,7 +59,7 @@ export const CardContent = styled.div`
 `;
 
 export const CardParagraph = styled.p`
-    font-size: ${(props) => props.theme.fontSize.p};
+        font-size: ${(props) => props.theme.fontSize.p}; 
 `;
 
 export const CardText = styled.div``;

@@ -15,6 +15,7 @@ import { AnchorButton } from "../Button";
 import { Link } from "react-router-dom";
 import LinkToPage from "../../enums/LinkToPage";
 import { keyframes } from "@emotion/react";
+import GetInTouch from "./GetInTouch";
 
 const fadeIn = keyframes({
     "0%": { opacity: 0, bottom: "55%" },
