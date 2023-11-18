@@ -248,7 +248,7 @@ class AsciiEffect {
 
 			}
 
-			oAscii.innerHTML = `<tr><td style="display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
+			oAscii.innerHTML = `<tr><td style="font-weight:bold;display:block;width:${width}px;height:${height}px;overflow:hidden">${strChars}</td></tr>`;
 
 			// console.timeEnd('rendering');
 

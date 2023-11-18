@@ -4,7 +4,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 import { AsciiEffect } from './AsciiEffect.js';
 import { Canvas, ThreeElements, useFrame, useThree, useLoader, extend } from '@react-three/fiber';
-import { Box, PointMaterial, Text3D } from '@react-three/drei'
+import { Box, PointMaterial, Text3D, useAspect, useVideoTexture, useTexture  } from '@react-three/drei'
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Mesh } from 'three';
 
@@ -37,15 +37,15 @@ const Stuff = (props: ThreeElements['mesh']) => {
 
     timer += delta * 1500;
 
-    if((timer * 0.0010) < 50) {
-      setTextPos1(17 - (timer * 0.0010) % 50);
-    }
+    //if((timer * 0.0010) < 50) {
+      setTextPos1(17 - (timer * 0.0010) % 500);
+    //}
 
-    const light1x = Math.sin(timer * 0.0008) * 3 + Math.cos(timer * 0.00008) * 4;
-    const light1y = Math.cos(timer * 0.0008) * 3 + Math.sin(timer * 0.00008) * 4 ;
+    const light1x = Math.sin(timer * 0.0003) * 4;
+    const light1y =  Math.cos(timer * 0.0003) * 4;
 
-    const light2x = -Math.sin(timer * 0.0005) * 3;
-    const light2y = -Math.cos(timer * 0.0005) * 3;
+    const light2x = -Math.sin(timer * 0.0005) * 4;
+    const light2y = -Math.cos(timer * 0.0005) * 4;
 
     const light2Intensity = 1 - Math.abs(Math.sin(timer * 0.00001)) * 0.5
 
@@ -87,22 +87,27 @@ const Stuff = (props: ThreeElements['mesh']) => {
     <>
 
       <Box ref={light1TargetRef} visible={false} position={[light1x, light1y, 0]}/>
-      <Box ref={light2TargetRef} visible={false} position={[light1y, light1x, 0]}/>
+      <Box ref={light2TargetRef} visible={false} position={[-light1x, -light1y, 0]}/>
 
       <Box ref={light3TargetRef} visible={false} position={[light2y, light2x, 0]}/>
       <Box ref={light4TargetRef} visible={false} position={[light2x, light2y, 0]}/>
 
-      <spotLight position={[-light2x, -light2y, 12]} angle={0.3} color={"white"}intensity={0.6}/>
-      <spotLight position={[-light2y, light2x, 6]} angle={0.2} color={"black"} intensity={0.3}/>
+      <spotLight position={[-light2x, -light2y, 12]} angle={0.3} color={"white"} intensity={0}/>
+      <spotLight position={[-light2y, light2x, 6]} angle={0.2} color={"black"} intensity={0}/>
 
       <spotLight position={[light2x, light2y, 6]} angle={0.6} intensity={0.0}/>
       <spotLight position={[light2y, -light2x, 2]} angle={0.3} intensity={0.0}/>
 
-      <spotLight position={[0, 0, 10]} target={light2TargetRef.current} angle={0.3}  intensity={0.0}/>
-      <spotLight position={[0, 0, 15]} target={light3TargetRef.current} angle={0.3} intensity={0.0}/>
-      <pointLight position={[-textPos1*2, 0, 10]} intensity={0.8} distance={20} decay={1}/>
+      <spotLight position={[0, 0, 10]} target={light1TargetRef.current} angle={0.3} color={"white"} decay={1} intensity={1}/>
+      <spotLight position={[0, 0, 10]} target={light2TargetRef.current} angle={0.3} color={"white"} decay={1} intensity={1}/>
+
+      <spotLight position={[0, 0, 15]} target={light3TargetRef.current} angle={0.3} intensity={0}/>
+      <pointLight position={[-textPos1*2, 0, 5]} intensity={0.8} distance={10} decay={1} color={"white"}/>
 
       <pointLight position={[-20 + light1x*2, 0, 1]} intensity={0.0}/>
+
+      <pointLight position={[light1x, light1y, 4]} intensity={1.0} distance={70} decay={20}/>
+      <pointLight  position={[-light1x, -light1y, 6]} intensity={1.5} distance={100} decay={30}/>
 
 
       <Text3D
@@ -114,38 +119,82 @@ const Stuff = (props: ThreeElements['mesh']) => {
         bevelEnabled
         bevelSize={0.3}
         bevelThickness={0}
-        height={0.2}
+        height={0}
         lineHeight={0.5}
         letterSpacing={0.4}
-        size={7.5}>
-        sprout.
+        size={8.5}>
+        sprout. sprout. sprout. sprout. sprout. sprout. sprout. sprout. sprout. sprout. sprout. sprout.
         {
-          //<meshStandardMaterial color={"white"}/>
-          <AsciiRenderer fgColor="black" bgColor="rgb(168, 162, 158)" />
+          <>
+            <meshStandardMaterial color={"white"}/>
+            <planeGeometry />
+            <VideoMaterial url="video4.mp4" />
+            <AsciiRenderer fgColor="lightgrey" />
+          </>
+
         }
       </Text3D>
 
-      <points ref={points} position={[textPos1-10, -3, 0]}>
-        <textGeometry args={["Sprout", fontSettings]} />
-        <pointsMaterial color="white" size={0.515} sizeAttenuation />
-      </points>
 
     </>
   )
 }
+
+function Scene() {
+  const size = useAspect(1800, 1000)
+  return (
+      <mesh scale={size}>
+        <planeGeometry />
+        <VideoMaterial url="wave_loop_lighter.mp4" />
+        <AsciiRenderer/>
+      </mesh>
+  )
+}
+
+function VideoMaterial({ url }) {
+  const texture = useVideoTexture(url)
+  return <meshBasicMaterial map={texture} toneMapped={false} />
+}
+
+const fragmentShader = `
+varying vec2 vUv;
+
+vec3 colorA = vec3(0.912,0.191,0.652);
+vec3 colorB = vec3(1.000,0.777,0.052);
+
+void main() {
+  // "Normalizing" with an arbitrary value
+  // We'll see a cleaner technique later :)   
+  vec2 normalizedPixel = gl_FragCoord.xy/600.0;
+  vec3 color = mix(colorA, colorB, normalizedPixel.x);
+
+  gl_FragColor = vec4(color,1.0);
+}
+`;
+const vertexShader = `
+void main() {
+  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+  modelPosition.y += sin(modelPosition.x * 4.0) * 0.2;
+
+  vec4 viewPosition = viewMatrix * modelPosition;
+  vec4 projectedPosition = projectionMatrix * viewPosition;
+
+  gl_Position = projectedPosition;
+}
+`;
 
 //
 
 
 function AsciiRenderer({
                          renderIndex = 1,
-                         bgColor = 'black',
-                         fgColor = 'white',
-                         characters = ' .:-+*=%@#123456780',
+                         bgColor = 'black', //'#ffffff',
+                         fgColor = '#5596e0',
+                         characters = '  .:-+*=%@#123456780',
                          invert = false,
                          color = false,
-                         resolution = 0.10,
-                         strResolution = 'low'
+                         resolution = 0.20,
+                         strResolution = 'medium'
                        }) {
   // Reactive state
   const { size, gl, scene, camera } = useThree()
@@ -223,16 +272,16 @@ function init2() {
     scene.add(text2);
   })
 
-  pointLight1 = new THREE.SpotLight(0xffffff);
+  pointLight1 = new THREE.SpotLight(0xffffff, 0);
   pointLight1.position.set(0, 0, 200);
-  scene.add(pointLight1);
+  //scene.add(pointLight1);
 
-  pointLight2 = new THREE.PointLight(0xffffff);
+  pointLight2 = new THREE.PointLight(0xffffff, 0);
   pointLight2.position.set(0, 0, 200);
-  scene.add(pointLight2);
+ // scene.add(pointLight2);
 
-  const pointLight3 = new THREE.PointLight(0xffffff, 0.25);
-  scene.add(pointLight3);
+  const pointLight3 = new THREE.PointLight(0xffffff, 0);
+  //scene.add(pointLight3);
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -264,9 +313,23 @@ function onWindowResize() {
 
 //
 function Intro() {
-  return <Canvas>
-    <Stuff/>
-  </Canvas>
+  return (
+      <div style={{flexDirection: "column", backgroundColor: 'black'}}>
+          <div style={{height: 150}}></div>
+          <div style={{height: 750, width: '100%', position: "relative"}}>
+              <div style={{height: '100%', width: '120%', position: "absolute", left: -200}}>
+                <Canvas><Scene/></Canvas>
+              </div>
+              <div style={{height: 200, width: '100%', position: "absolute", bottom: 0, backgroundColor: 'black'}}/>
+
+              <div style={{color: 'black', left: 650, bottom: 230, fontWeight: 'bold', fontSize: 200, textAlign: "center", width: '100%', position: "absolute"}}>
+                  <img style={{width: 600}} src={'sprout-logo.png'}/>
+                  <span></span>
+              </div>
+          </div>
+      </div>
+
+  )
 }
 
 
