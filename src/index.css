@@ -4,6 +4,20 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: "Bayon";
+    src: local("Bayon"), url("./fonts/Bayon-Regular.ttf") format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "AzeretMono";
+    src: local("AzeretMono"), url("./fonts/AzeretMono-VariableFont_wght.ttf") format("truetype");
+    font-weight: bold;
+}
+
+
+
 *,
 *::before,
 *::after {
@@ -12,15 +26,15 @@
 
 body {
     -webkit-overflow-scrolling: touch;
-    background-color: #000;
+    
 }
 
 html,
 body {
     padding: 0px;
     margin: 0px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
+   
     margin: 0;
 
     .circle {
