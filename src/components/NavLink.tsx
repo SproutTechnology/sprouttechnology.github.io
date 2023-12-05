@@ -33,7 +33,7 @@ const Link = styled.a`
     align-content : center;
     
     flex-direction : column;
-    color : white;
+    color : ${(props) => props.theme.colors.summerCurtains};;
     &:hover {
         text-decoration : underline;
         cursor : pointer

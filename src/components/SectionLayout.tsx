@@ -6,8 +6,8 @@ import { mq } from "../theme";
 
 interface Props {
     children: ReactNode;
-    desktopBackgroundUrl : string;
-    mobileBackgroundUrl : string;
+    desktopBackgroundUrl? : string;
+    mobileBackgroundUrl? : string;
    
 }
 console.log(mq["xs"])
@@ -31,23 +31,34 @@ interface StyledHeaderProps {
 }
 
 const Content = styled.div`
-    margin-top: ${(props) => props.theme.navbarHeight};
+   
     display : flex;
-    align-items : center;
-    gap : 3rem;
+    gap : 1rem;    
     flex-direction : column;
+    align-items : center;
+    width : 95vw;
+  
+    ${mq["xs"]} {
+    
+        width : 80vw
+        
+    }
    
 `;
 
 const BackgroundDiv = styled.div`
     display : flex;
     flex-direction : column;
+    padding-top: 35vw;
+   
+    align-items : center;
     background-repeat : no-repeat;
     background-size : cover;
     height : 100vh;
     background-position-x : center;
     background-image :  ${(props : StyledHeaderProps) => `url(${props.mobileBackgroundUrl})` };
     ${mq["xs"]} {
+        padding-top: 10rem;
         background-image :  ${(props : StyledHeaderProps) => `url(${props.desktopBackgroundUrl})` };
     }
 

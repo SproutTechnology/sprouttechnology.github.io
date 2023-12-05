@@ -2,20 +2,26 @@
 
 import styled from "@emotion/styled";
 import SectionLayout from "./SectionLayout";
+import Heading from "./Heading";
+import { mq } from "../theme";
+
 
 function Hero() {
     return (
         <SectionLayout mobileBackgroundUrl="./background_mobile.png" desktopBackgroundUrl="./background.png">
-            <Heading>Sprout.</Heading>
-            <Subheading>
-                <span>Welcome to our universe</span>
-                <div>
-                    <span>a growing ecosystem of </span>
-                    <em>collaborating people </em>
-                </div>
-                <span>ideas and initiatives</span> 
-            </Subheading>
-            <Link>Lets start here</Link>
+            <Heading color="white"></Heading>
+            <SubheadingWrapper>
+                <Subheading>
+                    <span>Welcome to our universe</span>
+                    <div>
+                        <span>a growing ecosystem of </span>
+                        <em>collaborating people </em>
+                    </div>
+                    <span>ideas and initiatives</span> 
+                
+                </Subheading>
+                <Link>Lets start here {'>'}_</Link>
+            </SubheadingWrapper>
         </SectionLayout>
     );
 }
@@ -23,52 +29,47 @@ function Hero() {
 
 export default Hero;
 
+
+const SubheadingWrapper = styled.div`
+    all : unset;
+    display : flex;
+    justify-items : center;
+    flex-direction : column;
+    gap :  ${(props) => props.theme.spacing.sm};
+`
+
 const Link = styled.a`
-    text-align : left;
-    font-family : AzeretMono;
-    width : 80%;
+    cursor : pointer;
+    font-size : 1rem;
+    font-family : AzeretMono; 
 `
 
 const Subheading = styled.h2`
     all : unset;
     display : flex;
+    justify-items : center;
     flex-direction : column;
-    color : #4C80DB;
-    font-size : 4rem;
-    text-align : center;
-    font-family : Bayon;
-    line-height : 3.5rem;
+    color : ${(props) => props.theme.headline.color};
     text-transform : uppercase;
-    text-align : left;
-    width : 80%;
     & * {
-        font-family : Bayon;
+        font-family : ${(props) => props.theme.headline.font};
+        line-height : 3rem;
+        font-size : ${(props) => props.theme.headline.fontSize};
     }
-    & > div {
-        display : flex;
-        gap : 1rem;
-        flex-wrap : wrap;
-        em {
-            font-size : 5rem;
-            white-space : nowrap;
-            font-weight : 400;
-        }
 
-        & span {
-            white-space : nowrap;
+    & > div {    
+        display : flex;
+        align-items : center;
+        flex-wrap : wrap;
+        ${mq["xs"]} { 
+            gap : ${(props) => props.theme.spacing.sm};
+        }
+        em {
+            line-height : 3.5rem;
+            overflow-wrap : anywhere;
+            font-size : ${(props) => props.theme.emphasizedHeadline.fontSize};
         }
     }
    
-        &  span {
-            font-size: 4rem;
-        }  
 `
 
-const Heading = styled.h1`
-    margin : unset;
-    color : white;
-    font-size : 15rem;
-    text-align : center;
-    font-family : Sen, sans-serif;
-    font-weight : bold;
-`

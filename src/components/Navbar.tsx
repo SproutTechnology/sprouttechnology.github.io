@@ -1,15 +1,17 @@
 
 
 import styled from "@emotion/styled";
-import NavLink from "./NavLink";
+import Menu from "./Menu";
+import HamburgerMenu from "./HamburgerMenu"
+import { mq } from "../theme";
 
+//TODO - Change the img to correct icon
 function Navbar() {
     return (
-        <Nav>   
-            <NavLink id={"test"} title="Vision" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="About" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="Cases" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="Gallery"  ></NavLink>
+        <Nav>
+            <img src="/favicon.ico"></img>
+            <HamburgerMenu></HamburgerMenu>
+            <Menu></Menu>    
         </Nav>
     );
 }
@@ -19,12 +21,24 @@ export default Navbar;
 const Nav = styled.nav`
     position : fixed;
     display : flex;
-    justify-content : space-between;
     align-items : center;
     background : transparent;
     width : 100%;
-    height: ${(props) => props.theme.navbarHeight};
-    padding-left : 5rem;
-    padding-right : 5rem;
+    height : 5rem;
+    justify-content : flex-end;
+    ${mq["xs"]} { 
+        height: 10rem;
+    }
+
+    & img {
+        display : block;
+        justify-self : flex-start;
+        margin-right : auto;
+        margin-left : ${(props) => props.theme.spacing.xs};
+        ${mq["xs"]} { 
+            display : none;
+        }
+    }
+    
 
 `;
