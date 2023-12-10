@@ -1,14 +1,20 @@
 import theme from "./theme";
 import { ThemeProvider } from "@emotion/react";
-import Hero from "./components/Hero";
+import { useState } from "react";
+import Hero from "./views/Hero";
 import Navbar from "./components/Navbar";
-import WeAreSprout from "./components/WeAreSprout"
-import Wave from "./components/Wave";
+import WeAreSprout from "./views/WeAreSprout"
+import Wave from "./views/Wave";
+
+
 function App() {
+    
+    const [introVisited, setIntroVisited] = useState(false);
+
     return (
         <ThemeProvider theme={theme}>
             <Navbar></Navbar>
-            <Wave></Wave>
+            {!introVisited && <Wave setIntroVisited={setIntroVisited}></Wave>}
             <Hero></Hero>
             <WeAreSprout></WeAreSprout>
         </ThemeProvider>

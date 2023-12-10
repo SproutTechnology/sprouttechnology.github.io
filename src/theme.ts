@@ -1,45 +1,37 @@
 import { Theme } from "@emotion/react";
 
-const colors = {
-  blueWhale : "#435D96",
-  summerCurtains : "#FDFDFD"
-}
-
 const theme : Theme = {
     breakpoints : {
-        lg : "1920",
-        md : "1280",
-        sm : "1024",
-        xs : "640"
+        xl : "1920",
+        lg : "1280",
+        md : "1024",
+        sm : "640",
+        xs : "450"
     },
-    headline : {
-      font : "Bayon",
-      fontSize : 'clamp(0.5rem, 10vw, 3rem)',
-      color : colors.blueWhale
+    fontFamily : {
+      bayon : "Bayon",
+      azeretMono : "AzeretMono",
     },
-    emphasizedHeadline : {
-      font : "Bayon",
-      fontSize : 'clamp(4rem, 10vw, 5rem)',
-      color : colors.blueWhale
-    },
-    logo : {
-      font : "Arial",
-      fontSize :  "clamp(2rem,20vw,15rem)",
-      color : colors.summerCurtains
-    },
-    link : {
-      font : "AzeretMono",
-      fontSize : "1rem",
-      color : colors.summerCurtains,
-
+    fontSize : {
+      xs : "1rem",
+      sm : "clamp(0.5rem, 5vw, 1.5rem)",
+      md : "clamp(0.5rem, 10vw, 4rem)",
+      lg : "clamp(4rem, 10vw, 6rem)"
     },
     spacing : {
       xs : "0.5rem",
       sm : "1rem",
       md: "2rem",
+      lg : "4rem",
+      xl : "8rem",
+    },
+    lineHeight : {
+      sm : "3.5rem",
+      md : "4rem"
     },
     colors : {
-      ...colors
+      blueWhale : "#435D96",
+      summerCurtains : "#FDFDFD"
     },
    
  

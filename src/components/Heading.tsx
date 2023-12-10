@@ -1,18 +1,13 @@
 
 
 import styled from "@emotion/styled";
+import { mq } from "../theme";
 
-interface Props {
-    color: string;
-    preText? : string;
- 
-   
-}
-function Heading({color, preText } : Props) {
+function Heading() {
     return (
-        <StyledHeading color={color}>
-            {preText && <PreLogoText>{preText}</PreLogoText> }
-            <span>Sprout.</span>
+        <StyledHeading>
+            <span>Sprout</span>
+            <Logo src="/heading.svg"/>
         </StyledHeading>   
     );
 }
@@ -20,23 +15,22 @@ function Heading({color, preText } : Props) {
 
 export default Heading;
 
-const PreLogoText = styled.span`
-    font-family :  ${(props) => props.theme.emphasizedHeadline.font};
-    font-size : ${(props) => props.theme.emphasizedHeadline.fontSize};
-    color : ${(props) => props.theme.emphasizedHeadline.color};
-`
 
+const Logo = styled.img`
+    ${({ theme }) => `
+        width : 100%;
+        height : 5rem;
+        max-width : ${theme.breakpoints.sm};
+        ${mq["xs"]} { 
+            height : auto;
+        }
+    `} 
+`
 const StyledHeading = styled.h1`
-    margin : unset;
-    display : flex;
-    gap : 1rem;
-    align-items :baseline;
-    color : ${(props) => props.color};
-    font-size : ${(props) => props.theme.logo.fontSize};
-    text-align : center;
-    font-family : arial;
-    font-weight : 800;
-   
+    margin : unset;   
+    & span {
+        display : none;
+    }
 `
 
 
