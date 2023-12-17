@@ -318,7 +318,7 @@ function Intro() {
       <div style={{flexDirection: "column", backgroundColor: 'white'}}>
 
           <div style={{height: 750, width: '100%', position: "relative"}}>
-              <div style={{height: '100%', width: '120%', position: "absolute", top: 100, left: -200}}>
+              <div style={{height: '100%', width: '120%', position: "absolute", top: 50, left: -200}}>
                 <Canvas><Scene/></Canvas>
               </div>
               <div style={{height: 200, width: '100%', position: "absolute", top: 0, backgroundColor: ''}}>

@@ -24,8 +24,8 @@ function VideoMaterial({ url }) {
 
 function AsciiRenderer({
                          renderIndex = 1,
-                         bgColor = 'black', //'#ffffff',
-                         fgColor = '#5596e0',
+                         bgColor = 'black',
+                         fgColor = '#a9a9a9',
                          characters = '  .:-+*=%@#123456780',
                          invert = false,
                          color = false,
@@ -86,8 +86,8 @@ function Intro() {
               </div>
               <div style={{height: 200, width: '100%', position: "absolute", bottom: 0, backgroundColor: 'black'}}/>
 
-              <div style={{color: 'black', left: 650, bottom: 230, fontWeight: 'bold', fontSize: 200, textAlign: "center", position: "absolute"}}>
-                  <img style={{width: 600}} src={'sprout-logo.png'}/>
+              <div style={{color: 'black', left: 350, bottom: 230, fontWeight: 'bold', fontSize: 200, textAlign: "center", position: "absolute"}}>
+                  <img style={{width: 800}} src={'sprout-logo.png'}/>
                   <span></span>
               </div>
           </div>
