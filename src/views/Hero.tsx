@@ -63,6 +63,7 @@ const Link = styled.a`
         cursor : pointer;
         font-size : ${theme.fontSize.xs};
         font-family : ${theme.fontFamily.azeretMono};
+        color : ${theme.colors.summerCurtains};
         white-space : nowrap;
         width : min-content;
     `} 

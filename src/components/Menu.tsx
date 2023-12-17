@@ -23,7 +23,6 @@ const StyledMenu = styled.div`
     align-items : center;
     background : transparent;
     width : 100%;
-    height: ${(props) => props.theme.navbarHeight};
     padding-left : 5rem;
     padding-right : 5rem;
     ${mq["sm"]} { 

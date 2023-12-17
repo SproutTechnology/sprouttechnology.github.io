@@ -77,7 +77,7 @@ const BackgroundDiv = styled.div`
     justify-content : space-between;
     align-items : center;
     background-repeat : no-repeat;
-    background-size : 100% 40vh;
+    background-size : 100% 40svh;
     min-height : 100svh;
     background-position-x : center;
     background-color : ${(props : StyledHeaderProps) => `${props.bgColor}` };

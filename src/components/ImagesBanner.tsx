@@ -12,7 +12,7 @@ function ImageBanner() {
     ]
     return (
         <Banner>
-           {images.map((img)=> <BannerImage src={img}></BannerImage>)}
+           {images.map((img)=> <BannerImage key={img} src={img}></BannerImage>)}
         </Banner>
     );
 }
@@ -37,7 +37,7 @@ const BannerImage = styled.img`
     width : 100%;
     height : auto;
     min-width : 0px;
-    max-height : 20vh;
+    max-height : 20svh;
     object-fit : cover;
     ${mq["sm"]} {
         max-height : 30svh;

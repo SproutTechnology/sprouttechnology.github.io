@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import Menu from "./Menu";
-import { useState, useEffect } from "react";
 import HamburgerMenu from "./HamburgerMenu"
 import { mq } from "../theme";
 
@@ -12,14 +11,15 @@ interface Props {
 
 //TODO - Change the img to correct icon
 function Navbar({showMenu } : Props) {
-
-    
-
     return (
         <Nav>
-            <img src="/favicon.ico"></img>
-            <HamburgerMenu></HamburgerMenu>
-            {showMenu && <Menu></Menu>  }
+            {showMenu && ( 
+            <>
+                <img src="/favicon.ico"></img> 
+                <HamburgerMenu></HamburgerMenu>
+                <Menu></Menu> 
+            </>
+            )} 
         </Nav>
     );
 }
