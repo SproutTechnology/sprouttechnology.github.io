@@ -21,13 +21,16 @@ const Logo = styled.img`
         width : 100%;
         height : 5rem;
         max-width : ${theme.breakpoints.sm};
+        object-fit : contain;
         ${mq["xs"]} { 
-            height : auto;
+            height : 100%;
+            max-width : auto;
         }
     `} 
 `
 const StyledHeading = styled.h1`
     margin : unset;   
+    flex-basis : 30%;
     & span {
         display : none;
     }

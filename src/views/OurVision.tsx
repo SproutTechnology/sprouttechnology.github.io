@@ -4,16 +4,12 @@ import styled from "@emotion/styled";
 import SectionLayout from "../components/SectionLayout";
 import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
-import ImageBanner from "../components/ImagesBanner";
-import { mq } from "../theme";
-
 function WeAreSprout() {
-    console.log(mq["sm"])
     return (
         <ViewContainer>
-            <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">
+            <SectionLayout fullWidthContent={<img style={{width : '100%'}} src="/tempwave.svg"></img>}  bgColor="white">
                 <ArticlesWrapper>
-                    <Article heading="We are sprout_">
+                    <Article heading="Our vision_">
                         <span>
                             We've all been in the business for a few years.
                             Colleagues have come and gone, projects and companies have changed in a world where technology is ever evolving.
@@ -29,7 +25,7 @@ function WeAreSprout() {
 
                     </Article>
                 </ArticlesWrapper>
-            </SectionLayout>   
+            </SectionLayout>
         </ViewContainer>
     );
 }
@@ -37,15 +33,11 @@ function WeAreSprout() {
 
 export default WeAreSprout;
 
-
-
 const ArticlesWrapper = styled.div`
     display : flex;
     justify-content : space-between;
     flex-wrap : wrap;
     gap : 5rem;
     margin-bottom : 2rem;
-    ${mq["sm"]} { 
-        flex-wrap : nowrap
-    }
+    
 `

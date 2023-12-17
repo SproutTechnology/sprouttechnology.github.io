@@ -1,7 +1,9 @@
 import { Theme } from "@emotion/react";
 
+
 const theme : Theme = {
     breakpoints : {
+        xxl : "2565",
         xl : "1920",
         lg : "1280",
         md : "1024",
@@ -15,7 +17,7 @@ const theme : Theme = {
     fontSize : {
       xs : "1rem",
       sm : "clamp(0.5rem, 5vw, 1.5rem)",
-      md : "clamp(0.5rem, 10vw, 4rem)",
+      md : "clamp(0.5rem, 8vw, 4rem)",
       lg : "clamp(4rem, 10vw, 6rem)"
     },
     spacing : {
@@ -26,6 +28,7 @@ const theme : Theme = {
       xl : "8rem",
     },
     lineHeight : {
+      xs : "1.5rem",
       sm : "3.5rem",
       md : "4rem"
     },
@@ -33,13 +36,13 @@ const theme : Theme = {
       blueWhale : "#435D96",
       summerCurtains : "#FDFDFD"
     },
-   
- 
-   
 } 
 
+const indexedBreakpoints = theme.breakpoints as {[id in string] : string}
+
+
 export const mq = Object.keys(theme.breakpoints)
-  .map((key) => [key, theme.breakpoints[key]])
+  .map((key) => [key, indexedBreakpoints[key]])
   .reduce((prev, [key, breakpoint]) => {
     prev[key] = `@media (min-width: ${breakpoint}px)`;
     return prev;

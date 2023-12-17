@@ -2,28 +2,34 @@
 
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
+import { mq } from "../theme";
 
 interface Props {
     children: ReactNode;
-    heading : string;
+    headingRight?: boolean;
+    heading: string;
 }
 
-function Article({heading, children} : Props) {
+function Article({ heading, children, headingRight }: Props) {
     return (
-       
-            <StyledArticle>
-                <StyledArticleHeader>{heading}</StyledArticleHeader>
-                <article>{children}</article>
-            </StyledArticle>
-        
+
+        <StyledArticle>
+            {headingRight ? <StyledHeadingRight>{heading}</StyledHeadingRight> : <StyledHeadingLeft>{heading}</StyledHeadingLeft>}
+            <article>{children}</article>
+        </StyledArticle>
+
     );
 }
 
 
 export default Article;
 
-const StyledArticleHeader = styled.h2`
+const StyledHeadingLeft = styled.h2`
     font-weight : 700;
+`
+const StyledHeadingRight = styled.h2`
+    font-weight : 700;
+    text-align : right;
 `
 
 const StyledArticle = styled.div`
@@ -33,12 +39,16 @@ ${({ theme }) => `
     flex-grow : 2;
     display : flex;
     flex-direction : column;
-    gap : 5rem;
+    gap : 2rem;
+    ${mq["sm"]} { 
+        gap : 5rem;
+    };
     & * {
         font-size : ${theme.fontSize.sm};
-        font-weight : 400;
         font-family : ${theme.fontFamily.azeretMono};
+        line-height : ${theme.lineHeight.xs};
         & > em {
+            font-weight : 800;
             font-weight : bold;
         }
     }

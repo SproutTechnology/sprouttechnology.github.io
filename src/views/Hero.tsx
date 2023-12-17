@@ -35,11 +35,16 @@ const HeroContent = styled.div`
         display : flex;
         flex-direction : column;
         align-items : center;
+        margin-top : 33.5svh;
+        
         gap : ${theme.spacing.sm};
-        ${mq["xs"]} { 
+        ${mq["sm"]} { 
+            margin-top : initial;
+            height : 100%;
             gap :${theme.spacing.lg};
          
         }
+        
     `}
 `
 

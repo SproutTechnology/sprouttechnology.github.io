@@ -2,16 +2,24 @@
 
 import styled from "@emotion/styled";
 import Menu from "./Menu";
+import { useState, useEffect } from "react";
 import HamburgerMenu from "./HamburgerMenu"
 import { mq } from "../theme";
 
+interface Props {
+    showMenu : boolean
+}
+
 //TODO - Change the img to correct icon
-function Navbar() {
+function Navbar({showMenu } : Props) {
+
+    
+
     return (
         <Nav>
             <img src="/favicon.ico"></img>
             <HamburgerMenu></HamburgerMenu>
-            <Menu></Menu>    
+            {showMenu && <Menu></Menu>  }
         </Nav>
     );
 }
@@ -35,7 +43,7 @@ const Nav = styled.nav`
         justify-self : flex-start;
         margin-right : auto;
         margin-left : ${(props) => props.theme.spacing.xs};
-        ${mq["xs"]} { 
+        ${mq["sm"]} { 
             display : none;
         }
     }

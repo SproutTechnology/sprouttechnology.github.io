@@ -26,7 +26,7 @@ const StyledMenu = styled.div`
     height: ${(props) => props.theme.navbarHeight};
     padding-left : 5rem;
     padding-right : 5rem;
-    ${mq["xs"]} { 
+    ${mq["sm"]} { 
         display : flex;
     }
 

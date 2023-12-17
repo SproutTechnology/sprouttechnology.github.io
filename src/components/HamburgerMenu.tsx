@@ -22,7 +22,7 @@ const Button = styled.button`
     cursor : pointer;
     font-size : 2.5rem;
     margin-right :  ${(props) => props.theme.spacing.sm};
-    ${mq["xs"]} { 
+    ${mq["sm"]} { 
         display : none;
     }
 
