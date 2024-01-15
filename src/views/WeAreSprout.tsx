@@ -10,7 +10,7 @@ import { mq } from "../theme";
 function WeAreSprout() {
     console.log(mq["sm"])
     return (
-        <ViewContainer>
+        <ViewContainer id="About">
             <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">
                 <ArticlesWrapper>
                     <Article heading="We are sprout_">

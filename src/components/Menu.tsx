@@ -7,10 +7,10 @@ import { mq } from "../theme";
 function Menu() {
     return (
         <StyledMenu>
-            <NavLink id={"test"} title="Vision" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="About" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="Cases" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"test"} title="Gallery"></NavLink>
+            <NavLink id={"#OurVision"} title="Vision" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
+            <NavLink id={"#About"} title="About" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
+            <NavLink id={"#OurCases"} title="Cases" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
+            <NavLink id={"#Gallery"} title="Gallery"></NavLink>
         </StyledMenu>
     );
 }

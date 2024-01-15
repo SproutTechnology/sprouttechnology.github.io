@@ -83,7 +83,7 @@ const BackgroundDiv = styled.div`
     background-color : ${(props : StyledHeaderProps) => `${props.bgColor}` };
     background-image :  ${(props : StyledHeaderProps) => `url(${props.mobileBackgroundUrl})` };
     ${mq["sm"]} {
-        height: 100svh;
+        /*height: 100svh;*/
         background-size : auto 100%;
         background-image :  ${(props : StyledHeaderProps) => `url(${props.desktopBackgroundUrl})` };
     }

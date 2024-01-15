@@ -88,7 +88,7 @@ function Intro() {
 				<div style={{height: 0, width: '100%', position: "absolute", bottom: 0, backgroundColor: 'black'}}/>
 
 				<div style={{color: 'black', left: 0, bottom: 0, fontWeight: 'bold', fontSize: 200, textAlign: "center", width: '100%', position: "absolute"}}>
-					<img style={{width: 800}} src={'sprout-logo.png'}/>
+					<img style={{width: 800, maxWidth: '100%'}} src={'sprout-logo.png'}/>
 					<span></span>
 				</div>
 			</div>

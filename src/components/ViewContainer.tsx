@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 
 
 interface Props {
+    id: string;
     children: ReactNode;
     dismissOnClick? : boolean;
     onClickHandler? : ()=> void;
@@ -12,7 +13,7 @@ interface Props {
 
 
 
-function ViewContainer({onClickHandler, children, dismissOnClick}: Props) {
+function ViewContainer({id, onClickHandler, children, dismissOnClick}: Props) {
     function onClick() {
         if(dismissOnClick) {
             let pageHeight = window.innerHeight;
@@ -21,7 +22,7 @@ function ViewContainer({onClickHandler, children, dismissOnClick}: Props) {
         }
     }
     return (
-        <StyledViewContainer onClick={onClick}>
+        <StyledViewContainer id={id} onClick={onClick}>
             {children}
         </StyledViewContainer>
     );

@@ -6,20 +6,20 @@ import Navbar from "./components/Navbar";
 import WeAreSprout from "./views/WeAreSprout"
 import Wave from "./views/Wave";
 import OurVision from "./views/OurVision"
+import OurCases from "./views/OurCases"
 
 
 function App() {
 
     const [introVisited, setIntroVisited] = useState(false);
     const [scrollPassed100vh, setScrolledPass100Vh] = useState(false);
-
+ 
     const handleScroll = () => {
         if(!scrollPassed100vh && window.scrollY >= window.innerHeight) {
             setScrolledPass100Vh(true)
             window.removeEventListener('scroll', handleScroll)
         }
-
-    };
+   };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -36,6 +36,7 @@ function App() {
             <Hero></Hero>
             <WeAreSprout></WeAreSprout>
             <OurVision></OurVision>
+            <OurCases></OurCases>
         </ThemeProvider>
     );
 }

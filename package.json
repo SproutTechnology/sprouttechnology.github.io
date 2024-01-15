@@ -26,6 +26,7 @@
         "rellax": "^1.12.1",
         "scroll-out": "^2.2.12",
         "splitting": "^1.0.6",
+        "swiper": "^11.0.5",
         "three": "0.153.0",
         "three-full": "^28.0.2",
         "three-stdlib": "^2.21.8"

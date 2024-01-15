@@ -35,7 +35,7 @@ const Nav = styled.nav`
     height : 5rem;
     justify-content : flex-end;
     ${mq["xs"]} { 
-        height: 10rem;
+        /*height: 10rem;*/
     }
 
     & img {

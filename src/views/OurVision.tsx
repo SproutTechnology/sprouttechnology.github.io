@@ -6,7 +6,7 @@ import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
 function WeAreSprout() {
     return (
-        <ViewContainer>
+        <ViewContainer id="OurVision">
             <SectionLayout fullWidthContent={<img style={{width : '100%'}} src="/tempwave.svg"></img>}  bgColor="white">
                 <ArticlesWrapper>
                     <Article heading="Our vision_">
