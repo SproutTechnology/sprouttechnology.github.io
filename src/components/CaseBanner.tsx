@@ -87,7 +87,6 @@ function CaseBanner() {
 
 const CloseButton = styled.div`
     display: flex;
-    float: right;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -114,7 +113,7 @@ const MobilePopup = styled.div`
 
     flex-direction : column;
     z-index: 10;
-    padding: 1rem;
+    padding: 10px;
 
     top: 0;
     bottom: 0;
@@ -132,6 +131,9 @@ const MobilePopup = styled.div`
 
 const StyledSwiper = styled(Swiper)`
     ${({ theme }) => `
+
+    --swiper-navigation-sides-offset: 0px;
+
     overflow-x: clip;
     overflow-y: visible;
 
@@ -162,7 +164,8 @@ const Banner = styled.div`
     max-width : 100%;
     display : flex;
     flex-wrap : wrap;
-    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+    padding: 0 10px;
     
     ${mq["sm"]} {
         /*max-height : 30svh;*/
@@ -176,13 +179,9 @@ const BannerImage = styled.img`
     width : 100%;
     height : auto;
     min-width : 0px;
-    /*z-index: 1;*/
-    /*max-height : 20svh;*/
     object-fit : cover;
     ${mq["sm"]} {
         max-height : 30svh;
-       
-        flex-wrap : nowrap;
     };
 `
 
@@ -214,6 +213,9 @@ const PopupContent = styled.div`
     border: 1px solid black;
     background-color: #fff;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 `
 
 const PopupImage = styled.img`

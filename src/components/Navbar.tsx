@@ -1,5 +1,4 @@
-
-
+import { useState } from 'react';
 import styled from "@emotion/styled";
 import { css } from '@emotion/react'
 import Menu from "./Menu";
@@ -17,13 +16,15 @@ function isInverted(currentView: string): boolean {
 
 //TODO - Change the img to correct icon
 function Navbar({ showMenu, currentView }: Props) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <Nav inverted={isInverted(currentView)}>
+        <Nav inverted={isInverted(currentView)} open={open}>
             {showMenu && (
                 <>
                     <img src="/favicon.ico"></img>
-                    <HamburgerMenu></HamburgerMenu>
-                    <Menu inverted={isInverted(currentView)}></Menu>
+                    <HamburgerMenu setOpen={setOpen} open={open}></HamburgerMenu>
+                    <Menu inverted={isInverted(currentView)} setOpen={setOpen} open={open}></Menu>
                 </>
             )}
         </Nav>
@@ -32,19 +33,20 @@ function Navbar({ showMenu, currentView }: Props) {
 
 export default Navbar;
 
-const Nav = styled.nav<{ inverted?: boolean; }>`
+const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
     position : absolute;
     top: auto;
-    background: transparent;
+    z-index: 10;
+    background: ${(props) => props.open ? "black" : "transparent"};
 
     display : flex;
     align-items : center;
+    flex-wrap: wrap;
     width : 100%;
-    height : 5rem;
     justify-content : flex-end;
     transition: all .5s ease-out;
 
-    ${mq["xs"]} { 
+    ${mq["sm"]} { 
         height: 10rem;
     }
 
@@ -56,10 +58,14 @@ const Nav = styled.nav<{ inverted?: boolean; }>`
     ${props => props.inverted && css`
         position: fixed;
         top: 0;
-        /*background: #d9d9d9;*/
+        background: black;
+
+        ${mq["sm"]} { 
+            background: white;
+        }
 
         & a {
-            color : #000;
+            color : ${props.open ? "white" : "black"};
         }        
     `}    
 

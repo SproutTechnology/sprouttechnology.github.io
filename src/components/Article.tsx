@@ -10,10 +10,10 @@ interface Props {
     heading: string;
 }
 
-function Article({ heading, children, headingRight }: Props) {
+function Article({ heading, children, headingRight = false }: Props) {
     return (
 
-        <StyledArticle>
+        <StyledArticle headingRight={headingRight}>
             {headingRight ? <StyledHeadingRight>{heading}</StyledHeadingRight> : <StyledHeadingLeft>{heading}</StyledHeadingLeft>}
             <article>{children}</article>
         </StyledArticle>
@@ -32,17 +32,20 @@ const StyledHeadingRight = styled.h2`
     text-align : right;
 `
 
-const StyledArticle = styled.div`
-${({ theme }) => `
+const StyledArticle = styled.div<{headingRight: boolean}>`
+${({ theme, headingRight }) => `
     min-width : 250px;
     flex-basis : 40%;
     flex-grow : 2;
     display : flex;
-    flex-direction : column;
+    flex-direction : ${headingRight ? "column-reverse": "column"};
     gap : 2rem;
+
     ${mq["sm"]} { 
         gap : 5rem;
+        flex-direction : column;
     };
+
     & * {
         font-size : ${theme.fontSize.sm};
         font-family : ${theme.fontFamily.azeretMono};

@@ -41,7 +41,7 @@ const Content = styled.div`
         align-items : center;
         flex-basis : 100%;
         min-height : 0;
-        margin-top : ${theme.spacing.md};
+        margin-top : ${theme.spacing.lg};
         max-width : ${theme.breakpoints.xxl}px;
         margin-left : ${theme.spacing.sm};
         margin-right : ${theme.spacing.sm};

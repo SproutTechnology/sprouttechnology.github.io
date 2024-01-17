@@ -5,10 +5,14 @@ import { mq } from "../theme";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+interface Props {
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-function HamburgerMenu() {
+function HamburgerMenu({ open, setOpen }: Props) {
     return (
-        <Button>   
+        <Button onClick={() => setOpen(!open)}>
             <FontAwesomeIcon icon={faBars} />
         </Button>
     );
