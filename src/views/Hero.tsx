@@ -4,26 +4,29 @@ import styled from "@emotion/styled";
 import SectionLayout from "../components/SectionLayout";
 import Heading from "../components/Heading";
 import { mq } from "../theme";
+import ViewContainer from "../components/ViewContainer";
 
 function Hero() {
     return (
-        <SectionLayout mobileBackgroundUrl="./background_mobile.png" desktopBackgroundUrl="./background.png">
-            <HeroContent >
-                <Heading/>
-                <SubheadingWrapper>
-                    <Subheading>
-                        <span>Welcome to our universe</span>
-                        <div>
-                            <span>a growing ecosystem of </span>
-                            <em>collaborating people </em>
-                        </div>
-                        <span>ideas and initiatives</span> 
-                    
-                    </Subheading>
-                    <Link>Lets start here {'>'}_</Link>
-                </SubheadingWrapper>
-            </HeroContent>
-        </SectionLayout>
+        <ViewContainer>
+            <SectionLayout mobileBackgroundUrl="./background_mobile.png" desktopBackgroundUrl="./background.png">
+                <HeroContent >
+                    <Heading/>
+                    <SubheadingWrapper>
+                        <Subheading>
+                            <span>Welcome to our universe</span>
+                            <div>
+                                <span>a growing ecosystem of </span>
+                                <em>collaborating people </em>
+                            </div>
+                            <span>ideas and initiatives</span> 
+                        
+                        </Subheading>
+                        <Link>Lets start here {'>'}_</Link>
+                    </SubheadingWrapper>
+                </HeroContent>
+            </SectionLayout>
+        </ViewContainer>
     );
 }
 

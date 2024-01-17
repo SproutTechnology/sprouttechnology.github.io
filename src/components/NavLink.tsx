@@ -16,7 +16,7 @@ function NavLink({id, title, subtitle, text} : Props) {
             <em>{title}</em>
             { subtitle &&  <span>{subtitle}</span> }
             { text &&  <span>{text}</span> }
-           
+        
             
         </Link>
     );
@@ -33,7 +33,6 @@ const Link = styled.a`
     align-content : center;
     
     flex-direction : column;
-    color : ${(props) => props.theme.colors.summerCurtains};;
     &:hover {
         text-decoration : underline;
         cursor : pointer

@@ -34,7 +34,9 @@ const theme : Theme = {
     },
     colors : {
       blueWhale : "#435D96",
-      summerCurtains : "#FDFDFD"
+      summerCurtains : "#FDFDFD",
+      oldTypewriter: "#5E5E5E",
+      nightSky: "#0E0E0E"
     },
 } 
 

@@ -8,7 +8,7 @@ interface Props {
 
 function Wave({setIntroVisited} : Props) {
     return (
-        <ViewContainer id="Wave" dismissOnClick onClickHandler={()=>setIntroVisited(true)}>
+        <ViewContainer dismissOnClick onClickHandler={()=>setIntroVisited(true)}>
             <Intro/>
         </ViewContainer>
     );

@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 
 interface Props {
-    id: string;
+    id?: string;
     children: ReactNode;
     dismissOnClick? : boolean;
     onClickHandler? : ()=> void;
@@ -22,7 +22,7 @@ function ViewContainer({id, onClickHandler, children, dismissOnClick}: Props) {
         }
     }
     return (
-        <StyledViewContainer id={id} onClick={onClick}>
+        <StyledViewContainer id={id} onClick={onClick} data-type="ViewContainer">
             {children}
         </StyledViewContainer>
     );

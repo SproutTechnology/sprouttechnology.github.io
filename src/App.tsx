@@ -7,19 +7,21 @@ import WeAreSprout from "./views/WeAreSprout"
 import Wave from "./views/Wave";
 import OurVision from "./views/OurVision"
 import OurCases from "./views/OurCases"
-
+import { useCurrentView } from "./hooks";
 
 function App() {
 
+    const currentView = useCurrentView();
+    
     const [introVisited, setIntroVisited] = useState(false);
     const [scrollPassed100vh, setScrolledPass100Vh] = useState(false);
- 
+
     const handleScroll = () => {
-        if(!scrollPassed100vh && window.scrollY >= window.innerHeight) {
+        if (!scrollPassed100vh && window.scrollY >= window.innerHeight) {
             setScrolledPass100Vh(true)
             window.removeEventListener('scroll', handleScroll)
         }
-   };
+    };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -31,8 +33,8 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Navbar showMenu={introVisited || scrollPassed100vh }></Navbar>
-              <Wave setIntroVisited={setIntroVisited}></Wave>
+            <Wave setIntroVisited={setIntroVisited}></Wave>
+            <Navbar showMenu={introVisited || scrollPassed100vh} currentView={currentView}></Navbar>
             <Hero></Hero>
             <WeAreSprout></WeAreSprout>
             <OurVision></OurVision>

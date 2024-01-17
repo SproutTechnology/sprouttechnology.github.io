@@ -47,9 +47,11 @@ ${({ theme }) => `
         font-size : ${theme.fontSize.sm};
         font-family : ${theme.fontFamily.azeretMono};
         line-height : ${theme.lineHeight.xs};
+        color: ${theme.colors.oldTypewriter};
         & > em {
             font-weight : 800;
             font-weight : bold;
+            color: ${theme.colors.nightSky};
         }
     }
     `}

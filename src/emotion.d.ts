@@ -2,33 +2,36 @@ import "@emotion/react";
 
 declare module "@emotion/react" {
     export interface Theme {
-        breakpoints : {
+        breakpoints: {
             xs: string;
             sm: string;
             md: string;
             lg: string;
-            xl : string;
-            xxl : string;
+            xl: string;
+            xxl: string;
         },
-        fontFamily : {
-            bayon : string, 
-            azeretMono : string},
-        fontSize : { 
+        fontFamily: {
+            bayon: string;
+            azeretMono: string;
+        },
+        fontSize: {
             xs: string;
             sm: string;
             md: string;
             lg: string;
         },
-        colors : {
-            summerCurtains : string,
-            blueWhale : string,
+        colors: {
+            summerCurtains: string;
+            blueWhale: string;
+            oldTypewriter: string;
+            nightSky: string;
         },
-        lineHeight : {
+        lineHeight: {
             xs: string;
             sm: string;
             md: string;
         }
-        spacing : {
+        spacing: {
             xs: string;
             sm: string;
             md: string;
