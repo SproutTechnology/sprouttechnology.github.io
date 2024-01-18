@@ -38,7 +38,7 @@ const Content = styled.div`
     ${({ theme }) => `
         display : flex;   
         flex-direction : column;
-        align-items : center;
+        align-items : flex-start;
         flex-basis : 100%;
         min-height : 0;
         margin-top : ${theme.spacing.lg};

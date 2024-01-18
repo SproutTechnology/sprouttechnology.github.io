@@ -21,10 +21,6 @@ function OurCases() {
                             And if you hire a whole Sprout team - watch that energy
                         </span>
                     </Article>
-                    <Article heading="">
-                        <span>
-                        </span>
-                    </Article>
                 </ArticlesWrapper>
             </SectionLayout>   
         </ViewContainer>
@@ -41,6 +37,7 @@ const ArticlesWrapper = styled.div`
     gap : 5rem;
     margin-bottom : 2rem;
     ${mq["sm"]} { 
-        flex-wrap : nowrap
+        flex-wrap : nowrap;
+        width: 50%;
     }
 `
