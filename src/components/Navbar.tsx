@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from "@emotion/styled";
 import { css } from '@emotion/react'
 import Menu from "./Menu";
@@ -10,6 +10,8 @@ interface Props {
     currentView: string
 }
 
+type ScrollDirection = 'up' | 'down';
+
 function isInverted(currentView: string): boolean {
     return currentView !== '' && currentView !== 'Home';
 }
@@ -17,9 +19,41 @@ function isInverted(currentView: string): boolean {
 //TODO - Change the img to correct icon
 function Navbar({ showMenu, currentView }: Props) {
     const [open, setOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const scrollOffset = 30;
+        let prevScrollPos = window.scrollY;
+        let totalScrollDiff = 0;
+        let prevScrollDirection: ScrollDirection = 'down';
+    
+        const handleScroll = () => {
+            const currentScrollPos = window.scrollY;
+            const scrollDirection = (prevScrollPos > currentScrollPos) ? 'up' : 'down';
+    
+            if (scrollDirection === prevScrollDirection) {
+                totalScrollDiff += (currentScrollPos - prevScrollPos);
+            } else {
+                totalScrollDiff = 0;
+                prevScrollDirection = scrollDirection;
+            }
+    
+            if (Math.abs(totalScrollDiff) > scrollOffset) {
+                setVisible(scrollDirection === 'up' ? true : false);
+            }
+    
+            prevScrollPos = currentScrollPos;
+        };    
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
 
     return (
-        <Nav inverted={isInverted(currentView)} open={open}>
+        <Nav inverted={isInverted(currentView)} open={open} visible={visible}>
             {showMenu && (
                 <>
                     <SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>
@@ -43,7 +77,7 @@ const SproutLogo = styled.a`
     }
 `;
 
-const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
+const Nav = styled.nav<{ inverted?: boolean; open: boolean; visible: boolean; }>`
     position : absolute;
     top: auto;
     z-index: 10;
@@ -67,6 +101,7 @@ const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
         position: fixed;
         top: 0;
         background: black;
+        visibility: ${props.visible ? "visible" : "hidden"};
 
         & a {
             color : ${props.open ? "white" : "black"};
