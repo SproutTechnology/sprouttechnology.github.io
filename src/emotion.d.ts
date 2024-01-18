@@ -11,6 +11,7 @@ declare module "@emotion/react" {
             xxl: string;
         },
         fontFamily: {
+            inter: string;
             bayon: string;
             azeretMono: string;
         },

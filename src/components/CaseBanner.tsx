@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
+import { Global, css } from '@emotion/react'
 import theme, { mq } from "../theme";
 
 // Import Swiper React components
@@ -17,9 +18,23 @@ interface Case {
     text: string
 }
 
+
 function CaseBanner() {
 
     const [selectedIndex, setSelectedIndex] = useState(-1);
+
+    function handleModal(index: number) {
+        var newIndex = selectedIndex === index ? -1 : index;
+
+        const rootElement = document.documentElement;
+
+        if (newIndex === -1) {
+            rootElement.classList.remove('fullscreen-modal');
+        } else {
+            rootElement.classList.add('fullscreen-modal');
+        }
+        setSelectedIndex(newIndex);
+    }
 
     const cases: Case[] = [
         {
@@ -45,6 +60,20 @@ function CaseBanner() {
     ]
     return (
         <Banner>
+            <Global
+                styles={css`
+                        html.fullscreen-modal {
+
+                            height: 100%;
+                            overflow: hidden;
+
+                            ${mq["sm"]} {
+                                height: auto;
+                                overflow: visible;
+                            };
+                        }
+                    `}
+            />
             <StyledSwiper
                 modules={[Navigation, Keyboard]}
                 slidesPerView={1}
@@ -54,7 +83,7 @@ function CaseBanner() {
                 breakpoints={{ 640: { slidesPerView: 3 } }}
             >
                 {cases.map((item, idx) =>
-                    <SwiperSlide key={item.img} onClick={() => { setSelectedIndex(selectedIndex === idx ? -1 : idx) }}>
+                    <SwiperSlide key={item.img} onClick={() => { handleModal(idx) }}>
                         <BannerImage src={item.img}></BannerImage>
 
                         <BannerPopup $selected={selectedIndex === idx}>
@@ -71,8 +100,8 @@ function CaseBanner() {
             </StyledSwiper>
             {selectedIndex !== -1 && createPortal(
                 <MobilePopup>
+                    <CloseButton onClick={() => { handleModal(-1) }}></CloseButton>
                     <PopupContent>
-                        <CloseButton onClick={() => { setSelectedIndex(-1) }}></CloseButton>
                         <PopupImage src={cases[selectedIndex].img}></PopupImage>
                         <PopupText>
                             {cases[selectedIndex].text}
@@ -107,8 +136,8 @@ const MobilePopup = styled.div`
     position: fixed;
     display : flex;
 
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-end;
     align-content: center;
 
     flex-direction : column;
@@ -181,7 +210,7 @@ const BannerImage = styled.img`
     min-width : 0px;
     object-fit : cover;
     ${mq["sm"]} {
-        max-height : 30svh;
+        max-height : 20svh;
     };
 `
 
@@ -215,7 +244,6 @@ const PopupContent = styled.div`
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 `
 
 const PopupImage = styled.img`
@@ -234,6 +262,5 @@ const PopupText = styled.span`
 
     
 `
-
 
 export default CaseBanner;

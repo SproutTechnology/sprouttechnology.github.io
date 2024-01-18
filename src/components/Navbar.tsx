@@ -11,7 +11,7 @@ interface Props {
 }
 
 function isInverted(currentView: string): boolean {
-    return currentView !== '';
+    return currentView !== '' && currentView !== 'Home';
 }
 
 //TODO - Change the img to correct icon
@@ -22,7 +22,7 @@ function Navbar({ showMenu, currentView }: Props) {
         <Nav inverted={isInverted(currentView)} open={open}>
             {showMenu && (
                 <>
-                    <img src="/favicon.ico"></img>
+                    <SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>
                     <HamburgerMenu setOpen={setOpen} open={open}></HamburgerMenu>
                     <Menu inverted={isInverted(currentView)} setOpen={setOpen} open={open}></Menu>
                 </>
@@ -32,6 +32,16 @@ function Navbar({ showMenu, currentView }: Props) {
 }
 
 export default Navbar;
+
+const SproutLogo = styled.a`
+    display : block;
+    justify-self : flex-start;
+    margin-right : auto;
+    margin-left : ${(props) => props.theme.spacing.xs};
+    ${mq["sm"]} { 
+        display : none;
+    }
+`;
 
 const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
     position : absolute;
@@ -44,15 +54,13 @@ const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
     flex-wrap: wrap;
     width : 100%;
     justify-content : flex-end;
-    transition: all .5s ease-out;
-
-    ${mq["sm"]} { 
-        height: 10rem;
-    }
 
     & a {
         color : ${(props) => props.theme.colors.summerCurtains};
-        transition: all .5s ease-out;
+    }
+
+    ${mq["sm"]} { 
+        height: 10rem;
     }
 
     ${props => props.inverted && css`
@@ -60,22 +68,16 @@ const Nav = styled.nav<{ inverted?: boolean; open: boolean; }>`
         top: 0;
         background: black;
 
-        ${mq["sm"]} { 
-            background: white;
-        }
-
         & a {
             color : ${props.open ? "white" : "black"};
         }        
-    `}    
 
-    & img {
-        display : block;
-        justify-self : flex-start;
-        margin-right : auto;
-        margin-left : ${(props) => props.theme.spacing.xs};
         ${mq["sm"]} { 
-            display : none;
+            background: white;
+
+            & a {
+                color : black;
+            }        
         }
-    }
+    `}    
 `;

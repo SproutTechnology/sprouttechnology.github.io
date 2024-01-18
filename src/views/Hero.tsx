@@ -8,7 +8,7 @@ import ViewContainer from "../components/ViewContainer";
 
 function Hero() {
     return (
-        <ViewContainer>
+        <ViewContainer id="Home">
             <SectionLayout mobileBackgroundUrl="./background_mobile.png" desktopBackgroundUrl="./background.png">
                 <HeroContent >
                     <Heading/>

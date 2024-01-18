@@ -11,6 +11,7 @@ const theme : Theme = {
         xs : "450"
     },
     fontFamily : {
+      inter : "Inter",
       bayon : "Bayon",
       azeretMono : "AzeretMono",
     },

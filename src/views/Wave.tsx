@@ -1,15 +1,23 @@
 import ViewContainer from "../components/ViewContainer";
 import Intro from '../components/Intro/Index';
-import {Suspense} from "react";
+import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
 
 interface Props {
-    setIntroVisited : (hasBeenVisited : boolean) => void;
+    setIntroVisited: (hasBeenVisited: boolean) => void;
 }
 
-function Wave({setIntroVisited} : Props) {
+
+function Wave({ setIntroVisited }: Props) {
+    const navigate = useNavigate();
+
     return (
-        <ViewContainer dismissOnClick onClickHandler={()=>setIntroVisited(true)}>
-            <Intro/>
+        <ViewContainer dismissOnClick onClickHandler={
+            () => {
+                setIntroVisited(true);
+                navigate("#Home");
+            }}>
+            <Intro />
         </ViewContainer>
     );
 }

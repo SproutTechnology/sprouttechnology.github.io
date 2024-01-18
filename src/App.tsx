@@ -14,7 +14,7 @@ function App() {
     const currentView = useCurrentView();
     
     const [introVisited, setIntroVisited] = useState(false);
-    const [scrollPassed100vh, setScrolledPass100Vh] = useState(false);
+    /*const [scrollPassed100vh, setScrolledPass100Vh] = useState(false);
 
     const handleScroll = () => {
         if (!scrollPassed100vh && window.scrollY >= window.innerHeight) {
@@ -29,12 +29,13 @@ function App() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+    */
 
 
     return (
         <ThemeProvider theme={theme}>
-            <Wave setIntroVisited={setIntroVisited}></Wave>
-            <Navbar showMenu={introVisited || scrollPassed100vh} currentView={currentView}></Navbar>
+            { !introVisited && <Wave setIntroVisited={setIntroVisited}></Wave> }
+            <Navbar showMenu={true/*introVisited || scrollPassed100vh*/} currentView={currentView}></Navbar>
             <Hero></Hero>
             <WeAreSprout></WeAreSprout>
             <OurVision></OurVision>

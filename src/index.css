@@ -5,6 +5,12 @@
 }
 
 @font-face {
+    font-family: "Inter";
+    src: local("Inter"), url("./fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+    font-weight: 100 400;
+}
+
+@font-face {
     font-family: "Bayon";
     src: local("Bayon"), url("./fonts/Bayon-Regular.ttf") format("truetype");
     font-weight: bold;
@@ -52,7 +58,7 @@ body {
 }
 
 body * {
-    font-family: Sen, sans-serif;
+    font-family: Inter, sans-serif;
 }
 
 * {

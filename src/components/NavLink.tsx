@@ -37,10 +37,13 @@ const Link = styled.a`
         text-decoration : underline;
         cursor : pointer
     }
+
     & > em {
         font-size : 2.5rem;
-      }
-        & > span {
+        font-style: normal;
+    }
+
+    & > span {
         font-size: 0.5rem;
-        }  
+    }  
 `;
