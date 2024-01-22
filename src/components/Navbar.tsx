@@ -1,49 +1,77 @@
 import { useState, useEffect } from 'react';
 import styled from "@emotion/styled";
 import { css } from '@emotion/react'
+
 import Menu from "./Menu";
 import HamburgerMenu from "./HamburgerMenu"
 import { mq } from "../theme";
+import NavLink from './NavLink';
+
 
 interface Props {
     showMenu: boolean,
     currentView: string
 }
 
-type ScrollDirection = 'up' | 'down';
-
-function isInverted(currentView: string): boolean {
-    return currentView !== '' && currentView !== 'Home';
-}
-
-//TODO - Change the img to correct icon
 function Navbar({ showMenu, currentView }: Props) {
+
+    function handleOpen(open: boolean) {
+        if (open) {
+            document.documentElement.classList.add('fullscreen-modal');
+        } else {
+            document.documentElement.classList.remove('fullscreen-modal');
+        }
+        setOpen(open);
+    }
+
+    const [fixed, setFixed] = useState(false);
     const [open, setOpen] = useState(false);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
 
     useEffect(() => {
-        const scrollOffset = 30;
+        type ScrollDirection = 'up' | 'down';
+
+        const scrollOffset = 50;
+        const visibleOffset = -100;
+        const fixedOffset = 0;
+
         let prevScrollPos = window.scrollY;
         let totalScrollDiff = 0;
         let prevScrollDirection: ScrollDirection = 'down';
-    
+
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
             const scrollDirection = (prevScrollPos > currentScrollPos) ? 'up' : 'down';
-    
+            let alwaysVisible = false;
+
+            // Handle fixed/static menu
+            var homeRect = document.getElementById('Home')?.getBoundingClientRect();
+            if (homeRect) {
+
+                if (homeRect.top > visibleOffset) {
+                    alwaysVisible = true;
+                }
+
+                if (homeRect.top < fixedOffset && scrollDirection == 'up') {
+                    setFixed(true);
+                } else {
+                    setFixed(false);
+                }
+            }
+
             if (scrollDirection === prevScrollDirection) {
                 totalScrollDiff += (currentScrollPos - prevScrollPos);
             } else {
                 totalScrollDiff = 0;
                 prevScrollDirection = scrollDirection;
             }
-    
-            if (Math.abs(totalScrollDiff) > scrollOffset) {
-                setVisible(scrollDirection === 'up' ? true : false);
+
+            if (Math.abs(totalScrollDiff) > scrollOffset || alwaysVisible) {
+                setVisible(scrollDirection === 'up' ? true : alwaysVisible);
             }
-    
+
             prevScrollPos = currentScrollPos;
-        };    
+        };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
@@ -51,14 +79,16 @@ function Navbar({ showMenu, currentView }: Props) {
         };
     }, []);
 
-
     return (
-        <Nav inverted={isInverted(currentView)} open={open} visible={visible}>
+        <Nav fixed={fixed} open={open} visible={visible}>
             {showMenu && (
                 <>
-                    <SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>
-                    <HamburgerMenu setOpen={setOpen} open={open}></HamburgerMenu>
-                    <Menu inverted={isInverted(currentView)} setOpen={setOpen} open={open}></Menu>
+                    <NavHeader>
+                        <NavLink id={"#Contact"} title="Contact" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
+                        {/*<SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>*/}
+                        <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
+                    </NavHeader>
+                    <Menu setOpen={handleOpen} open={open}></Menu>
                 </>
             )}
         </Nav>
@@ -67,52 +97,72 @@ function Navbar({ showMenu, currentView }: Props) {
 
 export default Navbar;
 
+/*
 const SproutLogo = styled.a`
     display : block;
     justify-self : flex-start;
     margin-right : auto;
     margin-left : ${(props) => props.theme.spacing.xs};
+
     ${mq["sm"]} { 
         display : none;
     }
+`;*/
+
+const NavHeader = styled.header`
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+
+    ${mq["sm"]} { 
+        display : none;
+    }
+
 `;
 
-const Nav = styled.nav<{ inverted?: boolean; open: boolean; visible: boolean; }>`
+
+const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean; }>`
     position : absolute;
     top: auto;
     z-index: 10;
     background: ${(props) => props.open ? "black" : "transparent"};
 
     display : flex;
+    flex-direction: column;
     align-items : center;
-    flex-wrap: wrap;
     width : 100%;
-    justify-content : flex-end;
+    justify-content : flex-start;
 
-    & a {
-        color : ${(props) => props.theme.colors.summerCurtains};
-    }
+    padding: ${(props) => props.theme.spacing.sm};
 
-    ${mq["sm"]} { 
-        height: 10rem;
-    }
+    transition: opacity .2s linear;
+    opacity: ${(props) => props.visible ? "1" : "0"};
 
-    ${props => props.inverted && css`
+    ${props => props.fixed && css`
         position: fixed;
         top: 0;
         background: black;
-        visibility: ${props.visible ? "visible" : "hidden"};
+    `}
 
-        & a {
-            color : ${props.open ? "white" : "black"};
-        }        
+    ${props => props.open && css`
+        position: fixed;
+        top: 0;
+        width : 100%;
+        height: 100%;
+        background-image: url(/heading.svg);
+        background-position: bottom;        
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-origin: content-box;
 
         ${mq["sm"]} { 
-            background: white;
-
-            & a {
-                color : black;
-            }        
+            height: auto;
+            background-image: none;
         }
+
     `}    
+
 `;

@@ -39,8 +39,9 @@ const HeroContent = styled.div`
         flex-direction : column;
         align-items : center;
         margin-top : 33.5svh;
-        
         gap : ${theme.spacing.sm};
+        padding-bottom: ${theme.spacing.sm};
+
         ${mq["sm"]} { 
             margin-top : initial;
             height : 100%;

@@ -135,6 +135,13 @@ const CloseButton = styled.div`
 const MobilePopup = styled.div`
     position: fixed;
     display : flex;
+    overflow: hidden auto;
+
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }    
 
     justify-content: flex-start;
     align-items: flex-end;

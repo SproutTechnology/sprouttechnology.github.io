@@ -2,32 +2,37 @@
 
 import styled from "@emotion/styled";
 import { mq } from "../theme";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { css } from '@emotion/react'
+
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setOpen: (open: boolean) => void;
 }
 
 function HamburgerMenu({ open, setOpen }: Props) {
     return (
-        <Button onClick={() => setOpen(!open)}>
-            <FontAwesomeIcon icon={faBars} />
+        <Button onClick={() => setOpen(!open)} open={open}>
+            { open ? "Close" : "Menu" }
+            {/*<FontAwesomeIcon icon={faBars} />*/}
         </Button>
     );
 }
 
 export default HamburgerMenu;
 
-const Button = styled.button`
+const Button = styled.button<{ open : boolean }>`
     all : unset;
+
     color : white;
     cursor : pointer;
     font-size : 2.5rem;
-    margin-right :  ${(props) => props.theme.spacing.sm};
+    text-transform: uppercase;
     ${mq["sm"]} { 
         display : none;
     }
+
 
 `;

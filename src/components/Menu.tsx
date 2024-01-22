@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
+import { css } from '@emotion/react'
 import NavLink from "./NavLink";
 import { mq } from "../theme";
 
 interface Props {
-    inverted: boolean;
     open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setOpen: (open: boolean) => void;
 }
 
-function Menu({inverted, open, setOpen} : Props) {
+function Menu({open, setOpen} : Props) {
     return (
-        <StyledMenu inverted={inverted} open={open} onClick={() => setOpen(false)}>
+        <StyledMenu open={open} onClick={() => setOpen(false)}>
             <NavLink id={"#About"} title="About" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
             <NavLink id={"#OurVision"} title="Vision" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
             <NavLink id={"#OurCases"} title="Cases" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
@@ -21,19 +21,28 @@ function Menu({inverted, open, setOpen} : Props) {
 
 export default Menu;
 
-const StyledMenu = styled.div<{inverted: boolean, open: boolean}>`
-    display : ${(props) => props.open ? "block" : "none"};
-    justify-content : space-between;
-    align-items : center;
-    background: black;
+const StyledMenu = styled.div<{open: boolean}>`
+    display: none;
     width : 100%;
-    padding: 0 2rem;
-    text-align: right;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0;
 
     ${mq["sm"]} { 
-        background: ${(props) => props.inverted ? "#d9d9d9" : "transparent"};
         display : flex;
-        padding: 1rem 5rem;
-        text-align: left;
+        position: static;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 0 3rem;
     }
+
+    ${mq["lg"]} { 
+        padding: 0 5rem;
+    }
+
+    ${props => props.open && css`
+        display: flex;
+    `}        
 `;
