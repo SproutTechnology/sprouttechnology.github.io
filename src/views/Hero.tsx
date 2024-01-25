@@ -1,5 +1,3 @@
-
-
 import styled from "@emotion/styled";
 import SectionLayout from "../components/SectionLayout";
 import Heading from "../components/Heading";
@@ -10,8 +8,8 @@ function Hero() {
     return (
         <ViewContainer id="Home">
             <SectionLayout mobileBackgroundUrl="./background_mobile.png" desktopBackgroundUrl="./background.png">
-                <HeroContent >
-                    <Heading/>
+                <HeroContent>
+                    <Heading />
                     <SubheadingWrapper>
                         <Subheading>
                             <span>Welcome to our universe</span>
@@ -19,17 +17,15 @@ function Hero() {
                                 <span>a growing ecosystem of </span>
                                 <em>collaborating people </em>
                             </div>
-                            <span>ideas and initiatives</span> 
-                        
+                            <span>ideas and initiatives</span>
                         </Subheading>
-                        <Link>Lets start here {'>'}_</Link>
+                        <Link>Lets start here {">"}_</Link>
                     </SubheadingWrapper>
                 </HeroContent>
             </SectionLayout>
         </ViewContainer>
     );
 }
-
 
 export default Hero;
 
@@ -50,7 +46,7 @@ const HeroContent = styled.div`
         }
         
     `}
-`
+`;
 
 const SubheadingWrapper = styled.div`
     ${({ theme }) => `
@@ -60,7 +56,7 @@ const SubheadingWrapper = styled.div`
         flex-direction : column;
         gap :  ${theme.spacing.xs};
     `}
-`
+`;
 
 const Link = styled.a`
     ${({ theme }) => `
@@ -70,8 +66,8 @@ const Link = styled.a`
         color : ${theme.colors.summerCurtains};
         white-space : nowrap;
         width : min-content;
-    `} 
-`
+    `}
+`;
 
 const Subheading = styled.h2`
     ${({ theme }) => `
@@ -100,5 +96,4 @@ const Subheading = styled.h2`
             }
         }
     `}
-`
-
+`;

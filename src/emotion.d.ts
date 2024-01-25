@@ -9,36 +9,35 @@ declare module "@emotion/react" {
             lg: string;
             xl: string;
             xxl: string;
-        },
+        };
         fontFamily: {
             inter: string;
             bayon: string;
             azeretMono: string;
-        },
+        };
         fontSize: {
             xs: string;
             sm: string;
             md: string;
             lg: string;
-        },
+        };
         colors: {
             summerCurtains: string;
             blueWhale: string;
             oldTypewriter: string;
             nightSky: string;
-        },
+        };
         lineHeight: {
             xs: string;
             sm: string;
             md: string;
-        }
+        };
         spacing: {
             xs: string;
             sm: string;
             md: string;
             lg: string;
             xl: string;
-        }
+        };
     }
 }
-

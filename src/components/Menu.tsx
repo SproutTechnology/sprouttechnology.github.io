@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css } from '@emotion/react'
+import { css } from "@emotion/react";
 import NavLink from "./NavLink";
 import { mq } from "../theme";
 
@@ -8,12 +8,12 @@ interface Props {
     setOpen: (open: boolean) => void;
 }
 
-function Menu({open, setOpen} : Props) {
+function Menu({ open, setOpen }: Props) {
     return (
         <StyledMenu open={open} onClick={() => setOpen(false)}>
-            <NavLink id={"#About"} title="About" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"#OurVision"} title="Vision" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
-            <NavLink id={"#OurCases"} title="Cases" subtitle="We are sprout" text="Lorum ipsum" ></NavLink>
+            <NavLink id={"#About"} title="About" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
+            <NavLink id={"#OurVision"} title="Vision" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
+            <NavLink id={"#OurCases"} title="Cases" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
             <NavLink id={"#Gallery"} title="Gallery"></NavLink>
         </StyledMenu>
     );
@@ -21,16 +21,16 @@ function Menu({open, setOpen} : Props) {
 
 export default Menu;
 
-const StyledMenu = styled.div<{open: boolean}>`
+const StyledMenu = styled.div<{ open: boolean }>`
     display: none;
-    width : 100%;
+    width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     padding: 0;
 
-    ${mq["sm"]} { 
-        display : flex;
+    ${mq["sm"]} {
+        display: flex;
         position: static;
         align-items: center;
         justify-content: space-between;
@@ -38,11 +38,13 @@ const StyledMenu = styled.div<{open: boolean}>`
         padding: 0 3rem;
     }
 
-    ${mq["lg"]} { 
+    ${mq["lg"]} {
         padding: 0 5rem;
     }
 
-    ${props => props.open && css`
-        display: flex;
-    `}        
+    ${(props) =>
+        props.open &&
+        css`
+            display: flex;
+        `}
 `;

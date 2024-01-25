@@ -19,7 +19,7 @@ module.exports = {
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
     },
-    ignorePatterns: ["node_modules", "dist", ".eslintrc.cjs"],
+    ignorePatterns: ["node_modules", "public", "dist", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
     plugins: [],
     parserOptions: {
