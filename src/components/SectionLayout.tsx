@@ -1,40 +1,33 @@
-
-
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { mq } from "../theme";
 
 interface Props {
     children: ReactNode;
-    desktopBackgroundUrl? : string;
-    mobileBackgroundUrl? : string;
-    bgColor? : string;
-    fullWidthContent? : ReactNode;
-   
+    desktopBackgroundUrl?: string;
+    mobileBackgroundUrl?: string;
+    bgColor?: string;
+    fullWidthContent?: ReactNode;
 }
-console.log(mq["xs"])
-function SectionLayout({ children, desktopBackgroundUrl = '', mobileBackgroundUrl = '', bgColor = 'black',fullWidthContent }: Props) {
+console.log(mq["xs"]);
+function SectionLayout({ children, desktopBackgroundUrl = "", mobileBackgroundUrl = "", bgColor = "black", fullWidthContent }: Props) {
     return (
-        <BackgroundDiv bgColor={bgColor} mobileBackgroundUrl={mobileBackgroundUrl} desktopBackgroundUrl={desktopBackgroundUrl}>   
-            <Content>
-                {children}
-            </Content>  
+        <BackgroundDiv bgColor={bgColor} mobileBackgroundUrl={mobileBackgroundUrl} desktopBackgroundUrl={desktopBackgroundUrl}>
+            <Content>{children}</Content>
             {fullWidthContent}
         </BackgroundDiv>
     );
 }
 
-
 export default SectionLayout;
-
 
 interface StyledHeaderProps {
     desktopBackgroundUrl: string;
-    mobileBackgroundUrl : string;
-    bgColor? : string;
+    mobileBackgroundUrl: string;
+    bgColor?: string;
 }
 
-const Content = styled.div` 
+const Content = styled.div`
     ${({ theme }) => `
         display : flex;   
         flex-direction : column;
@@ -72,20 +65,19 @@ const Content = styled.div`
 `;
 
 const BackgroundDiv = styled.div`
-    display : flex;
-    flex-direction : column;
-    justify-content : space-between;
-    align-items : center;
-    background-repeat : no-repeat;
-    background-size : 100% 40svh;
-    min-height : 100svh;
-    background-position-x : center;
-    background-color : ${(props : StyledHeaderProps) => `${props.bgColor}` };
-    background-image :  ${(props : StyledHeaderProps) => `url(${props.mobileBackgroundUrl})` };
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 100% 40svh;
+    min-height: 100svh;
+    background-position-x: center;
+    background-color: ${(props: StyledHeaderProps) => `${props.bgColor}`};
+    background-image: ${(props: StyledHeaderProps) => `url(${props.mobileBackgroundUrl})`};
     ${mq["sm"]} {
         /*height: 100svh;*/
-        background-size : auto 100%;
-        background-image :  ${(props : StyledHeaderProps) => `url(${props.desktopBackgroundUrl})` };
+        background-size: auto 100%;
+        background-image: ${(props: StyledHeaderProps) => `url(${props.desktopBackgroundUrl})`};
     }
-
 `;

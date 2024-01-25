@@ -6,13 +6,13 @@ export function useCurrentView() {
     const [currentView, setCurrentView] = useState<string>("");
 
     const handleScroll = () => {
-        let views = document.querySelectorAll('div[data-type="ViewContainer"]');
+        const views = document.querySelectorAll('div[data-type="ViewContainer"]');
 
         for (let index = 0; index < views.length; index++) {
             const view = views[index];
 
-            var viewRect = view.getBoundingClientRect();
-            var top = viewRect.top + viewRect.height - offsetTop;
+            const viewRect = view.getBoundingClientRect();
+            const top = viewRect.top + viewRect.height - offsetTop;
 
             if (top > 0 && top <= viewRect.height) {
                 setCurrentView(view.id || "");
