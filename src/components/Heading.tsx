@@ -27,6 +27,7 @@ const Logo = styled.img`
 const StyledHeading = styled.h1`
     margin: unset;
     flex-basis: 30%;
+
     & span {
         display: none;
     }

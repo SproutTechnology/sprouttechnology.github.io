@@ -22,7 +22,6 @@ export default HamburgerMenu;
 
 const Button = styled.button<{ open: boolean }>`
     all: unset;
-
     color: white;
     cursor: pointer;
     font-size: 2.5rem;

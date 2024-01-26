@@ -8,7 +8,9 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "format": "npm run lint -- --fix"
+        "format": "npm run lint -- --fix",
+        "stylelint": "stylelint 'src/**/*.{css,tsx}'",
+        "stylelintfix": "npm run stylelint -- --fix"
     },
     "dependencies": {
         "@emotion/react": "^11.11.3",
@@ -50,8 +52,12 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "gsap": "^3.12.5",
         "postcss": "^8.4.33",
+        "postcss-styled-syntax": "^0.6.4",
         "prettier": "3.2.4",
         "sass": "^1.70.0",
+        "stylelint": "^16.2.0",
+        "stylelint-config-standard": "^36.0.0",
+        "stylelint-prettier": "^5.0.0",
         "typescript": "^5.3.3",
         "vite": "^5.0.12",
         "vite-tsconfig-paths": "^4.3.1"

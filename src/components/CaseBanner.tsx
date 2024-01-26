@@ -117,17 +117,15 @@ function CaseBanner() {
 const CloseButton = styled.div`
     display: flex;
     justify-content: center;
-    justify-items: center;
-    align-items: center;
+    place-items: center;
     margin-bottom: 10px;
     cursor: pointer;
-
     border: 1px solid black;
     color: black;
     width: 2rem;
     height: 2rem;
 
-    &:after {
+    &::after {
         content: "X";
     }
 `;
@@ -136,28 +134,20 @@ const MobilePopup = styled.div`
     position: fixed;
     display: flex;
     overflow: hidden auto;
-
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
         display: none; /* Safari and Chrome */
     }
 
-    justify-content: flex-start;
+    place-content: center flex-start;
     align-items: flex-end;
-    align-content: center;
-
     flex-direction: column;
     z-index: 10;
     padding: 10px;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-
     background-color: #fff;
 
     ${mq["sm"]} {
@@ -168,8 +158,7 @@ const MobilePopup = styled.div`
 const StyledSwiper = styled(Swiper)`
     --swiper-navigation-sides-offset: 0px;
 
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: clip visible;
 
     &.swiper-backface-hidden .swiper-slide {
         transform: none;
@@ -185,8 +174,8 @@ const StyledSwiper = styled(Swiper)`
         height: 2rem;
     }
 
-    & .swiper-button-prev:after,
-    & .swiper-button-next:after {
+    & .swiper-button-prev::after,
+    & .swiper-button-next::after {
         font-size: 1rem;
     }
 `;
@@ -200,8 +189,7 @@ const Banner = styled.div`
     padding: 0 10px;
 
     ${mq["sm"]} {
-        /*max-height : 30svh;*/
-
+        /* max-height : 30svh; */
         flex-wrap: nowrap;
     }
 `;
@@ -209,7 +197,7 @@ const Banner = styled.div`
 const BannerImage = styled.img`
     width: 100%;
     height: auto;
-    min-width: 0px;
+    min-width: 0;
     object-fit: cover;
     ${mq["sm"]} {
         max-height: 20svh;

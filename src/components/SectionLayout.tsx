@@ -29,11 +29,12 @@ interface StyledHeaderProps {
 
 const Content = styled.div`
     ${({ theme }) => `
-        display : flex;   
+        disp lay : flex;   
         flex-direction : column;
         align-items : flex-start;
         flex-basis : 100%;
         min-height : 0;
+
         margin-top : ${theme.spacing.lg};
         max-width : ${theme.breakpoints.xxl}px;
         margin-left : ${theme.spacing.sm};
@@ -76,7 +77,7 @@ const BackgroundDiv = styled.div`
     background-color: ${(props: StyledHeaderProps) => `${props.bgColor}`};
     background-image: ${(props: StyledHeaderProps) => `url(${props.mobileBackgroundUrl})`};
     ${mq["sm"]} {
-        /*height: 100svh;*/
+        /* height: 100svh; */
         background-size: auto 100%;
         background-image: ${(props: StyledHeaderProps) => `url(${props.desktopBackgroundUrl})`};
     }

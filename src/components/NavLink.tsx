@@ -26,8 +26,8 @@ const Link = styled.a`
     align-content: center;
     color: ${(props) => props.theme.colors.summerCurtains};
     text-transform: uppercase;
-
     flex-direction: column;
+
     &:hover {
         text-decoration: underline;
         cursor: pointer;

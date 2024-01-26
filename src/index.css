@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Sen";
+    font-family: Sen;
     src:
         local("Sen"),
         url("./fonts/Sen-Regular.ttf") format("truetype");
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-    font-family: "Inter";
+    font-family: Inter;
     src:
         local("Inter"),
         url("./fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-    font-family: "Bayon";
+    font-family: Bayon;
     src:
         local("Bayon"),
         url("./fonts/Bayon-Regular.ttf") format("truetype");
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: "AzeretMono";
+    font-family: AzeretMono;
     src:
         local("AzeretMono"),
         url("./fonts/AzeretMono-VariableFont_wght.ttf") format("truetype");
@@ -42,16 +42,14 @@ body {
 
 html,
 body {
-    padding: 0px;
-    margin: 0px;
-    overflow-y: auto;
-
+    padding: 0;
     margin: 0;
-    background-color: rgba(255, 255, 255, 1);
+    overflow-y: auto;
+    background-color: rgba(255 255 255 / 100%);
+
     .circle {
         width: 20px;
         height: 20px;
-        position: absolute;
         top: 0;
         left: 0;
         border-radius: 50%;
@@ -63,9 +61,6 @@ body {
 
 body * {
     font-family: Inter, sans-serif;
-}
-
-* {
     box-sizing: border-box;
     outline: none;
     -webkit-tap-highlight-color: transparent;
@@ -77,12 +72,11 @@ body * {
     line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
     font-synthesis: none;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     color: black;
     overflow-x: hidden;
 }
@@ -91,20 +85,23 @@ body * {
     :root {
         color: #213547;
     }
+
     a,
     a:visited {
         color: #fdfdfd;
     }
+
     a:hover {
         color: #fff;
     }
+
     button {
         background-color: #f9f9f9;
     }
 }
 
 @font-face {
-    font-family: "SproutLogoGlyphA";
+    font-family: SproutLogoGlyphA;
     src: url("/custom-fonts/sprout-logo/Sprout-logo-glyph.eot");
     src:
         url("/custom-fonts/sprout-logo/Sprout-logo-glyph.eot?#iefix") format("embedded-opentype"),
@@ -121,6 +118,7 @@ body * {
         transform: translate(-50%, -50%) scale(0.5);
         opacity: 1;
     }
+
     100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0;
@@ -133,9 +131,8 @@ body * {
     cursor: pointer;
     display: block;
     border-radius: 50px;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 0 2px rgba(255 255 255 / 20%);
     z-index: 10000;
-    -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
 
@@ -147,33 +144,7 @@ body * {
     stroke: var(--grey);
     stroke-width: 4;
     box-sizing: border-box;
-    -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
-}
-
-@-webkit-keyframes border-transform {
-    0%,
-    100% {
-        border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
-    }
-    14% {
-        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
-    }
-    28% {
-        border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
-    }
-    42% {
-        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
-    }
-    56% {
-        border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
-    }
-    70% {
-        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
-    }
-    84% {
-        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
-    }
 }
 
 @keyframes border-transform {
@@ -181,21 +152,27 @@ body * {
     100% {
         border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
     }
+
     14% {
         border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
     }
+
     28% {
         border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
     }
+
     42% {
         border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
     }
+
     56% {
         border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
     }
+
     70% {
         border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
     }
+
     84% {
         border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
     }
@@ -206,54 +183,45 @@ body * {
     width: 100%;
     display: flex;
     justify-content: center;
-
     overflow: auto;
     overflow-x: hidden;
-    -ms-scroll-snap-type: y mandatory;
     scroll-snap-type: y mandatory;
 
-    .text--enter {
+    .text-enter {
         color: white;
-    }
-
-    .text--enter [data-scroll="out"] .char {
-        opacity: 0;
-        transform: translate(0, -150%);
-    }
-    .text--enter .char {
-        opacity: 1;
-        transform: translate(0, 0);
     }
 
     .char {
         display: inline-block;
-        -webkit-animation-delay: calc(0.15s + var(--char-index) * 0.05s);
         animation-delay: calc(0.15s + var(--char-index) * 0.05s);
         transition: all 0.15s calc(0.15s + var(--char-index) * 0.05s);
     }
-    .text--enter [data-scroll="out"] .char {
-        opacity: 0;
-        transform: translate(0, -150%);
-    }
-    .text--enter .char {
+
+    .text-enter .char {
         opacity: 1;
         transform: translate(0, 0);
     }
 
-    .text--karaoke .char {
-        color: rgba(229, 219, 209, 0.15);
+    .text-karaoke .char {
+        color: rgba(229 219 209 / 15%);
         transition-duration: 0.05s;
     }
-    .text--karaoke .char:after {
-        color: rgba(229, 219, 209, 1);
+
+    .text-karaoke .char::after {
+        color: rgba(229 219 209 / 100%);
         visibility: visible;
     }
-    .text--karaoke [data-scroll="in"] .char:after {
-        -webkit-clip-path: inset(0 0 0 0);
+
+    .text-enter [data-scroll="out"] .char {
+        opacity: 0;
+        transform: translate(0, -150%);
+    }
+
+    .text-karaoke [data-scroll="in"] .char::after {
         clip-path: inset(0 0 0 0);
     }
-    .text--karaoke [data-scroll="out"] .char:after {
-        -webkit-clip-path: inset(0 100% 0 0);
+
+    .text-karaoke [data-scroll="out"] .char::after {
         clip-path: inset(0 100% 0 0);
     }
 }
@@ -270,20 +238,22 @@ body * {
     animation: fadeIn 2s ease-in-out forwards;
 }
 
-@keyframes animateIn {
+@keyframes animate-in {
     0% {
         left: 0;
     }
+
     100% {
         left: -400%;
     }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     0% {
         opacity: 0;
         transform: translate(-50%, 15%) scale(1);
     }
+
     100% {
         opacity: 1;
         transform: translate(-50%, 10%) scale(1);

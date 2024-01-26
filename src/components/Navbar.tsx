@@ -122,15 +122,12 @@ const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
     top: auto;
     z-index: 10;
     background: ${(props) => (props.open ? "black" : "transparent")};
-
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     justify-content: flex-start;
-
     padding: ${(props) => props.theme.spacing.sm};
-
     transition: opacity 0.2s linear;
     opacity: ${(props) => (props.visible ? "1" : "0")};
 
@@ -149,7 +146,7 @@ const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
             top: 0;
             width: 100%;
             height: 100%;
-            background-image: url(/heading.svg);
+            background-image: url("/heading.svg");
             background-position: bottom;
             background-repeat: no-repeat;
             background-size: contain;

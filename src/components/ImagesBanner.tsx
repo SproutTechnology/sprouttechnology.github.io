@@ -22,12 +22,10 @@ const Banner = styled.div`
     width: 100%;
     max-width: 100%;
     display: flex;
-
     flex-wrap: wrap;
 
     ${mq["sm"]} {
         max-height: 30svh;
-
         flex-wrap: nowrap;
     }
 `;
@@ -35,12 +33,11 @@ const Banner = styled.div`
 const BannerImage = styled.img`
     width: 100%;
     height: auto;
-    min-width: 0px;
+    min-width: 0;
     max-height: 20svh;
     object-fit: cover;
     ${mq["sm"]} {
         max-height: 30svh;
-
         flex-wrap: nowrap;
     }
 `;
