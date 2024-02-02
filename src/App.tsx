@@ -7,6 +7,7 @@ import WeAreSprout from "./views/WeAreSprout";
 import Wave from "./views/Wave";
 import OurVision from "./views/OurVision";
 import OurCases from "./views/OurCases";
+import Contact from "./views/Contact";
 import { useCurrentView } from "./hooks";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <WeAreSprout></WeAreSprout>
             <OurVision></OurVision>
             <OurCases></OurCases>
+            <Contact></Contact>
         </ThemeProvider>
     );
 }

@@ -24,7 +24,7 @@ const Button = styled.button<{ open: boolean }>`
     all: unset;
     color: white;
     cursor: pointer;
-    font-size: 2.5rem;
+    font-size: ${(props) => props.theme.fontSize.md};
     text-transform: uppercase;
     ${mq["sm"]} {
         display: none;

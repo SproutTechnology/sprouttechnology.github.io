@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mq } from "../theme";
 
 interface Props {
     id: string;
@@ -21,12 +22,19 @@ export default NavLink;
 
 const Link = styled.a`
     all: unset;
-    height: 6rem;
     display: flex;
     align-content: center;
     color: ${(props) => props.theme.colors.summerCurtains};
     text-transform: uppercase;
     flex-direction: column;
+
+    [open] & {
+        height: 5rem;
+    }
+
+    ${mq["sm"]} {
+        height: 4rem;
+    }
 
     &:hover {
         text-decoration: underline;
@@ -34,11 +42,11 @@ const Link = styled.a`
     }
 
     & > em {
-        font-size: 2.5rem;
+        font-size: ${(props) => props.theme.fontSize.md};
         font-style: normal;
     }
 
     & > span {
-        font-size: 0.5rem;
+        font-size: ${(props) => props.theme.fontSize.xxs};
     }
 `;

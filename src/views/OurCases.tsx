@@ -12,10 +12,10 @@ function OurCases() {
             <SectionLayout fullWidthContent={<CaseBanner></CaseBanner>} bgColor="white">
                 <ArticlesWrapper>
                     <Article heading="Our cases_">
-                        <span>
+                        <p>
                             Hiring us is not like hiring anyone else. We hit the ground running and make an impact from day one. We bring{" "}
                             <em>energy positivity and professionalism</em> to any project. And if you hire a whole Sprout team - watch that energy
-                        </span>
+                        </p>
                     </Article>
                 </ArticlesWrapper>
             </SectionLayout>

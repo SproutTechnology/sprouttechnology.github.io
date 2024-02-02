@@ -16,10 +16,12 @@ declare module "@emotion/react" {
             azeretMono: string;
         };
         fontSize: {
+            xxs: string;
             xs: string;
             sm: string;
             md: string;
             lg: string;
+            xl: string;
         };
         colors: {
             summerCurtains: string;
@@ -28,9 +30,12 @@ declare module "@emotion/react" {
             nightSky: string;
         };
         lineHeight: {
+            xxs: string;
             xs: string;
             sm: string;
             md: string;
+            lg: string;
+            xl: string;
         };
         spacing: {
             xs: string;

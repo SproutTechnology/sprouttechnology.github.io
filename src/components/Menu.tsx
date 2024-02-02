@@ -14,7 +14,7 @@ function Menu({ open, setOpen }: Props) {
             <NavLink id={"#About"} title="About" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
             <NavLink id={"#OurVision"} title="Vision" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
             <NavLink id={"#OurCases"} title="Cases" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
-            <NavLink id={"#Gallery"} title="Gallery"></NavLink>
+            <NavLink id={"#Contact"} title="Contact" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
         </StyledMenu>
     );
 }

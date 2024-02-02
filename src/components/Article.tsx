@@ -20,11 +20,21 @@ function Article({ heading, children, headingRight = false }: Props) {
 export default Article;
 
 const StyledHeadingLeft = styled.h2`
-    font-weight: 700;
+    ${({ theme }) => `
+        font-size: ${theme.fontSize.md};
+        line-height: ${theme.lineHeight.md};
+        color: #000;
+        font-weight: 700;
+    `}
 `;
 const StyledHeadingRight = styled.h2`
-    font-weight: 700;
-    text-align: right;
+    ${({ theme }) => `
+        font-size: ${theme.fontSize.md};
+        line-height: ${theme.lineHeight.md};
+        color: #000;
+        font-weight: 700;
+        text-align: right;
+    `}
 `;
 
 const StyledArticle = styled.div<{ headingRight: boolean }>`
@@ -42,9 +52,9 @@ const StyledArticle = styled.div<{ headingRight: boolean }>`
     };
 
     & * {
-        font-size : ${theme.fontSize.sm};
         font-family : ${theme.fontFamily.azeretMono};
-        line-height : ${theme.lineHeight.xs};
+        font-size : ${theme.fontSize.sm};
+        line-height : ${theme.lineHeight.sm};
         color: ${theme.colors.oldTypewriter};
         & > em {
             font-weight : 800;

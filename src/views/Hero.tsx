@@ -64,6 +64,7 @@ const Link = styled.a`
         font-size : ${theme.fontSize.xs};
         font-family : ${theme.fontFamily.azeretMono};
         color : ${theme.colors.summerCurtains};
+        text-transform : uppercase;
         white-space : nowrap;
         width : min-content;
     `}
@@ -79,8 +80,8 @@ const Subheading = styled.h2`
         text-transform : uppercase;
         & * {
             font-family :  ${theme.fontFamily.bayon};
-            line-height : ${theme.lineHeight.sm};
-            font-size : ${theme.fontSize.md};
+            line-height : ${theme.lineHeight.lg};
+            font-size : ${theme.fontSize.lg};
         }
         & > div {    
             display : flex;
@@ -90,9 +91,9 @@ const Subheading = styled.h2`
                 gap : ${theme.spacing.sm};
             }
             em {
-                line-height : ${theme.lineHeight.md};
+                line-height : ${theme.lineHeight.xl};
                 overflow-wrap : anywhere;
-                font-size :  ${theme.fontSize.lg};
+                font-size :  ${theme.fontSize.xl};
             }
         }
     `}

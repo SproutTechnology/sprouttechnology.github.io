@@ -2,23 +2,25 @@ import styled from "@emotion/styled";
 import SectionLayout from "../components/SectionLayout";
 import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
-function WeAreSprout() {
+function OurVision() {
     return (
         <ViewContainer id="OurVision">
             <SectionLayout fullWidthContent={<img style={{ width: "100%" }} src="/tempwave.svg"></img>} bgColor="white">
                 <ArticlesWrapper>
                     <Article heading="Our vision_">
-                        <span>
-                            We&apos;ve all been in the business for a few years. Colleagues have come and gone, projects and companies have changed in a world
-                            where technology is ever evolving. We&apos;ve stayed on that path, with its ups and downs,{" "}
-                            <em>following our passion for software.</em>
-                        </span>
+                        <p>
+                            We thrive together and, powered by our <em>our chemistry and passion</em>, we want to build exciting things. Using our collective as
+                            a platform, we aim to expand our capabilities with new people, ideas and perspectives. That&apos;s where you come in,{" "}
+                            <em>evolving Sprout</em>
+                            into an even better version.
+                        </p>
                     </Article>
                     <Article headingRight heading=">Next page_">
-                        <span>
-                            Somewhere along that path we met people that made a mark.
-                            <em>People that inspired and challenged us</em>, made us better or simply put a smile on our face.
-                        </span>
+                        <p>
+                            As a Sprout partner, this means having the <em>full power of Sprout at your side</em>, in business ventures, projects or product
+                            development efforts. With an experienced set of professionals to back you, no dream is to big! When we join forces,{" "}
+                            <em>anything is possible</em>.
+                        </p>
                     </Article>
                 </ArticlesWrapper>
             </SectionLayout>
@@ -26,7 +28,7 @@ function WeAreSprout() {
     );
 }
 
-export default WeAreSprout;
+export default OurVision;
 
 const ArticlesWrapper = styled.div`
     display: flex;

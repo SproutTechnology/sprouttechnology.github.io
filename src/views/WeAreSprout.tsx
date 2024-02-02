@@ -12,17 +12,22 @@ function WeAreSprout() {
             <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">
                 <ArticlesWrapper>
                     <Article heading="We are sprout_">
-                        <span>
-                            We&apos;ve all been in the business for a few years. Colleagues have come and gone, projects and companies have changed in a world
-                            where technology is ever evolving. We&apos;ve stayed on that path, with its ups and downs,{" "}
-                            <em>following our passion for software.</em>
-                        </span>
+                        <p>
+                            As trends and technology have emerged and evolved, projects and colleagues have come and gone, we&apos;ve stayed on our path,
+                            following our <em>passion for software</em>.
+                        </p>
+                        <p>
+                            Somewhere along that path, we met <em>people</em> that made a mark.
+                        </p>
                     </Article>
                     <Article headingRight heading=">Next page_">
-                        <span>
-                            Somewhere along that path we met people that made a mark.
-                            <em>People that inspired and challenged us</em>, made us better or simply put a smile on our face.
-                        </span>
+                        <p>
+                            People that challenged us, made us better or simply put a smile on our face. We&apos;ve realized <em>it&apos;s all about them</em>.
+                            Those people. Us.
+                        </p>
+                        <p>
+                            Sprout is a <em>collaborative, creative platform</em> that builds upon that insight.
+                        </p>
                     </Article>
                 </ArticlesWrapper>
             </SectionLayout>
