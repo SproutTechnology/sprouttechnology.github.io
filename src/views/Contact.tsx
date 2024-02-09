@@ -3,6 +3,7 @@ import SectionLayout from "../components/SectionLayout";
 import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
 import Footer from "@components/Footer";
+import { mq } from "../theme";
 
 function Contact() {
     return (
@@ -33,7 +34,12 @@ export default Contact;
 const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 5rem;
+    flex-direction: column;
+    gap: 0;
     margin-bottom: 2rem;
+
+    ${mq["sm"]} {
+        gap: 5rem;
+        flex-direction: row;
+    }
 `;

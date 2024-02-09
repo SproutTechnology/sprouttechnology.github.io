@@ -167,6 +167,10 @@ const StyledSwiper = styled(Swiper)`
     margin-left: ${({ theme }) => theme.spacing.xs};
     margin-right: ${({ theme }) => theme.spacing.xs};
 
+    & .swiper-slide {
+        cursor: pointer;
+    }
+
     &.swiper-backface-hidden .swiper-slide {
         transform: none;
     }

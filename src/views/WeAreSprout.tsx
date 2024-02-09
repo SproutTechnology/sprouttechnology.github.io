@@ -19,7 +19,7 @@ function WeAreSprout() {
                             Somewhere along that path, we met <em>people</em> that made a mark.
                         </p>
                     </Article>
-                    <Article headingRight heading=">Next page_">
+                    <Article headingRight heading="&nbsp;">
                         <p>
                             People that challenged us, made us better or simply put a smile on our face. We&apos;ve realized <em>it&apos;s all about them</em>.
                             Those people. Us.
@@ -39,10 +39,12 @@ export default WeAreSprout;
 const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 5rem;
+    flex-direction: column;
+    gap: 0;
     margin-bottom: 2rem;
+
     ${mq["sm"]} {
-        flex-wrap: nowrap;
+        flex-direction: row;
+        gap: 5rem;
     }
 `;

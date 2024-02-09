@@ -27,11 +27,12 @@ export default OurCases;
 const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     gap: 5rem;
+    flex-direction: column;
     margin-bottom: 2rem;
+
     ${mq["sm"]} {
-        flex-wrap: nowrap;
+        flex-direction: row;
         width: 50%;
     }
 `;

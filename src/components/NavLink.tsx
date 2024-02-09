@@ -22,6 +22,7 @@ export default NavLink;
 
 const Link = styled.a`
     all: unset;
+    cursor: pointer;
     display: flex;
     align-content: center;
     color: ${(props) => props.theme.colors.summerCurtains};
@@ -36,14 +37,13 @@ const Link = styled.a`
         height: 4rem;
     }
 
-    &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
     & > em {
         font-size: ${(props) => props.theme.fontSize.md};
         font-style: normal;
+    }
+
+    &:hover > em {
+        text-decoration: underline;
     }
 
     & > span {

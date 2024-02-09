@@ -78,7 +78,7 @@ function AsciiRenderer({
 function Intro() {
     return (
         <div style={{ flexDirection: "column", backgroundColor: "black" }}>
-            <div style={{ height: 750, maxHeight: "100svh", width: "100%", position: "relative" }}>
+            <div style={{ height: "100svh", width: "100%", position: "relative" }}>
                 <div style={{ height: "100%", width: "100%", position: "absolute", left: -0 }}>
                     <Canvas>
                         <Scene />

@@ -125,6 +125,16 @@ body * {
     }
 }
 
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .progress-wrap {
     height: 46px;
     width: 46px;

@@ -12,10 +12,10 @@ function Hero() {
                     <Heading />
                     <SubheadingWrapper>
                         <Subheading>
-                            <span>Welcome to our universe</span>
+                            <span>Welcome to our universe.&nbsp;</span>
                             <div>
-                                <span>a growing ecosystem of </span>
-                                <em>collaborating people </em>
+                                <span>A growing ecosystem of&nbsp;</span>
+                                <em>collab&shy;orating people </em>
                             </div>
                             <span>ideas and initiatives</span>
                         </Subheading>
@@ -30,71 +30,84 @@ function Hero() {
 export default Hero;
 
 const HeroContent = styled.div`
-    ${({ theme }) => `
-        display : flex;
-        flex-direction : column;
-        align-items : center;
-        margin-top : 33.5svh;
-        gap : ${theme.spacing.sm};
-        padding-bottom: ${theme.spacing.sm};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 33.5svh;
+    gap: ${({ theme }) => theme.spacing.sm};
+    padding-bottom: ${({ theme }) => theme.spacing.md};
 
-        ${mq["sm"]} { 
-            margin-top : initial;
-            height : 100%;
-            gap :${theme.spacing.lg};
-         
-        }
-        
-    `}
+    ${mq["sm"]} {
+        margin-top: initial;
+        height: 100%;
+        gap: ${({ theme }) => theme.spacing.lg};
+    }
 `;
 
 const SubheadingWrapper = styled.div`
-    ${({ theme }) => `
-        all : unset;
-        display : flex;
-        justify-items : center;
-        flex-direction : column;
-        gap :  ${theme.spacing.xs};
-    `}
+    all: unset;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing.md};
+
+    ${mq["sm"]} {
+        align-items: flex-start;
+        gap: ${({ theme }) => theme.spacing.sm};
+    }
 `;
 
 const Link = styled.a`
-    ${({ theme }) => `
-        cursor : pointer;
-        font-size : ${theme.fontSize.xs};
-        font-family : ${theme.fontFamily.azeretMono};
-        color : ${theme.colors.summerCurtains};
-        text-transform : uppercase;
-        white-space : nowrap;
-        width : min-content;
-    `}
+    all: unset;
+    cursor: pointer;
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    font-family: ${({ theme }) => theme.fontFamily.azeretMono};
+    color: ${({ theme }) => theme.colors.summerCurtains};
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: min-content;
+
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
 const Subheading = styled.h2`
-    ${({ theme }) => `
-        all : unset;
-        display : flex;
-        justify-items : center;
-        flex-direction : column;
-        color : ${theme.colors.blueWhale};
-        text-transform : uppercase;
-        & * {
-            font-family :  ${theme.fontFamily.bayon};
-            line-height : ${theme.lineHeight.lg};
-            font-size : ${theme.fontSize.lg};
+    all: unset;
+    display: inline;
+    justify-items: center;
+    flex-direction: column;
+    color: ${({ theme }) => theme.colors.blueWhale};
+    text-transform: uppercase;
+
+    & * {
+        font-family: ${({ theme }) => theme.fontFamily.bayon};
+        line-height: ${({ theme }) => theme.lineHeight.lg};
+        font-size: ${({ theme }) => theme.fontSize.lg};
+    }
+
+    ${mq["sm"]} {
+        display: flex;
+    }
+
+    & > div {
+        display: inline;
+        align-items: baseline;
+        flex-wrap: wrap;
+
+        ${mq["sm"]} {
+            display: flex;
         }
-        & > div {    
-            display : flex;
-            align-items : center;
-            flex-wrap : wrap;
-            ${mq["xs"]} { 
-                gap : ${theme.spacing.sm};
-            }
-            em {
-                line-height : ${theme.lineHeight.xl};
-                overflow-wrap : anywhere;
-                font-size :  ${theme.fontSize.xl};
+
+        em {
+            display: block;
+            line-height: ${({ theme }) => theme.lineHeight.xl};
+            overflow-wrap: anywhere;
+            font-size: ${({ theme }) => theme.fontSize.xl};
+
+            ${mq["sm"]} {
+                display: inline;
             }
         }
-    `}
+    }
 `;

@@ -35,7 +35,7 @@ const Content = styled.div`
     flex-basis: 100%;
     min-height: 0;
     margin-top: ${({ theme }) => theme.spacing.lg};
-    max-width: ${({ theme }) => theme.breakpoints.xxl}px;
+    max-width: 1480px;
     margin-left: ${({ theme }) => theme.spacing.sm};
     margin-right: ${({ theme }) => theme.spacing.sm};
 

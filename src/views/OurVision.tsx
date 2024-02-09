@@ -16,7 +16,7 @@ function OurVision() {
                             <em>evolving Sprout</em> into an even better version.
                         </p>
                     </Article>
-                    <Article headingRight heading=">Next page_">
+                    <Article headingRight heading="&nbsp;">
                         <p>
                             As a Sprout partner, this means having the <em>full power of Sprout at your side</em>, in business ventures, projects or product
                             development efforts. With an experienced set of professionals to back you, no dream is to big! When we join forces,{" "}
@@ -34,12 +34,13 @@ export default OurVision;
 const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 5rem;
+    flex-direction: column;
+    gap: 0;
     margin-bottom: 2rem;
 
     ${mq["sm"]} {
-        flex-wrap: nowrap;
+        flex-direction: row;
+        gap: 5rem;
     }
 `;
 

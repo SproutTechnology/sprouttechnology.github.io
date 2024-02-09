@@ -47,8 +47,8 @@ const theme: Theme = {
         xs: "1.4rem",
         sm: "1.75rem",
         md: "2.1rem",
-        lg: "3.675rem",
-        xl: "6.3rem",
+        lg: "3.51rem",
+        xl: "4.5rem",
     },
     colors: {
         blueWhale: "#435D96",
