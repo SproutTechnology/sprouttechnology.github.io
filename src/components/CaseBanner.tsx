@@ -118,12 +118,13 @@ const CloseButton = styled.div`
     display: flex;
     justify-content: center;
     place-items: center;
-    margin-bottom: 10px;
+    margin-bottom: ${(props) => props.theme.spacing.xs};
     cursor: pointer;
     border: 1px solid black;
     color: black;
     width: 2rem;
     height: 2rem;
+    background-color: #fff;
 
     &::after {
         content: "X";
@@ -133,22 +134,26 @@ const CloseButton = styled.div`
 const MobilePopup = styled.div`
     position: fixed;
     display: flex;
-    overflow: hidden auto;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-    &::-webkit-scrollbar {
-        display: none; /* Safari and Chrome */
-    }
+    overflow: scroll;
+
+    /* 
+        overflow: hidden auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none; 
+        &::-webkit-scrollbar {
+            display: none; 
+        }
+    */
 
     place-content: center flex-start;
     align-items: flex-end;
     flex-direction: column;
     z-index: 10;
-    padding: 10px;
+    padding: ${({ theme }) => theme.spacing.xs};
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: rgb(0 0 0 / 70%);
 
     ${mq["sm"]} {
         display: none;
@@ -159,6 +164,8 @@ const StyledSwiper = styled(Swiper)`
     --swiper-navigation-sides-offset: 0px;
 
     overflow: clip visible;
+    margin-left: ${({ theme }) => theme.spacing.xs};
+    margin-right: ${({ theme }) => theme.spacing.xs};
 
     &.swiper-backface-hidden .swiper-slide {
         transform: none;
@@ -176,7 +183,19 @@ const StyledSwiper = styled(Swiper)`
 
     & .swiper-button-prev::after,
     & .swiper-button-next::after {
-        font-size: 1rem;
+        font-size: ${({ theme }) => theme.fontSize.xs};
+    }
+
+    ${mq["sm"]} {
+        margin: 0;
+
+        & .swiper-button-prev {
+            margin-left: ${({ theme }) => theme.spacing.xs};
+        }
+
+        & .swiper-button-next {
+            margin-right: ${({ theme }) => theme.spacing.xs};
+        }
     }
 `;
 
@@ -186,7 +205,6 @@ const Banner = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 5rem;
-    padding: 0 10px;
 
     ${mq["sm"]} {
         /* max-height : 30svh; */
@@ -225,13 +243,12 @@ const BannerPopup = styled.div<{ $selected?: boolean }>`
         top: auto;
         background-color: transparent;
         padding: 0;
-        scale: 1.05;
+        scale: 1;
     }
 `;
 const PopupContent = styled.div`
     border: 1px solid black;
     background-color: #fff;
-    padding: 10px;
     display: flex;
     flex-direction: column;
 `;
@@ -243,11 +260,16 @@ const PopupImage = styled.img`
 
     ${mq["sm"]} {
         aspect-ratio: 4/3;
+        padding-top: ${({ theme }) => theme.spacing.sm};
+        padding-left: ${({ theme }) => theme.spacing.sm};
+        padding-right: ${({ theme }) => theme.spacing.sm};
     }
 `;
 const PopupText = styled.span`
     width: 100%;
     height: auto;
+    padding: ${({ theme }) => theme.spacing.sm};
+    font-size: ${({ theme }) => theme.fontSize.xs};
 `;
 
 export default CaseBanner;

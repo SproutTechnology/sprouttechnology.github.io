@@ -2,17 +2,18 @@ import styled from "@emotion/styled";
 import SectionLayout from "../components/SectionLayout";
 import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
+import { mq } from "../theme";
+
 function OurVision() {
     return (
         <ViewContainer id="OurVision">
-            <SectionLayout fullWidthContent={<img style={{ width: "100%" }} src="/tempwave.svg"></img>} bgColor="white">
+            <StyledSectionLayout bgColor="white" desktopBackgroundUrl="/tempwave.svg" mobileBackgroundUrl="/tempwave.svg">
                 <ArticlesWrapper>
                     <Article heading="Our vision_">
                         <p>
                             We thrive together and, powered by our <em>our chemistry and passion</em>, we want to build exciting things. Using our collective as
                             a platform, we aim to expand our capabilities with new people, ideas and perspectives. That&apos;s where you come in,{" "}
-                            <em>evolving Sprout</em>
-                            into an even better version.
+                            <em>evolving Sprout</em> into an even better version.
                         </p>
                     </Article>
                     <Article headingRight heading=">Next page_">
@@ -23,7 +24,7 @@ function OurVision() {
                         </p>
                     </Article>
                 </ArticlesWrapper>
-            </SectionLayout>
+            </StyledSectionLayout>
         </ViewContainer>
     );
 }
@@ -36,4 +37,18 @@ const ArticlesWrapper = styled.div`
     flex-wrap: wrap;
     gap: 5rem;
     margin-bottom: 2rem;
+
+    ${mq["sm"]} {
+        flex-wrap: nowrap;
+    }
+`;
+
+const StyledSectionLayout = styled(SectionLayout)`
+    background-position: bottom;
+    background-size: 100% auto;
+
+    ${mq["sm"]} {
+        background-position: bottom;
+        background-size: 100% auto;
+    }
 `;

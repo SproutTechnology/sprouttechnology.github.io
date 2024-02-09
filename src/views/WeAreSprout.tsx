@@ -6,7 +6,6 @@ import ImageBanner from "../components/ImagesBanner";
 import { mq } from "../theme";
 
 function WeAreSprout() {
-    console.log(mq["sm"]);
     return (
         <ViewContainer id="About">
             <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">

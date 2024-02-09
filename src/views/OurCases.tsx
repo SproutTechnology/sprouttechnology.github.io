@@ -6,7 +6,6 @@ import CaseBanner from "@components/CaseBanner";
 import { mq } from "../theme";
 
 function OurCases() {
-    console.log(mq["sm"]);
     return (
         <ViewContainer id="OurCases">
             <SectionLayout fullWidthContent={<CaseBanner></CaseBanner>} bgColor="white">

@@ -8,11 +8,12 @@ interface Props {
     mobileBackgroundUrl?: string;
     bgColor?: string;
     fullWidthContent?: ReactNode;
+    className?: string;
 }
-console.log(mq["xs"]);
-function SectionLayout({ children, desktopBackgroundUrl = "", mobileBackgroundUrl = "", bgColor = "black", fullWidthContent }: Props) {
+
+function SectionLayout({ children, desktopBackgroundUrl = "", mobileBackgroundUrl = "", bgColor = "black", fullWidthContent, className }: Props) {
     return (
-        <BackgroundDiv bgColor={bgColor} mobileBackgroundUrl={mobileBackgroundUrl} desktopBackgroundUrl={desktopBackgroundUrl}>
+        <BackgroundDiv bgColor={bgColor} mobileBackgroundUrl={mobileBackgroundUrl} desktopBackgroundUrl={desktopBackgroundUrl} className={className}>
             <Content>{children}</Content>
             {fullWidthContent}
         </BackgroundDiv>
@@ -28,41 +29,32 @@ interface StyledHeaderProps {
 }
 
 const Content = styled.div`
-    ${({ theme }) => `
-        disp lay : flex;   
-        flex-direction : column;
-        align-items : flex-start;
-        flex-basis : 100%;
-        min-height : 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-basis: 100%;
+    min-height: 0;
+    margin-top: ${({ theme }) => theme.spacing.lg};
+    max-width: ${({ theme }) => theme.breakpoints.xxl}px;
+    margin-left: ${({ theme }) => theme.spacing.sm};
+    margin-right: ${({ theme }) => theme.spacing.sm};
 
-        margin-top : ${theme.spacing.lg};
-        max-width : ${theme.breakpoints.xxl}px;
-        margin-left : ${theme.spacing.sm};
-        margin-right : ${theme.spacing.sm};
+    ${mq["xs"]} {
+        margin-left: ${({ theme }) => theme.spacing.md};
+        margin-right: ${({ theme }) => theme.spacing.md};
+    }
 
-        ${mq["xs"]} {
-            margin-left : ${theme.spacing.md};
-            margin-right : ${theme.spacing.md};
-           
-        }
+    ${mq["sm"]} {
+        margin-top: calc(${({ theme }) => theme.spacing.xl} * 1.5);
+        margin-left: ${({ theme }) => theme.spacing.lg};
+        margin-right: ${({ theme }) => theme.spacing.lg};
+    }
 
-        ${mq["sm"]} {
-            margin-top : calc(${theme.spacing.xl} * 1.5);
-            margin-left : ${theme.spacing.lg};
-            margin-right : ${theme.spacing.lg};
-        }
-       
-        ${mq["lg"]} {
-            margin-top : calc(${theme.spacing.xl} * 1.5);
-            margin-left : ${theme.spacing.xl};
-            margin-right : ${theme.spacing.xl};
-        }
-
-      
-      
-        
-       
-    `}
+    ${mq["lg"]} {
+        margin-top: calc(${({ theme }) => theme.spacing.xl} * 1.5);
+        margin-left: ${({ theme }) => theme.spacing.xl};
+        margin-right: ${({ theme }) => theme.spacing.xl};
+    }
 `;
 
 const BackgroundDiv = styled.div`

@@ -19,7 +19,7 @@ function Hero() {
                             </div>
                             <span>ideas and initiatives</span>
                         </Subheading>
-                        <Link>Lets start here {">"}_</Link>
+                        <Link href="#About">Lets start here {">"}_</Link>
                     </SubheadingWrapper>
                 </HeroContent>
             </SectionLayout>
