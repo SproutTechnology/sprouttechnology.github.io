@@ -25,7 +25,7 @@ const theme: Theme = {
         */
         xxs: "0.375rem" /* 6px */,
         xs: "1rem" /* 16px */,
-        sm: "1.25rem" /* 20px */,
+        sm: "1.125rem" /* 18px */,
         md: "1.5rem" /* 24px */,
         lg: "2.625rem" /* 42px */,
         xl: "4.5rem" /* 72px */,

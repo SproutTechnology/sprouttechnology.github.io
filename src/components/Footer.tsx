@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
 import { mq } from "../theme";
+import Cursor from "./Cursor";
 
 function Footer() {
     return (
         <StyledFooter>
-            <Link href="#Home">&gt;init_start_over_</Link>
+            <Link href="#Home">
+                &gt;init_restart
+                <Cursor />
+            </Link>
             <Logo src="/heading.svg" />
         </StyledFooter>
     );

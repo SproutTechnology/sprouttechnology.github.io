@@ -19,7 +19,6 @@ function Hero() {
                             </div>
                             <span>ideas and initiatives</span>
                         </Subheading>
-                        <Link href="#About">Lets start here {">"}_</Link>
                     </SubheadingWrapper>
                 </HeroContent>
             </SectionLayout>
@@ -54,21 +53,6 @@ const SubheadingWrapper = styled.div`
     ${mq["sm"]} {
         align-items: flex-start;
         gap: ${({ theme }) => theme.spacing.sm};
-    }
-`;
-
-const Link = styled.a`
-    all: unset;
-    cursor: pointer;
-    font-size: ${({ theme }) => theme.fontSize.xs};
-    font-family: ${({ theme }) => theme.fontFamily.azeretMono};
-    color: ${({ theme }) => theme.colors.summerCurtains};
-    text-transform: uppercase;
-    white-space: nowrap;
-    width: min-content;
-
-    &:hover {
-        text-decoration: underline;
     }
 `;
 

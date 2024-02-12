@@ -21,7 +21,8 @@ function Wave({ setIntroVisited }: Props) {
         >
             <Enter>
                 <Link>
-                    &gt;Enter<Cursor></Cursor>
+                    &gt;enter
+                    <Cursor />
                 </Link>
             </Enter>
             <Intro />

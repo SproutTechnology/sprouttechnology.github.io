@@ -45,6 +45,9 @@ const StyledArticle = styled.div<{ headingRight: boolean }>`
     display : flex;
     flex-direction : ${headingRight ? "column-reverse" : "column"};
     gap : 2rem;
+    color: ${theme.colors.oldTypewriter};
+    font-size : ${theme.fontSize.sm};
+    line-height : ${theme.lineHeight.sm};
 
     ${mq["sm"]} { 
         gap : 5rem;
@@ -53,9 +56,6 @@ const StyledArticle = styled.div<{ headingRight: boolean }>`
 
     & * {
         font-family : ${theme.fontFamily.azeretMono};
-        font-size : ${theme.fontSize.sm};
-        line-height : ${theme.lineHeight.sm};
-        color: ${theme.colors.oldTypewriter};
         & > em {
             font-weight : 800;
             font-weight : bold;
