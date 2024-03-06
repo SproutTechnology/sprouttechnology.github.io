@@ -4,13 +4,13 @@ import { useAspect, useVideoTexture } from "@react-three/drei";
 import React, { useEffect, useLayoutEffect, useMemo } from "react";
 import { Vector2 } from "three/src/math/Vector2.js";
 
-function Scene() {
+function Scene({bgColor, fgColor}) {
     const size = useAspect(1800, 1000);
     return (
         <mesh scale={size}>
             <planeGeometry />
             <VideoMaterial url="wave_loop_lighter.mp4" />
-            <AsciiRenderer />
+            <AsciiRenderer bgColor={bgColor} fgColor={fgColor}/>
         </mesh>
     );
 }
@@ -75,13 +75,13 @@ function AsciiRenderer({
 }
 
 //
-function Intro() {
+export function Intro() {
     return (
         <div style={{ flexDirection: "column", backgroundColor: "black" }}>
             <div style={{ height: "100svh", width: "100%", position: "relative" }}>
                 <div style={{ height: "100%", width: "100%", position: "absolute", left: -0 }}>
                     <Canvas>
-                        <Scene />
+                        <Scene bgColor="black" fgColor="#cccccc" />
                     </Canvas>
                 </div>
                 <div style={{ height: 0, width: "100%", position: "absolute", top: 0, backgroundColor: "black" }}></div>
@@ -97,5 +97,11 @@ function Intro() {
         </div>
     );
 }
+export function WaveEffect() {
+    return (
+        <Canvas>
+            <Scene bgColor="white" fgColor="#5596e0" />
+        </Canvas>
+    );
+}
 
-export default Intro;

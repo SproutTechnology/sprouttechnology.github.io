@@ -27,7 +27,7 @@ export default ViewContainer;
 
 const StyledViewContainer = styled.div`
     min-height: 100svh;
-    background-color: black;
+    background-color: white;
     display: flex;
     flex-direction: column;
 `;

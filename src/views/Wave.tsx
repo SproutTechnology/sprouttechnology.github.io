@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "@emotion/styled";
 import ViewContainer from "../components/ViewContainer";
-import Intro from "../components/Intro/Index";
+import { Intro } from "../components/Intro/Index";
 import { useNavigate } from "react-router-dom";
 import Cursor from "@components/Cursor";
 

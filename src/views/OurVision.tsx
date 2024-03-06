@@ -3,11 +3,16 @@ import SectionLayout from "../components/SectionLayout";
 import Article from "../components/Article";
 import ViewContainer from "../components/ViewContainer";
 import { mq } from "../theme";
+import { WaveEffect } from "../components/Intro/Index";
 
 function OurVision() {
     return (
         <ViewContainer id="OurVision">
-            <StyledSectionLayout bgColor="white" desktopBackgroundUrl="/tempwave.svg" mobileBackgroundUrl="/tempwave.svg">
+            <WaveHolder>
+                <WaveEffect />
+            </WaveHolder>
+            <StyledSectionLayout bgColor="#fff0">
+
                 <ArticlesWrapper>
                     <Article heading="Our vision">
                         <p>
@@ -45,6 +50,7 @@ const ArticlesWrapper = styled.div`
 `;
 
 const StyledSectionLayout = styled(SectionLayout)`
+    position: absolute;
     background-position: bottom;
     background-size: 100% auto;
 
@@ -52,4 +58,14 @@ const StyledSectionLayout = styled(SectionLayout)`
         background-position: bottom;
         background-size: 100% auto;
     }
+`;
+
+
+const WaveHolder = styled.div`
+    position: relative;
+    top: 400px;
+    width: 100%;
+    height: 48svh;
+    justify-content: center;
+    align-items: center;
 `;
