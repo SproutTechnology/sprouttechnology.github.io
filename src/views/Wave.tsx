@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "@emotion/styled";
 import ViewContainer from "../components/ViewContainer";
 import Intro from "../components/Intro/Index";
@@ -11,14 +12,23 @@ interface Props {
 function Wave({ setIntroVisited }: Props) {
     const navigate = useNavigate();
 
+    const proceed = () => {
+        setIntroVisited(true);
+        navigate("#Home");
+    };
+
+    useEffect(() => {
+        const onKeyUp = (e: { key: string }) => {
+            if (e.key === "Enter") proceed();
+        };
+
+        window.addEventListener("keyup", onKeyUp);
+
+        return () => window.removeEventListener("keyup", onKeyUp);
+    }, []);
+
     return (
-        <ViewContainer
-            dismissOnClick
-            onClickHandler={() => {
-                setIntroVisited(true);
-                navigate("#Home");
-            }}
-        >
+        <ViewContainer dismissOnClick onClickHandler={proceed}>
             <Enter>
                 <Link>
                     &gt;enter
