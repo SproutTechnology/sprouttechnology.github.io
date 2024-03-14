@@ -12,8 +12,8 @@ function Contact() {
                 <ArticlesWrapper>
                     <Article heading="Contact_">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            We want to hear more about your projects, your journey and your dreams! Let’s have a chat about how we can collaborate and help you
+                            achieve them. Drop an e-mail, give us a call or book a meeting - become a part of our ecosystem.
                         </p>
                     </Article>
                     <Article headingRight heading="&nbsp;">
