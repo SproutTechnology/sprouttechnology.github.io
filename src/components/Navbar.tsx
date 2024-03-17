@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Ref } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
@@ -7,11 +7,14 @@ import HamburgerMenu from "./HamburgerMenu";
 import { mq } from "../theme";
 import NavLink from "./NavLink";
 
+
 interface Props {
-    showMenu: boolean;
+    introVisited: boolean;
+    scrollContainer : React.MutableRefObject<HTMLDivElement | null>
 }
 
-function Navbar({ showMenu }: Props) {
+function Navbar({  scrollContainer, introVisited }: Props) {
+  
     function handleOpen(open: boolean) {
         if (open) {
             document.documentElement.classList.add("fullscreen-modal");
@@ -20,64 +23,77 @@ function Navbar({ showMenu }: Props) {
         }
         setOpen(open);
     }
-
+    
     const [fixed, setFixed] = useState(false);
     const [open, setOpen] = useState(false);
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        if(scrollContainer.current) {
+           
+            setVisible(scrollContainer.current?.scrollTop > 0 || scrollContainer.current?.scrollTop === 0 && introVisited)
+       
         type ScrollDirection = "up" | "down";
 
         const scrollOffset = 50;
         const visibleOffset = -100;
         const fixedOffset = 0;
 
-        let prevScrollPos = window.scrollY;
+        let prevScrollPos = scrollContainer.current?.scrollTop;
         let totalScrollDiff = 0;
         let prevScrollDirection: ScrollDirection = "down";
 
         const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-            const scrollDirection = prevScrollPos > currentScrollPos ? "up" : "down";
-            let alwaysVisible = false;
-
-            // Handle fixed/static menu
-            const homeRect = document.getElementById("Home")?.getBoundingClientRect();
-            if (homeRect) {
-                if (homeRect.top > visibleOffset) {
-                    alwaysVisible = true;
+            if(scrollContainer.current) {
+                setVisible(scrollContainer.current?.scrollTop > 0 || scrollContainer.current?.scrollTop === 0 && introVisited)
+                const currentScrollPos = scrollContainer.current?.scrollTop;
+                if(currentScrollPos) {
+                    const scrollDirection = prevScrollPos > currentScrollPos ? "up" : "down";
+                    let alwaysVisible = false;
+        
+                    // Handle fixed/static menu
+                    const homeRect = document.getElementById("Home")?.getBoundingClientRect();
+                    if (homeRect) {
+                        if (homeRect.top > visibleOffset) {
+                            alwaysVisible = true;
+                        }
+                     
+                        if (homeRect.top < fixedOffset && scrollDirection == "up") {
+                            setFixed(scrollContainer.current?.scrollTop > 10 && introVisited || scrollContainer.current?.scrollTop !== 0 && !introVisited );
+                          
+                        } else {
+                            setFixed(false);
+                        }
+                    }
+        
+                    if (scrollDirection === prevScrollDirection) {
+                        totalScrollDiff += currentScrollPos - prevScrollPos;
+                    } else {
+                        totalScrollDiff = 0;
+                        prevScrollDirection = scrollDirection;
+                    }
+        
+                    if (Math.abs(totalScrollDiff) > scrollOffset || alwaysVisible) {
+                        setVisible(scrollDirection === "up" ? true : alwaysVisible);
+                    }
+        
+                    prevScrollPos = currentScrollPos;
                 }
-
-                if (homeRect.top < fixedOffset && scrollDirection == "up") {
-                    setFixed(true);
-                } else {
-                    setFixed(false);
-                }
             }
-
-            if (scrollDirection === prevScrollDirection) {
-                totalScrollDiff += currentScrollPos - prevScrollPos;
-            } else {
-                totalScrollDiff = 0;
-                prevScrollDirection = scrollDirection;
-            }
-
-            if (Math.abs(totalScrollDiff) > scrollOffset || alwaysVisible) {
-                setVisible(scrollDirection === "up" ? true : alwaysVisible);
-            }
-
-            prevScrollPos = currentScrollPos;
+          
+           
         };
 
-        window.addEventListener("scroll", handleScroll, { passive: true });
+        scrollContainer.current.addEventListener("scroll", handleScroll, { passive: true });
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            scrollContainer.current?.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+        }
+    }, [scrollContainer, introVisited]);
 
     return (
         <Nav fixed={fixed} open={open} visible={visible}>
-            {showMenu && (
+            {(
                 <>
                     <NavHeader>
                         <NavLink id={"#Contact"} title="Contact" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
@@ -118,8 +134,9 @@ const NavHeader = styled.header`
 `;
 
 const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
-    position: absolute;
-    top: auto;
+    position: fixed;
+   
+    top: 0;
     z-index: 10;
     background: ${(props) => (props.open ? "black" : "transparent")};
     display: flex;
@@ -131,12 +148,17 @@ const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
     transition: opacity 0.2s linear;
     opacity: ${(props) => (props.visible ? "1" : "0")};
 
+    ${mq["sm"]} {
+        right : 1rem;
+    }
+
     ${(props) =>
         props.fixed &&
         css`
             position: fixed;
             top: 0;
             background: black;
+           
         `}
 
     ${(props) =>
