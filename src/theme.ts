@@ -23,7 +23,7 @@ const theme: Theme = {
         lg: "clamp(4rem, 10vw, 6rem)",
         xl: "clamp(6rem, 12vw, 8rem)",
         */
-        xxs: "0.375rem" /* 6px */,
+        xxs: "0.5rem" /* 8px */,
         xs: "1rem" /* 16px */,
         sm: "1.125rem" /* 18px */,
         md: "1.5rem" /* 24px */,

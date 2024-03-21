@@ -18,9 +18,24 @@ function Contact() {
                     </Article>
                     <Article headingRight heading="&nbsp;">
                         <p>
-                            sprout.info@gmail.com
+                            hello@wearesprout.se
                             <br />
-                            +46123123123
+                            <br />
+                            <StyledSpan>
+                                natasha.diba@wearesprout.se
+                                <br />
+                                +4673-4058400
+                            </StyledSpan>
+                            <StyledSpan>
+                                sara.ljungberg@wearesprout.se
+                                <br />
+                                +4676-8535530
+                            </StyledSpan>
+                            <StyledSpan>
+                                oliver.stanisic@wearesprout.se
+                                <br />
+                                +4670-7508261
+                            </StyledSpan>
                         </p>
                     </Article>
                 </ArticlesWrapper>
@@ -42,4 +57,12 @@ const ArticlesWrapper = styled.div`
         gap: 5rem;
         flex-direction: row;
     }
+`;
+
+const StyledSpan = styled.span`
+    display: block;
+    background: #ebebeb;
+    padding: 5px;
+    margin-bottom: 5px;
+    word-break: break-all;
 `;

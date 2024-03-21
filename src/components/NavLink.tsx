@@ -48,5 +48,6 @@ const Link = styled.a`
 
     & > span {
         font-size: ${(props) => props.theme.fontSize.xxs};
+        line-height: ${(props) => props.theme.lineHeight.xxs};
     }
 `;

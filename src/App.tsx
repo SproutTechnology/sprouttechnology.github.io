@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import WeAreSprout from "./views/WeAreSprout";
 import Wave from "./views/Wave";
 import OurVision from "./views/OurVision";
-import OurCases from "./views/OurCases";
+//import OurCases from "./views/OurCases";
 import Contact from "./views/Contact";
 import { useCurrentView } from "./hooks";
 
@@ -22,7 +22,7 @@ function App() {
             <Hero></Hero>
             <WeAreSprout></WeAreSprout>
             <OurVision></OurVision>
-            <OurCases></OurCases>
+            {/*<OurCases></OurCases>*/}
             <Contact></Contact>
         </ThemeProvider>
     );

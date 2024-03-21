@@ -80,7 +80,7 @@ function Navbar({ showMenu }: Props) {
             {showMenu && (
                 <>
                     <NavHeader>
-                        <NavLink id={"#Contact"} title="Contact" subtitle="We are sprout" text="Lorum ipsum"></NavLink>
+                        <NavLink id={"#Contact"} title="Contact" subtitle="OUR DETAILS" text="AND WHO TO REACH"></NavLink>
                         {/*<SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>*/}
                         <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
                     </NavHeader>
