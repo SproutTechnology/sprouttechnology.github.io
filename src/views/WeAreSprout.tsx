@@ -10,7 +10,7 @@ function WeAreSprout() {
         <ViewContainer id="About">
             <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">
                 <ArticlesWrapper>
-                    <Article heading="We are sprout_">
+                    <Article heading="We are sprout">
                         <p>
                             As trends and technology have emerged and evolved, projects and colleagues have come and gone, we&apos;ve stayed on our path,
                             following our <em>passion for software</em>.

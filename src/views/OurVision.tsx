@@ -9,7 +9,7 @@ function OurVision() {
         <ViewContainer id="OurVision">
             <StyledSectionLayout bgColor="white" desktopBackgroundUrl="/tempwave.svg" mobileBackgroundUrl="/tempwave.svg">
                 <ArticlesWrapper>
-                    <Article heading="Our vision_">
+                    <Article heading="Our vision">
                         <p>
                             We thrive together and, powered by our <em>our chemistry and passion</em>, we want to build exciting things. Using our collective as
                             a platform, we aim to expand our capabilities with new people, ideas and perspectives. That&apos;s where you come in,{" "}

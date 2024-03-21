@@ -10,7 +10,7 @@ function Contact() {
         <ViewContainer id="Contact">
             <SectionLayout fullWidthContent={<Footer></Footer>} bgColor="black">
                 <ArticlesWrapper>
-                    <Article heading="Contact_" invertedColors={true}>
+                    <Article heading="Contact" invertedColors={true}>
                         <p>
                             We want to hear more about your projects, your journey and your dreams! Let’s have a chat about how we can collaborate and help you
                             achieve them. Drop an e-mail, give us a call or book a meeting - become a part of our ecosystem.
