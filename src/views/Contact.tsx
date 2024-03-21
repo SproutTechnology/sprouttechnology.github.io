@@ -8,34 +8,32 @@ import { mq } from "../theme";
 function Contact() {
     return (
         <ViewContainer id="Contact">
-            <SectionLayout fullWidthContent={<Footer></Footer>} bgColor="white">
+            <SectionLayout fullWidthContent={<Footer></Footer>} bgColor="black">
                 <ArticlesWrapper>
-                    <Article heading="Contact_">
+                    <Article heading="Contact_" invertedColors={true}>
                         <p>
                             We want to hear more about your projects, your journey and your dreams! Let’s have a chat about how we can collaborate and help you
                             achieve them. Drop an e-mail, give us a call or book a meeting - become a part of our ecosystem.
                         </p>
                     </Article>
-                    <Article headingRight heading="&nbsp;">
+                    <Article headingRight heading="&nbsp;" invertedColors={true}>
                         <p>
-                            hello@wearesprout.se
-                            <br />
-                            <br />
-                            <StyledSpan>
+                            <MainContact>hello@wearesprout.se</MainContact>
+                            <ContactPerson>
                                 natasha.diba@wearesprout.se
                                 <br />
                                 +4673-4058400
-                            </StyledSpan>
-                            <StyledSpan>
+                            </ContactPerson>
+                            <ContactPerson>
                                 sara.ljungberg@wearesprout.se
                                 <br />
                                 +4676-8535530
-                            </StyledSpan>
-                            <StyledSpan>
+                            </ContactPerson>
+                            <ContactPerson>
                                 oliver.stanisic@wearesprout.se
                                 <br />
                                 +4670-7508261
-                            </StyledSpan>
+                            </ContactPerson>
                         </p>
                     </Article>
                 </ArticlesWrapper>
@@ -59,10 +57,17 @@ const ArticlesWrapper = styled.div`
     }
 `;
 
-const StyledSpan = styled.span`
+const MainContact = styled.span`
+    display: block;
+    margin-bottom: ${(props) => props.theme.spacing.sm};
+    word-break: break-all;
+`;
+
+const ContactPerson = styled.span`
     display: block;
     background: #ebebeb;
+    color: #141517;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: ${(props) => props.theme.spacing.xs};
     word-break: break-all;
 `;
