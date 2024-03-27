@@ -9,7 +9,7 @@ function Scene({bgColor, fgColor}) {
     return (
         <mesh scale={size}>
             <planeGeometry />
-            <VideoMaterial url="wave_loop_lighter.mp4" />
+            <VideoMaterial url="wave-final-desktop.mp4" />
             <AsciiRenderer bgColor={bgColor} fgColor={fgColor}/>
         </mesh>
     );
@@ -81,7 +81,7 @@ export function Intro() {
             <div style={{ height: "100svh", width: "100%", position: "relative" }}>
                 <div style={{ height: "100%", width: "100%", position: "absolute", left: -0 }}>
                     <Canvas>
-                        <Scene bgColor="black" fgColor="#cccccc" />
+                        <Scene bgColor="white" fgColor="#cccccc" />
                     </Canvas>
                 </div>
                 <div style={{ height: 0, width: "100%", position: "absolute", top: 0, backgroundColor: "black" }}></div>

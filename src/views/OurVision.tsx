@@ -65,7 +65,7 @@ const WaveHolder = styled.div`
     position: relative;
     top: 400px;
     width: 100%;
-    height: 48svh;
+    height: 70vh;
     justify-content: center;
     align-items: center;
 `;
