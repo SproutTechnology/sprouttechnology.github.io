@@ -40,7 +40,7 @@ const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 0;
+    gap: 4rem;
     margin-bottom: 2rem;
 
     ${mq["sm"]} {
@@ -63,9 +63,14 @@ const StyledSectionLayout = styled(SectionLayout)`
 
 const WaveHolder = styled.div`
     position: relative;
-    top: 400px;
     width: 100%;
-    height: 70vh;
+    top: 650px;
+    height: 60vh;
     justify-content: center;
     align-items: center;
+
+    ${mq["sm"]} {
+        top: 400px;
+        height: 70vh;
+    }
 `;

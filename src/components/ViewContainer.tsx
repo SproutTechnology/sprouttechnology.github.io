@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
+import {mq} from "../theme";
 
 interface Props {
     id?: string;
@@ -26,8 +27,12 @@ function ViewContainer({ id, onClickHandler, children, dismissOnClick }: Props) 
 export default ViewContainer;
 
 const StyledViewContainer = styled.div`
-    min-height: 100svh;
+    min-height: 130svh;
     background-color: white;
     display: flex;
     flex-direction: column;
+
+    ${mq["sm"]} {
+        min-height: 100svh;
+    }
 `;
