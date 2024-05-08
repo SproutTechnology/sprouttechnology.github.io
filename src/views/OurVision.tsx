@@ -8,9 +8,6 @@ import { WaveEffect } from "../components/Intro/Index";
 function OurVision() {
     return (
         <ViewContainer id="OurVision">
-            <WaveHolder>
-                <WaveEffect />
-            </WaveHolder>
             <StyledSectionLayout bgColor="#fff0">
 
                 <ArticlesWrapper>
@@ -30,6 +27,9 @@ function OurVision() {
                     </Article>
                 </ArticlesWrapper>
             </StyledSectionLayout>
+            <WaveHolder>
+                <WaveEffect />
+            </WaveHolder>
         </ViewContainer>
     );
 }
@@ -40,7 +40,7 @@ const ArticlesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 4rem;
+    gap: 0rem;
     margin-bottom: 2rem;
 
     ${mq["sm"]} {
@@ -50,27 +50,21 @@ const ArticlesWrapper = styled.div`
 `;
 
 const StyledSectionLayout = styled(SectionLayout)`
-    position: absolute;
     background-position: bottom;
     background-size: 100% auto;
-
-    ${mq["sm"]} {
-        background-position: bottom;
-        background-size: 100% auto;
-    }
+    z-index: 10;
 `;
 
 
 const WaveHolder = styled.div`
-    position: relative;
     width: 100%;
-    top: 650px;
-    height: 60vh;
     justify-content: center;
     align-items: center;
+    height: 20vh;
+    position: absolute;
+    bottom: 0;
 
     ${mq["sm"]} {
-        top: 400px;
-        height: 70vh;
+        height: 40vh;
     }
 `;

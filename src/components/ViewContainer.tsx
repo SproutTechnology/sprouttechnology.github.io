@@ -27,12 +27,9 @@ function ViewContainer({ id, onClickHandler, children, dismissOnClick }: Props) 
 export default ViewContainer;
 
 const StyledViewContainer = styled.div`
-    min-height: 130svh;
+    position: relative;
+    min-height: 100svh;
     background-color: white;
     display: flex;
     flex-direction: column;
-
-    ${mq["sm"]} {
-        min-height: 100svh;
-    }
 `;
