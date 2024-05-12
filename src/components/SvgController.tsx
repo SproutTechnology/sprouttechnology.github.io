@@ -18,5 +18,5 @@ const Svg = styled.svg<Props>(({ icon, width, height, margin }) => ({
 }));
 
 export const SvgController: React.FC<Props> = ({ icon, width, height, margin }) => {
-    return <Svg icon={icon} width={width || 24} height={height || 24} margin={margin || "0px 0px 0px 0px"} />;
+    return <Svg icon={icon} width={width || 24} height={height || 24} margin={margin || "0"} />;
 };

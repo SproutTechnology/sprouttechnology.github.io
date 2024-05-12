@@ -16,7 +16,7 @@ function ImageBanner() {
     return (
         <Banner>
             {images.map(({ url, alt }, i) => (
-                <BannerImage key={alt + i} alt={alt} src={url}></BannerImage>
+                <BannerImage key={url + i} alt={alt} src={url}></BannerImage>
             ))}
         </Banner>
     );
