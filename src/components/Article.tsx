@@ -10,12 +10,14 @@ interface Props {
 }
 
 function Article({ heading, children, headingRight = false, invertedColors = false }: Props) {
+    const headingProps = { invertedColors, hasContent: heading.trim().length > 0 };
+
     return (
         <StyledArticle headingRight={headingRight} invertedColors={invertedColors}>
             {headingRight ? (
-                <StyledHeadingRight invertedColors={invertedColors}>{heading}</StyledHeadingRight>
+                <StyledHeadingRight {...headingProps}>{heading}</StyledHeadingRight>
             ) : (
-                <StyledHeadingLeft invertedColors={invertedColors}>{heading}</StyledHeadingLeft>
+                <StyledHeadingLeft {...headingProps}>{heading}</StyledHeadingLeft>
             )}
             <article>{children}</article>
         </StyledArticle>
@@ -24,22 +26,30 @@ function Article({ heading, children, headingRight = false, invertedColors = fal
 
 export default Article;
 
-const StyledHeadingLeft = styled.h2<{ invertedColors: boolean }>`
+type HeadingProps = { invertedColors: boolean; hasContent: boolean };
+const StyledHeadingLeft = styled.h2<HeadingProps>`
     ${({ theme, invertedColors }) => `
-        font-size: ${theme.fontSize.md};
+        color: ${invertedColors ? "#fff" : theme.colors.blueWhale};
+        font-family: ${theme.fontFamily.bayon};
         line-height: ${theme.lineHeight.md};
-        color: ${invertedColors ? "#fff" : "#000"};
-        font-weight: 700;
+        font-size: ${theme.fontSize.lg};
+
+        margin-bottom: 0;
+        margin-top: 1.66em;
     `}
+
+    ${({ hasContent }) =>
+        !hasContent &&
+        `
+            height: 0;
+
+            ${mq["sm"]} { 
+                height: auto;
+            };
+        `}
 `;
-const StyledHeadingRight = styled.h2<{ invertedColors: boolean }>`
-    ${({ theme, invertedColors }) => `
-        font-size: ${theme.fontSize.md};
-        line-height: ${theme.lineHeight.md};
-        color: ${invertedColors ? "#fff" : "#000"};
-        font-weight: 700;
-        text-align: right;
-    `}
+const StyledHeadingRight = styled(StyledHeadingLeft)<HeadingProps>`
+    text-align: right;
 `;
 
 const StyledArticle = styled.div<{ headingRight: boolean; invertedColors: boolean }>`
@@ -55,11 +65,10 @@ const StyledArticle = styled.div<{ headingRight: boolean; invertedColors: boolea
     line-height : ${theme.lineHeight.sm};
 
     ${mq["sm"]} { 
-        gap : 5rem;
         flex-direction : column;
     };
 
-    & * {
+    & *:not(h2) {
         font-family : ${theme.fontFamily.azeretMono};
         & > em {
             font-weight : 800;

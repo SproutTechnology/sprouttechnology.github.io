@@ -5,15 +5,11 @@ import { Intro } from "../components/Intro/Index";
 import { useNavigate } from "react-router-dom";
 import Cursor from "@components/Cursor";
 
-interface Props {
-    setIntroVisited: (hasBeenVisited: boolean) => void;
-}
-
-function Wave({ setIntroVisited }: Props) {
+function Wave() {
     const navigate = useNavigate();
 
     const proceed = () => {
-        setIntroVisited(true);
+        // setIntroVisited(true);
         navigate("#Home");
     };
 
@@ -25,6 +21,7 @@ function Wave({ setIntroVisited }: Props) {
         window.addEventListener("keyup", onKeyUp);
 
         return () => window.removeEventListener("keyup", onKeyUp);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -49,7 +46,7 @@ const Enter = styled.div`
     height: 100%;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.blueWhale};
     z-index: 10;
 `;
 

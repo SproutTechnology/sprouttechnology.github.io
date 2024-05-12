@@ -1,6 +1,5 @@
 import theme from "./theme";
 import { ThemeProvider } from "@emotion/react";
-import { useState } from "react";
 import Hero from "./views/Hero";
 import Navbar from "./components/Navbar";
 import WeAreSprout from "./views/WeAreSprout";
@@ -13,17 +12,15 @@ import { useCurrentView } from "./hooks";
 function App() {
     useCurrentView();
 
-    const [introVisited, setIntroVisited] = useState(false);
-
     return (
         <ThemeProvider theme={theme}>
-            {!introVisited && <Wave setIntroVisited={setIntroVisited}></Wave>}
+            <Wave />
             <Navbar showMenu={true}></Navbar>
-            <Hero></Hero>
-            <WeAreSprout></WeAreSprout>
-            <OurVision></OurVision>
+            <Hero />
+            <WeAreSprout />
+            <OurVision />
             {/*<OurCases></OurCases>*/}
-            <Contact></Contact>
+            <Contact />
         </ThemeProvider>
     );
 }

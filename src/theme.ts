@@ -46,12 +46,12 @@ const theme: Theme = {
         xxs: "0.525rem",
         xs: "1.4rem",
         sm: "1.75rem",
-        md: "2.1rem",
+        md: "2.8rem",
         lg: "3.51rem",
         xl: "4.5rem",
     },
     colors: {
-        blueWhale: "#435D96",
+        blueWhale: "#3457A5",
         summerCurtains: "#FDFDFD",
         oldTypewriter: "#5E5E5E",
         nightSky: "#0E0E0E",
@@ -64,7 +64,7 @@ export const mq = Object.keys(theme.breakpoints)
     .map((key) => [key, indexedBreakpoints[key]])
     .reduce(
         (prev, [key, breakpoint]) => {
-            prev[key] = `@media (width >= ${breakpoint}px)`;
+            prev[key] = `@media (width >= ${breakpoint}px) and (height >= ${breakpoint}px)`;
             return prev;
         },
         {} as { [index: string]: string },

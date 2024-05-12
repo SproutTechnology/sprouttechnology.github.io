@@ -10,7 +10,7 @@ function WeAreSprout() {
         <ViewContainer id="About">
             <SectionLayout fullWidthContent={<ImageBanner></ImageBanner>} bgColor="white">
                 <ArticlesWrapper>
-                    <Article heading="We are sprout">
+                    <Article heading="We are Sprout">
                         <p>
                             As trends and technology have emerged and evolved, projects and colleagues have come and gone, we&apos;ve stayed on our path,
                             following our <em>passion for software</em>.
@@ -22,7 +22,7 @@ function WeAreSprout() {
                     <Article headingRight heading="&nbsp;">
                         <p>
                             People that challenged us, made us better or simply put a smile on our face. We&apos;ve realized <em>it&apos;s all about them</em>.
-                            Those people. Us.
+                            Those people. <em>Us</em>.
                         </p>
                         <p>
                             Sprout is a <em>collaborative, creative platform</em> that builds upon that insight.
