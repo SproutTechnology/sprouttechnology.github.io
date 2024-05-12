@@ -9,7 +9,6 @@ function OurVision() {
     return (
         <ViewContainer id="OurVision">
             <StyledSectionLayout bgColor="#fff0">
-
                 <ArticlesWrapper>
                     <Article heading="Our vision">
                         <p>
@@ -54,7 +53,6 @@ const StyledSectionLayout = styled(SectionLayout)`
     background-size: 100% auto;
     z-index: 10;
 `;
-
 
 const WaveHolder = styled.div`
     width: 100%;

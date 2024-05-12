@@ -16,31 +16,31 @@ function Footer() {
 
 export default Footer;
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled.footer(
+    ({ theme }) => `
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #000;
-    padding: 2rem;
-    gap: ${({ theme }) => theme.spacing.lg};
-    padding-left: ${({ theme }) => theme.spacing.md};
-    padding-right: ${({ theme }) => theme.spacing.md};
+    gap: ${theme.spacing.lg};
+
+    ${mq["xs"]} {
+        padding: ${theme.spacing.md};
+    }
 
     ${mq["sm"]} {
-        padding: 3rem;
+        padding: ${theme.spacing.md};
         flex-direction: row;
         justify-content: space-between;
-        padding-left: ${({ theme }) => theme.spacing.lg};
-        padding-right: ${({ theme }) => theme.spacing.lg};
     }
 
     ${mq["lg"]} {
-        padding-left: ${({ theme }) => theme.spacing.xl};
-        padding-right: ${({ theme }) => theme.spacing.xl};
+        padding: ${theme.spacing.md} ${theme.spacing.lg};
     }
-`;
+`,
+);
 
 const Logo = styled.img`
     width: 146px;
@@ -49,12 +49,16 @@ const Logo = styled.img`
 const Link = styled.a`
     all: unset;
     cursor: pointer;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.blueWhale};
     font-family: ${({ theme }) => theme.fontFamily.azeretMono};
     font-size: ${({ theme }) => theme.fontSize.sm};
     line-height: ${({ theme }) => theme.lineHeight.sm};
 
     &:hover {
         text-decoration: underline;
+    }
+
+    &:visited {
+        color: ${({ theme }) => theme.colors.blueWhale};
     }
 `;

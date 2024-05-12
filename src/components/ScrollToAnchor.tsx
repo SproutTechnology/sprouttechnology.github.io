@@ -12,7 +12,7 @@ function ScrollToAnchor() {
 
         if (lastHash.current && document.getElementById(lastHash.current)) {
             setTimeout(() => {
-                document.getElementById(lastHash.current)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                document.getElementById(lastHash.current)?.scrollIntoView({ block: "start" });
                 lastHash.current = "";
             }, 100);
         }

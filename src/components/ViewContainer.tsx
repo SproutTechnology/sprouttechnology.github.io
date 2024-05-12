@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
-import {mq} from "../theme";
 
 interface Props {
     id?: string;

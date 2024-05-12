@@ -8,7 +8,7 @@ import { mq } from "../theme";
 function Contact() {
     return (
         <ViewContainer id="Contact">
-            <SectionLayout fullWidthContent={<Footer></Footer>} bgColor="black">
+            <SectionLayout fullWidthContent={<Footer />} bgColor="black">
                 <ArticlesWrapper>
                     <Article heading="Contact" invertedColors={true}>
                         <p>

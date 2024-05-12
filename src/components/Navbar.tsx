@@ -76,34 +76,41 @@ function Navbar({ showMenu }: Props) {
     }, []);
 
     return (
-        <Nav fixed={fixed} open={open} visible={visible}>
-            {showMenu && (
-                <>
-                    <NavHeader>
-                        <NavLink id={"#Contact"} title="Contact" subtitle="OUR DETAILS" text="AND WHO TO REACH"></NavLink>
-                        {/*<SproutLogo href="#Home"><img src="/favicon.ico"></img></SproutLogo>*/}
-                        <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
-                    </NavHeader>
-                    <Menu setOpen={handleOpen} open={open}></Menu>
-                </>
-            )}
-        </Nav>
+        <>
+            {/* <SproutLogo href="#Home">
+                <img src="/favicon.ico"></img>
+            </SproutLogo> */}
+            <Nav fixed={fixed} open={open} visible={visible}>
+                {showMenu && (
+                    <>
+                        <NavHeader>
+                            <NavLink id={"#Contact"} title="Contact" subtitle="OUR DETAILS" text="AND WHO TO REACH"></NavLink>
+                            <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
+                        </NavHeader>
+                        <Menu setOpen={handleOpen} open={open}></Menu>
+                    </>
+                )}
+            </Nav>
+        </>
     );
 }
 
 export default Navbar;
 
-/*
-const SproutLogo = styled.a`
-    display : block;
-    justify-self : flex-start;
-    margin-right : auto;
-    margin-left : ${(props) => props.theme.spacing.xs};
+// const SproutLogo = styled.a`
+//     display: block;
+//     justify-self: flex-start;
+//     margin-right: auto;
 
-    ${mq["sm"]} { 
-        display : none;
-    }
-`;*/
+//     position: absolute;
+//     z-index: 2;
+//     left: calc(50%);
+//     transform: translate(-50%, 1.5rem);
+
+//     // ${mq["sm"]} {
+//     //     display: none;
+//     // }
+// `;
 
 const NavHeader = styled.header`
     display: flex;
@@ -125,7 +132,9 @@ const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
+
     width: 100%;
+
     justify-content: flex-start;
     padding: ${(props) => props.theme.spacing.sm};
     transition: opacity 0.2s linear;
