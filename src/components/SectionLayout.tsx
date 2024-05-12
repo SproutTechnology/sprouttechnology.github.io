@@ -90,11 +90,15 @@ const BackgroundDiv = styled.div`
     background-image: ${(props: StyledHeaderProps) => `url(${props.mobileBackgroundUrl})`};
     background-size: 65vh;
 
-        ${mq["sm"]} {
-            height: 100vh;
-            background-size: auto 100%;
-            background-image: ${(props: StyledHeaderProps) => `url(${props.desktopBackgroundUrl})`};
-            background-position: 50vw 0;
-        }
+    ${mq["sm"]} {
+        height: 1000px;
+        min-height: 100vh;
+        background-size: auto 100%;
+        background-image: ${(props: StyledHeaderProps) => `url(${props.desktopBackgroundUrl})`};
+        background-position: 50vw 0;
+    }
+
+    @media screen and (min-width: 500px) and (max-height: 500px) {
+        background-image: none;
     }
 `;

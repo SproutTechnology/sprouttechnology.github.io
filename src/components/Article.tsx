@@ -68,7 +68,7 @@ const StyledArticle = styled.div<{ headingRight: boolean; invertedColors: boolea
         flex-direction : column;
     };
 
-    & * {
+    & *:not(h2) {
         font-family : ${theme.fontFamily.azeretMono};
         & > em {
             font-weight : 800;

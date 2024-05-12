@@ -20,16 +20,22 @@ function Contact() {
                         <p>
                             <MainContact>hello@wearesprout.se</MainContact>
                             <ContactPerson>
+                                CEO
+                                <br />
                                 natasha.diba@wearesprout.se
                                 <br />
                                 +4673-4058400
                             </ContactPerson>
                             <ContactPerson>
+                                Head of Recruitment
+                                <br />
                                 sara.ljungberg@wearesprout.se
                                 <br />
                                 +4676-8535530
                             </ContactPerson>
                             <ContactPerson>
+                                Head of Sales
+                                <br />
                                 oliver.stanisic@wearesprout.se
                                 <br />
                                 +4670-7508261

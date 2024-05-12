@@ -25,6 +25,7 @@ const StyledFooter = styled.footer(
     align-items: center;
     background-color: #000;
     gap: ${theme.spacing.lg};
+    padding-bottom: ${theme.spacing.lg};
 
     ${mq["xs"]} {
         padding: ${theme.spacing.md};
