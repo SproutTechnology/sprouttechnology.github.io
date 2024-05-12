@@ -96,21 +96,22 @@ function Navbar({ showMenu }: Props) {
 }
 
 export default Navbar;
+/*
+For next menu update
+const SproutLogo = styled.a`
+    display: block;
+    justify-self: flex-start;
+    margin-right: auto;
 
-// const SproutLogo = styled.a`
-//     display: block;
-//     justify-self: flex-start;
-//     margin-right: auto;
+    position: absolute;
+    z-index: 2;
+    left: calc(50%);
+    transform: translate(-50%, 1.5rem);
 
-//     position: absolute;
-//     z-index: 2;
-//     left: calc(50%);
-//     transform: translate(-50%, 1.5rem);
-
-//     // ${mq["sm"]} {
-//     //     display: none;
-//     // }
-// `;
+    ${mq["sm"]} {
+        display: none;
+    }
+`; */
 
 const NavHeader = styled.header`
     display: flex;
