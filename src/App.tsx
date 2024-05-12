@@ -16,11 +16,11 @@ function App() {
         <ThemeProvider theme={theme}>
             <Wave />
             <Navbar showMenu={true}></Navbar>
-            <Hero></Hero>
-            <WeAreSprout></WeAreSprout>
-            <OurVision></OurVision>
+            <Hero />
+            <WeAreSprout />
+            <OurVision />
             {/*<OurCases></OurCases>*/}
-            <Contact></Contact>
+            <Contact />
         </ThemeProvider>
     );
 }

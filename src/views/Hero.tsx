@@ -6,23 +6,25 @@ import ViewContainer from "../components/ViewContainer";
 
 function Hero() {
     return (
-        <ViewContainer id="Home">
-            <SectionLayout mobileBackgroundUrl="./bird-illustration.png" desktopBackgroundUrl="./bird-illustration.png" isHero>
-                <HeroContent>
-                    <Heading />
-                    <SubheadingWrapper>
-                        <Subheading>
-                            <span>Welcome to our universe.&nbsp;</span>
-                            <span>A growing ecosystem of&nbsp;</span>
-                            <div>
-                                <em>collab&shy;orating people </em>
-                            </div>
-                            <span>ideas and initiatives</span>
-                        </Subheading>
-                    </SubheadingWrapper>
-                </HeroContent>
-            </SectionLayout>
-        </ViewContainer>
+        <>
+            <ViewContainer id="Home">
+                <SectionLayout mobileBackgroundUrl="./bird-illustration.png" desktopBackgroundUrl="./bird-illustration.png" isHero>
+                    <HeroContent>
+                        <Heading />
+                        <SubheadingWrapper>
+                            <Subheading>
+                                <span>Welcome to our universe.&nbsp;</span>
+                                <span>A growing ecosystem of&nbsp;</span>
+                                <div>
+                                    <em>collab&shy;orating people </em>
+                                </div>
+                                <span>ideas and initiatives</span>
+                            </Subheading>
+                        </SubheadingWrapper>
+                    </HeroContent>
+                </SectionLayout>
+            </ViewContainer>
+        </>
     );
 }
 
@@ -33,7 +35,7 @@ const HeroContent = styled.div`
     width: 100%;
     flex-direction: column;
     align-items: center;
-    margin-top: 29svh;
+    margin-top: 18svh;
     gap: ${({ theme }) => theme.spacing.sm};
     padding-bottom: ${({ theme }) => theme.spacing.md};
 

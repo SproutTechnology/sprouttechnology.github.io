@@ -11,7 +11,7 @@ interface Props {
 
 function Article({ heading, children, headingRight = false, invertedColors = false }: Props) {
     const headingProps = { invertedColors, hasContent: heading.trim().length > 0 };
-    console.log(headingProps, heading, "headingProps");
+
     return (
         <StyledArticle headingRight={headingRight} invertedColors={invertedColors}>
             {headingRight ? (
