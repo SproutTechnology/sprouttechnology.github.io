@@ -32,11 +32,14 @@ jobs:
             - run: npm ci
             - run: npm run build
 
-            - name: Upload production-ready build files
-              uses: actions/upload-pages-artifact@v1
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+
+            - name: Upload Artifact
+              uses: actions/upload-pages-artifact@v2
               with:
-                name: github-pages
-                path: ./dist
+                path: '.'
+              # upload entire directory
 
     deploy:
         needs: build
@@ -48,10 +51,7 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
-        steps:
-        - name: Configure Pages
-          uses: actions/configure-pages@v4
-
+        steps: 
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4
