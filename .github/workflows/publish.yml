@@ -32,6 +32,12 @@ jobs:
             - run: npm ci
             - run: npm run build
 
+            - name: Upload production-ready build files
+              uses: actions/upload-artifact@v2
+              with:
+                name: production-files
+                path: ./dist
+
     deploy:
         # Add a dependency to the build job
         name: Deploy
