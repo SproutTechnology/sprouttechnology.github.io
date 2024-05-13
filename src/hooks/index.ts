@@ -1,0 +1,1 @@
+export { useCurrentView } from "./useCurrentView";
