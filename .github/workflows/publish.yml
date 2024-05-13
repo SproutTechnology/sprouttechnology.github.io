@@ -38,9 +38,8 @@ jobs:
             - name: Upload Artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                name: github-pages
-                path: '.'
-              # upload entire directory
+                  name: github-pages
+                  path: "dist"
 
     deploy:
         needs: build
@@ -52,7 +51,9 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
-        steps: 
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+        steps:
+            - name: Configure Pages
+              uses: actions/configure-pages@v4
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
