@@ -1,0 +1,21 @@
+name: Publish
+description: 'build the project'
+
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+  repository-url:
+    description: 'GitHub repository URL'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - run: pnpm build
+      shell: bash
+    - run: pnpm semantic-release --repository-url ${{ inputs.repository-url }}
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        NODE_AUTH_TOKEN: ${{ inputs.github-token }}
