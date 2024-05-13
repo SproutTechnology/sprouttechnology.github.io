@@ -51,3 +51,4 @@ jobs:
             - name: Deploy
               id: deployment
               uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+              if: github.ref == 'refs/heads/main'
