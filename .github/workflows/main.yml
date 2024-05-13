@@ -11,18 +11,23 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
+
+      - name: 'Setup pnpm'
+        uses: pnpm/action-setup@v3
         with:
-          node-version: 20
+          version: 8
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install --frozen-lockfile
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
 
       - name: Build project
-        run: npm run build
+        run: pnpm build
+        shell: bash
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
