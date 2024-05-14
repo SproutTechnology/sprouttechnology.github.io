@@ -80,7 +80,7 @@ function Navbar({ showMenu }: Props) {
             <Nav fixed={fixed} open={open} visible={visible}>
                 {showMenu && (
                     <>
-                        <NavHeader>
+                        <NavHeader className={"strong-fade"}>
                             <NavLink id={"#Contact"} title="Contact" subtitle="OUR DETAILS" text="AND WHO TO REACH"></NavLink>
                             <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
                         </NavHeader>
@@ -109,7 +109,7 @@ const NavHeader = styled.header`
 const Nav = styled.nav<{ fixed: boolean; open: boolean; visible: boolean }>`
     position: absolute;
     top: auto;
-    z-index: 10;
+    z-index: 20;
     background: ${(props) => (props.open ? "black" : "transparent")};
     display: flex;
     flex-direction: column;

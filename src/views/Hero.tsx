@@ -77,6 +77,12 @@ const Subheading = styled.h2`
 
     ${mq["sm"]} {
         display: flex;
+
+        & * {
+            font-family: ${({ theme }) => theme.fontFamily.bayon};
+            line-height: 3.125rem;
+            font-size: 3.125rem;
+        }
     }
 
     & > div {
@@ -98,8 +104,8 @@ const Subheading = styled.h2`
 
             ${mq["sm"]} {
                 display: inline;
-                font-size: ${({ theme }) => theme.fontSize.xl};
-                line-height: ${({ theme }) => theme.lineHeight.xl};
+                font-size: 5.938rem;
+                line-height: 5.938rem;
             }
 
             /* media exception */

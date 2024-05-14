@@ -37,44 +37,43 @@ interface StyledHeaderProps {
     bgColor?: string;
 }
 
-const Content = styled.div<{ isHero?: boolean }>`
+const Content = styled.div<{ isHero?: boolean }>(
+    ({ theme, isHero }) => `
+    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex-basis: 100%;
     min-height: 0;
-    margin-top: ${({ theme }) => theme.spacing.lg};
+    margin-top: ${isHero ? 0 : theme.spacing.lg};
     max-width: 1480px;
 
-    margin-left: ${({ theme }) => theme.spacing.sm};
-    margin-right: ${({ theme }) => theme.spacing.sm};
-    width: calc(100% - ${({ theme }) => theme.spacing.sm});
+    margin-left: ${theme.spacing.sm};
+    margin-right: ${theme.spacing.sm};
+    width: calc(100% - ${theme.spacing.sm});
 
     ${mq["xs"]} {
-        margin-left: ${({ theme }) => theme.spacing.md};
-        margin-right: ${({ theme }) => theme.spacing.md};
-        width: calc(100% - ${({ theme }) => theme.spacing.md});
+        margin-left: ${theme.spacing.md};
+        margin-right: ${theme.spacing.md};
+        width: calc(100% - ${theme.spacing.md});
     }
 
     ${mq["sm"]} {
-        margin-top: calc(${({ theme }) => theme.spacing.xl} * 1.5);
-        margin-left: ${({ theme }) => theme.spacing.lg};
-        margin-right: ${({ theme }) => theme.spacing.lg};
-        width: calc(100% - ${({ theme }) => theme.spacing.lg});
+        margin-top: calc(${isHero ? 0 : theme.spacing.xl} * 1.5);
+        margin-left: ${theme.spacing.lg};
+        margin-right: ${theme.spacing.lg};
+        width: calc(100% - ${theme.spacing.lg});
     }
 
     ${mq["lg"]} {
-        margin-top: calc(${({ theme }) => theme.spacing.xl} * 1.5);
-        margin-left: ${({ theme }) => theme.spacing.xl};
-        margin-right: ${({ theme }) => theme.spacing.xl};
-        width: calc(100% - ${({ theme }) => theme.spacing.xl});
+        margin-top: calc(${isHero ? 0 : theme.spacing.xl} * 1.5);
+        margin-left: ${theme.spacing.xl};
+        margin-right: ${theme.spacing.xl};
+        width: calc(100% - ${theme.spacing.xl});
     }
-    ${({ isHero }) =>
-        !isHero &&
-        `
-        margin: 0;
-    `}
-`;
+
+`,
+);
 
 const BackgroundDiv = styled.div`
     display: flex;

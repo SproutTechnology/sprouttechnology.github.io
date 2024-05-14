@@ -27,10 +27,16 @@ const Logo = styled(SvgController)`
     `}
 `;
 
-const StyledHeading = styled.h1`
+const StyledHeading = styled.h1(
+    ({ theme }) => `
     width: 100%;
-    margin: auto;
-    margin-bottom: 9rem;
+    margin-top: auto;
+    margin-bottom: 8rem;
+
+    ${mq["sm"]} { 
+        margin-top: ${theme.spacing.lg};
+        margin-bottom: ${theme.spacing.md};
+    }
 
     text-align: center;
     flex-basis: 30%;
@@ -42,4 +48,5 @@ const StyledHeading = styled.h1`
     ${mq["sm"]} {
         margin-bottom: 14rem;
     }
-`;
+`,
+);
