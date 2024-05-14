@@ -80,7 +80,7 @@ function Navbar({ showMenu }: Props) {
             <Nav fixed={fixed} open={open} visible={visible}>
                 {showMenu && (
                     <>
-                        <NavHeader className={"strong-fade"}>
+                        <NavHeader>
                             <NavLink id={"#Contact"} title="Contact" subtitle="OUR DETAILS" text="AND WHO TO REACH"></NavLink>
                             <HamburgerMenu setOpen={handleOpen} open={open}></HamburgerMenu>
                         </NavHeader>
