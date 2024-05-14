@@ -64,7 +64,7 @@ export const mq = Object.keys(theme.breakpoints)
     .map((key) => [key, indexedBreakpoints[key]])
     .reduce(
         (prev, [key, breakpoint]) => {
-            prev[key] = `@media (width >= ${breakpoint}px) and (height >= ${breakpoint}px)`;
+            prev[key] = `@media (width >= ${breakpoint}px) and (height >= 480px)`;
             return prev;
         },
         {} as { [index: string]: string },

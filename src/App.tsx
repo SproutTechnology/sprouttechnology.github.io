@@ -14,13 +14,15 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Wave />
-            <Navbar showMenu={true}></Navbar>
-            <Hero />
-            <WeAreSprout />
-            <OurVision />
-            {/*<OurCases></OurCases>*/}
-            <Contact />
+            <div className="fade">
+                <Wave />
+                <Navbar showMenu={true}></Navbar>
+                <Hero />
+                <WeAreSprout />
+                <OurVision />
+                {/*<OurCases></OurCases>*/}
+                <Contact />
+            </div>
         </ThemeProvider>
     );
 }
