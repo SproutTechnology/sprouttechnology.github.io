@@ -22,9 +22,9 @@ function Contact() {
                             <ContactPerson>
                                 CEO
                                 <br />
-                                natasha.diba@wearesprout.se
+                               oliver.stanisic@wearesprout.se
                                 <br />
-                                +4673-4058400
+                                +4670-7508261
                             </ContactPerson>
                             <ContactPerson>
                                 Head of Recruitment
@@ -32,13 +32,6 @@ function Contact() {
                                 sara.ljungberg@wearesprout.se
                                 <br />
                                 +4676-8535530
-                            </ContactPerson>
-                            <ContactPerson>
-                                Head of Sales
-                                <br />
-                                oliver.stanisic@wearesprout.se
-                                <br />
-                                +4670-7508261
                             </ContactPerson>
                         </p>
                     </Article>
