@@ -62,13 +62,15 @@ function renderContactBlock(): void {
   );
 }
 
+const expectedContactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT ?? '/api/contact';
+
 describe('ContactBlock', () => {
   afterEach(() => {
     vi.restoreAllMocks();
     cleanup();
   });
 
-  it('submits the contact form to the cloudfront api path', async () => {
+  it('submits the contact form to the configured api endpoint', async () => {
     const user = userEvent.setup();
 
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(
@@ -88,7 +90,7 @@ describe('ContactBlock', () => {
     await user.click(screen.getByRole('button', { name: /send it/i }));
 
     await waitFor(() => {
-      expect(globalThis.fetch).toHaveBeenCalledWith('/api/contact', {
+      expect(globalThis.fetch).toHaveBeenCalledWith(expectedContactEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
