@@ -346,7 +346,6 @@ Sitemap: ${siteUrl}/sitemap.xml
 }
 
 async function writeSitemap(pages: SitePageDefinition[]): Promise<void> {
-  const lastModified = new Date().toISOString();
   const urlEntries = pages
     .map((page) => {
       const localizedLinks = locales
@@ -358,7 +357,6 @@ async function writeSitemap(pages: SitePageDefinition[]): Promise<void> {
 
       return `  <url>
     <loc>${siteUrl}${page.path}</loc>
-    <lastmod>${lastModified}</lastmod>
     <changefreq>${page.kind === 'home' ? 'weekly' : 'monthly'}</changefreq>
     <priority>${page.kind === 'home' ? '1.0' : '0.8'}</priority>
 ${localizedLinks}
