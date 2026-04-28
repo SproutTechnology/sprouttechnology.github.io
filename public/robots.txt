@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wearesprout.se/sitemap.xml
+Sitemap: https://www.wearesprout.se/sitemap.xml

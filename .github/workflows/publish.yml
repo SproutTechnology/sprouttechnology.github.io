@@ -1,4 +1,4 @@
-name: Frontend CI
+name: GitHub Pages
 
 on:
   push:
@@ -10,6 +10,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+    env:
+      VITE_CONTACT_ENDPOINT: ${{ vars.VITE_CONTACT_ENDPOINT }}
     steps:
       - uses: actions/checkout@v4
 
@@ -25,3 +29,27 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm test
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

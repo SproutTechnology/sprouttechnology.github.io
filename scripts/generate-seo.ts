@@ -5,7 +5,7 @@ import { getIndexablePages, type SitePageDefinition } from '../src/i18n/site-pag
 import { translations, type Locale } from '../src/i18n/translations';
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const siteUrl = 'https://wearesprout.se';
+const siteUrl = 'https://www.wearesprout.se';
 const ogImagePath = '/og-image.png';
 const locales: Locale[] = ['en', 'sv'];
 
