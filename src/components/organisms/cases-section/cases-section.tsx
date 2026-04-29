@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import { useCallback, useRef, useState } from 'react';
+import styled from 'styled-components';
 import { photographicImageStyles } from '../../atoms/image-treatment/image-treatment';
 import type { CaseStudyId, CaseStudyItem, SiteContent } from '../../../i18n/site-content';
 import { useTranslation } from '../../../i18n/use-translation';
@@ -7,6 +7,7 @@ import { BodyText } from '../../atoms/body-text/body-text';
 import { EyebrowText } from '../../atoms/eyebrow-text/eyebrow-text';
 import { LabelText } from '../../atoms/label-text/label-text';
 import { Heading3 } from '../../atoms/heading-3/heading-3';
+import { Modal } from '../../molecules/modal';
 import { SectionIntro } from '../../molecules/section-intro/section-intro';
 import { sectionBase } from '../../atoms/layout-primitives/layout-primitives';
 
@@ -147,110 +148,6 @@ const CaseLeadName = styled(BodyText)`
 const CaseCardAction = styled(LabelText)<{ $active: boolean }>`
   color: ${({ theme, $active }) => ($active ? theme.color.primary : theme.color.textMuted)};
   white-space: nowrap;
-`;
-
-const modalOverlayAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
-
-const modalPanelAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-`;
-
-const modalAnimationStyles = css`
-  animation: ${modalPanelAnimation} 220ms ease;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-`;
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  inset: 0;
-  z-index: 240;
-  display: grid;
-  padding: 3rem;
-  background: ${({ theme }) => theme.effect.scrim};
-  backdrop-filter: blur(12px);
-  animation: ${modalOverlayAnimation} 180ms ease;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    padding: 1.5rem;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 1rem;
-  }
-`;
-
-const ModalPanel = styled.article`
-  ${modalAnimationStyles}
-  position: relative;
-  width: min(1280px, 100%);
-  max-height: 100%;
-  margin: auto;
-  overflow: auto;
-  border: 1px solid ${({ theme }) => theme.color.border};
-  background: ${({ theme }) => theme.effect.modalPanelSurface};
-  box-shadow: ${({ theme }) => theme.effect.shadowLg};
-`;
-
-const ModalTopBar = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 20px ${({ theme }) => theme.spacing.sm};
-  background: ${({ theme }) => theme.effect.modalTopBar};
-`;
-
-const CloseButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 10px 14px;
-  border: 1px solid ${({ theme }) => theme.color.borderBright};
-  background: ${({ theme }) => theme.effect.modalButtonSurface};
-  color: ${({ theme }) => theme.color.text};
-  cursor: pointer;
-`;
-
-const CloseButtonIcon = styled.span`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  font-size: 20px;
-  line-height: 1;
-`;
-
-const CloseButtonLabel = styled(LabelText).attrs({
-  as: 'span',
-  $tone: 'default',
-})`
-  letter-spacing: 0.12em;
 `;
 
 const CaseModalBody = styled.div`
@@ -395,35 +292,10 @@ export function CasesSection({ content }: { content: SiteContent }): JSX.Element
   const [activeIndex, setActiveIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const caseButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
   const { t } = useTranslation();
   const activeCase = section.items[activeIndex];
   const activeVisual = activeCase ? getCaseVisual(activeCase) : null;
-
-  useEffect(() => {
-    if (!isModalOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') {
-        setIsModalOpen(false);
-        lastTriggerRef.current?.focus();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isModalOpen]);
 
   const openCase = (index: number): void => {
     setActiveIndex(index);
@@ -431,10 +303,10 @@ export function CasesSection({ content }: { content: SiteContent }): JSX.Element
     setIsModalOpen(true);
   };
 
-  const closeCase = (): void => {
+  const closeCase = useCallback((): void => {
     setIsModalOpen(false);
     lastTriggerRef.current?.focus();
-  };
+  }, []);
 
   const focusCase = (index: number): void => {
     const boundedIndex = Math.max(0, Math.min(index, section.items.length - 1));
@@ -517,27 +389,13 @@ export function CasesSection({ content }: { content: SiteContent }): JSX.Element
       </CasesGrid>
 
       {isModalOpen && activeCase && activeVisual ? (
-        <ModalOverlay
-          aria-hidden="false"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeCase();
-            }
-          }}
+        <Modal
+          panelId="case-modal-panel"
+          labelledBy="case-modal-title"
+          closeLabel={t('ui.cases.closeCaseLabel')}
+          closeButtonLabel={t('ui.cases.closeButtonLabel')}
+          onClose={closeCase}
         >
-          <ModalPanel
-            id="case-modal-panel"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="case-modal-title"
-          >
-            <ModalTopBar>
-              <CloseButton ref={closeButtonRef} type="button" aria-label={t('ui.cases.closeCaseLabel')} onClick={closeCase}>
-                <CloseButtonIcon aria-hidden="true">×</CloseButtonIcon>
-                <CloseButtonLabel>{t('ui.cases.closeButtonLabel')}</CloseButtonLabel>
-              </CloseButton>
-            </ModalTopBar>
-
             <CaseModalBody>
               <CasePreviewMedia>
                 <CasePreviewImage src={activeVisual.url} alt={activeCase.imageAlt} loading="lazy" />
@@ -586,8 +444,7 @@ export function CasesSection({ content }: { content: SiteContent }): JSX.Element
                 </CaseDetailGrid>
               </CasePreviewContent>
             </CaseModalBody>
-          </ModalPanel>
-        </ModalOverlay>
+        </Modal>
       ) : null}
     </Section>
   );
