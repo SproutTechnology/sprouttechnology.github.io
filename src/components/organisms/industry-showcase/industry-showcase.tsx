@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import type { SiteContent } from "../../../i18n/site-content";
 import { useTranslation } from "../../../i18n/use-translation";
+import { useAutoRotate } from "../../../hooks/use-auto-rotate";
+import { useMobileViewport } from "../../../hooks/use-mobile-viewport";
+import { useModalKeyboardLock } from "../../../hooks/use-modal-keyboard-lock";
 import { LabelText } from "../../atoms/label-text/label-text";
 import {
   FullWidthContainer,
@@ -91,13 +94,13 @@ export function IndustryShowcase({
   const items = content.industries.items;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
   const industryButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
   const theme = useTheme();
   const { t } = useTranslation();
+  const isMobileViewport = useMobileViewport(theme.breakpoints.mobile);
   const activeItem = items[activeIndex];
   const activeVisual = activeItem ? getIndustryVisual(activeItem) : null;
 
@@ -119,10 +122,14 @@ export function IndustryShowcase({
     }
   };
 
-  const closeIndustryModal = (): void => {
+  const closeIndustryModal = useCallback((): void => {
     setIsMobileModalOpen(false);
     lastTriggerRef.current?.focus();
-  };
+  }, []);
+
+  const rotateIndustry = useCallback((): void => {
+    setActiveIndex((current) => (current + 1) % items.length);
+  }, [items.length]);
 
   const handleIndustryKeyDown = (index: number, key: string): void => {
     if (key === "ArrowRight" || key === "ArrowDown") {
@@ -146,56 +153,18 @@ export function IndustryShowcase({
   };
 
   useEffect(() => {
-    const handleResize = (): void => {
-      setIsMobileViewport(getIsMobileViewport(theme.breakpoints.mobile));
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [theme.breakpoints.mobile]);
-
-  useEffect(() => {
     if (!isMobileViewport) {
       setIsMobileModalOpen(false);
     }
   }, [isMobileViewport]);
 
-  useEffect(() => {
-    if (!isMobileModalOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === "Escape") {
-        closeIndustryModal();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isMobileModalOpen]);
-
-  useEffect(() => {
-    if (isPaused || items.length === 0 || isMobileViewport) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % items.length);
-    }, autoRotateIntervalMs);
-
-    return () => window.clearInterval(intervalId);
-  }, [isPaused, isMobileViewport, items.length]);
+  useModalKeyboardLock(isMobileModalOpen, closeButtonRef, closeIndustryModal);
+  useAutoRotate({
+    disabled: isPaused || isMobileViewport,
+    intervalMs: autoRotateIntervalMs,
+    itemCount: items.length,
+    onRotate: rotateIndustry,
+  });
 
   return (
     <IndustrySection id="industries" data-section="industries">
@@ -290,18 +259,4 @@ export function IndustryShowcase({
       </FullWidthContainer>
     </IndustrySection>
   );
-}
-
-function getIsMobileViewport(mobileBreakpoint: string): boolean {
-  if (typeof window === "undefined") {
-    return false;
-  }
-
-  const breakpointValue = Number.parseInt(mobileBreakpoint, 10);
-
-  if (Number.isNaN(breakpointValue)) {
-    return false;
-  }
-
-  return window.innerWidth <= breakpointValue;
 }
