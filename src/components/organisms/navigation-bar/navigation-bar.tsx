@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import type { SiteContent } from '../../../i18n/site-content';
 import { getHomePath, getPageForPath } from '../../../i18n/site-pages';
@@ -13,6 +13,7 @@ import { NavigationPanel } from './navigation-panel';
 import { focusRingStyles } from './navigation-styles';
 import { useNavigationEntrance } from './use-navigation-entrance';
 import { useNavigationMenuLock } from './use-navigation-menu-lock';
+import { useNavigationScrollspy } from './use-navigation-scrollspy';
 
 const navFadeUp = keyframes`
   from {
@@ -158,7 +159,6 @@ const Dimmer = styled.div<{ $open: boolean }>`
 
 export function NavigationBar({ content }: { content: SiteContent }): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentSectionHref, setCurrentSectionHref] = useState<string | null>(null);
   const hasEntered = useNavigationEntrance();
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const { mode, toggleMode } = useThemeMode();
@@ -193,42 +193,10 @@ export function NavigationBar({ content }: { content: SiteContent }): JSX.Elemen
     onClose: closeMenu,
     triggerRef: hamburgerRef,
   });
-
-  useEffect(() => {
-    if (!isHomePage || typeof window === 'undefined') {
-      setCurrentSectionHref(null);
-      return;
-    }
-
-    const sectionHrefs = links
-      .map((link) => link.href)
-      .filter((href) => href.startsWith('#'));
-
-    const updateCurrentSection = (): void => {
-      const offset = 180;
-      const scrollPosition = window.scrollY + offset;
-      let nextSectionHref = sectionHrefs[0] ?? null;
-
-      sectionHrefs.forEach((href) => {
-        const section = document.getElementById(href.slice(1));
-
-        if (section && section.offsetTop <= scrollPosition) {
-          nextSectionHref = href;
-        }
-      });
-
-      setCurrentSectionHref(nextSectionHref);
-    };
-
-    updateCurrentSection();
-    window.addEventListener('scroll', updateCurrentSection, { passive: true });
-    window.addEventListener('resize', updateCurrentSection);
-
-    return () => {
-      window.removeEventListener('scroll', updateCurrentSection);
-      window.removeEventListener('resize', updateCurrentSection);
-    };
-  }, [links, isHomePage]);
+  const currentSectionHref = useNavigationScrollspy({
+    isEnabled: isHomePage,
+    links,
+  });
 
   const handleLocaleChange = (nextLocale: Locale): void => {
     closeMenu();
