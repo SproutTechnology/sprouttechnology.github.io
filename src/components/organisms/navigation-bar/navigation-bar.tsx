@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import type { SiteContent } from '../../../i18n/site-content';
 import { getHomePath, getPageForPath } from '../../../i18n/site-pages';
@@ -12,6 +12,7 @@ import { NavigationActions } from './navigation-actions';
 import { NavigationPanel } from './navigation-panel';
 import { focusRingStyles } from './navigation-styles';
 import { useNavigationEntrance } from './use-navigation-entrance';
+import { useNavigationMenuLock } from './use-navigation-menu-lock';
 
 const navFadeUp = keyframes`
   from {
@@ -183,28 +184,15 @@ export function NavigationBar({ content }: { content: SiteContent }): JSX.Elemen
     },
   ];
 
-  useEffect(() => {
-    if (!isMenuOpen) {
-      return;
-    }
+  const closeMenu = useCallback((): void => {
+    setIsMenuOpen(false);
+  }, []);
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const handleKeyDown = (event: KeyboardEvent): void => {
-      if (event.key === 'Escape') {
-        setIsMenuOpen(false);
-        hamburgerRef.current?.focus();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isMenuOpen]);
+  useNavigationMenuLock({
+    isOpen: isMenuOpen,
+    onClose: closeMenu,
+    triggerRef: hamburgerRef,
+  });
 
   useEffect(() => {
     if (!isHomePage || typeof window === 'undefined') {
@@ -241,10 +229,6 @@ export function NavigationBar({ content }: { content: SiteContent }): JSX.Elemen
       window.removeEventListener('resize', updateCurrentSection);
     };
   }, [links, isHomePage]);
-
-  const closeMenu = (): void => {
-    setIsMenuOpen(false);
-  };
 
   const handleLocaleChange = (nextLocale: Locale): void => {
     closeMenu();
