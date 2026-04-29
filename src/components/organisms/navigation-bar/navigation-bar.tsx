@@ -11,6 +11,7 @@ import { pageWidth } from '../../atoms/layout-primitives/layout-primitives';
 import { NavigationActions } from './navigation-actions';
 import { NavigationPanel } from './navigation-panel';
 import { focusRingStyles } from './navigation-styles';
+import { useNavigationEntrance } from './use-navigation-entrance';
 
 const navFadeUp = keyframes`
   from {
@@ -157,7 +158,7 @@ const Dimmer = styled.div<{ $open: boolean }>`
 export function NavigationBar({ content }: { content: SiteContent }): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSectionHref, setCurrentSectionHref] = useState<string | null>(null);
-  const [hasEntered, setHasEntered] = useState(false);
+  const hasEntered = useNavigationEntrance();
   const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const { mode, toggleMode } = useThemeMode();
   const { locale, setLocale, t } = useTranslation();
@@ -181,22 +182,6 @@ export function NavigationBar({ content }: { content: SiteContent }): JSX.Elemen
       quote: t('ui.navigation.workQuote'),
     },
   ];
-
-  useEffect(() => {
-    let firstFrameId = 0;
-    let secondFrameId = 0;
-
-    firstFrameId = window.requestAnimationFrame(() => {
-      secondFrameId = window.requestAnimationFrame(() => {
-        setHasEntered(true);
-      });
-    });
-
-    return () => {
-      window.cancelAnimationFrame(firstFrameId);
-      window.cancelAnimationFrame(secondFrameId);
-    };
-  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
