@@ -7,13 +7,8 @@ import { useThemeMode } from '../../../theme/theme-provider';
 import { BrandText } from '../../atoms/brand-text/brand-text';
 import { buttonTextStyles } from '../../atoms/button-text/button-text';
 import { pageWidth } from '../../atoms/layout-primitives/layout-primitives';
-
-const focusRingStyles = css`
-  &:focus-visible {
-    outline: 1px solid ${({ theme }) => theme.color.primary};
-    outline-offset: 4px;
-  }
-`;
+import { NavigationActions } from './navigation-actions';
+import { focusRingStyles, VisuallyHidden } from './navigation-styles';
 
 const navFadeUp = keyframes`
   from {
@@ -116,18 +111,6 @@ const BrandLink = styled.a`
   text-transform: ${({ theme }) => theme.typography.brand.textTransform};
 `;
 
-const VisuallyHidden = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-`;
-
 const DesktopNav = styled.div`
   display: flex;
   align-items: center;
@@ -152,101 +135,6 @@ const DesktopNavLink = styled.a<{ $active: boolean }>`
   &:hover {
     color: ${({ theme }) => theme.color.text};
   }
-`;
-
-const NavRight = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: ${({ theme }) => theme.spacing.sm};
-  }
-`;
-
-const languageToggleTextStyles = css`
-  font-family: inherit;
-  font-size: ${({ theme }) => theme.typography.label.fontSize};
-  line-height: ${({ theme }) => theme.typography.label.lineHeight};
-  font-weight: ${({ theme }) => theme.typography.label.fontWeight};
-  letter-spacing: ${({ theme }) => theme.typography.label.letterSpacing};
-  text-transform: ${({ theme }) => theme.typography.label.textTransform};
-`;
-
-const LanguageToggleButton = styled.button`
-  ${focusRingStyles}
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0;
-  border: none;
-  background: none;
-  color: ${({ theme }) => theme.color.text};
-  cursor: pointer;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
-`;
-
-const LanguageOption = styled.span<{ $active: boolean }>`
-  ${languageToggleTextStyles}
-  opacity: ${({ $active }) => ($active ? 0.96 : 0.42)};
-  transition: opacity 0.2s ease;
-
-  ${LanguageToggleButton}:hover & {
-    opacity: ${({ $active }) => ($active ? 1 : 0.64)};
-  }
-`;
-
-const LanguageDivider = styled.span`
-  ${languageToggleTextStyles}
-  opacity: 0.28;
-`;
-
-const navIconButtonStyles = css`
-  ${focusRingStyles}
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border: none;
-  background: none;
-  color: ${({ theme }) => theme.color.textMuted};
-  cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    color: ${({ theme }) => theme.color.text};
-    transform: translateY(-1px);
-  }
-`;
-
-const ThemeToggleButton = styled.button`
-  ${navIconButtonStyles}
-`;
-
-const ContactButton = styled.a`
-  ${navIconButtonStyles}
-  text-decoration: none;
-`;
-
-const MenuButton = styled.button`
-  ${navIconButtonStyles}
-`;
-
-const NavActionIcon = styled.svg<{ $visible?: boolean }>`
-  display: ${({ $visible = true }) => ($visible ? 'block' : 'none')};
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 `;
 
 /* ─── DROPDOWN PANEL ──────────────────────────────────────────── */
@@ -626,93 +514,37 @@ export function NavigationBar({ content }: { content: SiteContent }): JSX.Elemen
             ) : null}
           </DesktopNav>
 
-          <NavRight>
-            <LanguageToggleButton
-              type="button"
-              aria-label={locale === 'sv' ? t('ui.languageToggle.switchToEnglish') : t('ui.languageToggle.switchToSwedish')}
-              title={locale === 'sv' ? t('ui.languageToggle.switchToEnglish') : t('ui.languageToggle.switchToSwedish')}
-              onClick={handleLocaleToggle}
-            >
-              <LanguageOption $active={locale === 'sv'} aria-hidden="true">SV</LanguageOption>
-              <LanguageDivider aria-hidden="true">/</LanguageDivider>
-              <LanguageOption $active={locale === 'en'} aria-hidden="true">EN</LanguageOption>
-              <VisuallyHidden>
-                {locale === 'sv'
+          <NavigationActions
+            contactHref={content.navigation.cta.href}
+            hamburgerRef={hamburgerRef}
+            isMenuOpen={isMenuOpen}
+            labels={{
+              contact: t('ui.navigation.openContact'),
+              languageSelected:
+                locale === 'sv'
                   ? `${t('ui.languageToggle.swedishSelected')} — ${t('ui.languageToggle.switchToEnglish')}`
-                  : `${t('ui.languageToggle.englishSelected')} — ${t('ui.languageToggle.switchToSwedish')}`}
-              </VisuallyHidden>
-            </LanguageToggleButton>
-
-            <ThemeToggleButton
-              type="button"
-              aria-label={mode === 'dark' ? t('ui.themeToggle.switchToLight') : t('ui.themeToggle.switchToDark')}
-              title={mode === 'dark' ? t('ui.themeToggle.switchToLight') : t('ui.themeToggle.switchToDark')}
-              onClick={toggleMode}
-            >
-              <NavActionIcon
-                $visible={mode === 'dark'}
-                aria-hidden={mode !== 'dark'}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </NavActionIcon>
-              <NavActionIcon
-                $visible={mode === 'light'}
-                aria-hidden={mode !== 'light'}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="m4.93 4.93 1.41 1.41" />
-                <path d="m17.66 17.66 1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="m6.34 17.66-1.41 1.41" />
-                <path d="m19.07 4.93-1.41 1.41" />
-              </NavActionIcon>
-              <VisuallyHidden>
-                {mode === 'dark' ? t('ui.themeToggle.darkSelected') : t('ui.themeToggle.lightSelected')}
-              </VisuallyHidden>
-            </ThemeToggleButton>
-
-            <ContactButton href={content.navigation.cta.href} aria-label={t('ui.navigation.openContact')} onClick={closeMenu}>
-              <NavActionIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </NavActionIcon>
-            </ContactButton>
-
-            <MenuButton
-              ref={hamburgerRef}
-              type="button"
-              aria-label={isMenuOpen ? t('ui.navigation.closeMenu') : t('ui.navigation.openMenu')}
-              aria-expanded={isMenuOpen}
-              aria-controls="nav-panel"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-            >
-              <NavActionIcon
-                $visible={!isMenuOpen}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                aria-hidden={isMenuOpen}
-              >
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </NavActionIcon>
-              <NavActionIcon
-                $visible={isMenuOpen}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                aria-hidden={!isMenuOpen}
-              >
-                <line x1="6" y1="6" x2="18" y2="18" />
-                <line x1="18" y1="6" x2="6" y2="18" />
-              </NavActionIcon>
-            </MenuButton>
-          </NavRight>
+                  : `${t('ui.languageToggle.englishSelected')} — ${t('ui.languageToggle.switchToSwedish')}`,
+              languageToggle:
+                locale === 'sv'
+                  ? t('ui.languageToggle.switchToEnglish')
+                  : t('ui.languageToggle.switchToSwedish'),
+              menu: isMenuOpen ? t('ui.navigation.closeMenu') : t('ui.navigation.openMenu'),
+              themeSelected:
+                mode === 'dark'
+                  ? t('ui.themeToggle.darkSelected')
+                  : t('ui.themeToggle.lightSelected'),
+              themeToggle:
+                mode === 'dark'
+                  ? t('ui.themeToggle.switchToLight')
+                  : t('ui.themeToggle.switchToDark'),
+            }}
+            locale={locale}
+            mode={mode}
+            onCloseMenu={closeMenu}
+            onLocaleToggle={handleLocaleToggle}
+            onMenuToggle={() => setIsMenuOpen((prev) => !prev)}
+            onThemeToggle={toggleMode}
+          />
         </NavigationInner>
       </Navigation>
 
