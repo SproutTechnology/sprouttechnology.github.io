@@ -63,8 +63,21 @@ const IndustryUnderline = styled.span`
   transition: width 0.3s ease;
 `;
 
+const IndustryDescription = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
+
 const Cell = styled.button<{ $active: boolean }>`
   position: relative;
+  z-index: ${({ $active }) => ($active ? 1 : 0)};
   overflow: hidden;
   padding: 28px 20px 24px;
   border: none;
@@ -78,21 +91,33 @@ const Cell = styled.button<{ $active: boolean }>`
     background: ${({ theme }) => theme.color.surface};
   }
 
-  &:hover ${IndustryName}, &[aria-pressed="true"] ${IndustryName} {
+  &:focus-visible {
+    z-index: 2;
+    outline: 1px solid ${({ theme }) => theme.color.primary};
+    outline-offset: 4px;
+  }
+
+  &:hover ${IndustryName},
+  &:focus-visible ${IndustryName},
+  &[aria-pressed="true"] ${IndustryName} {
     color: ${({ theme, $active }) =>
       $active ? theme.color.primary : theme.color.text};
   }
 
-  &:hover ${IndustryDot}, &[aria-pressed="true"] ${IndustryDot} {
+  &:hover ${IndustryDot},
+  &:focus-visible ${IndustryDot},
+  &[aria-pressed="true"] ${IndustryDot} {
     background: ${({ theme }) => theme.color.primary};
     transform: scale(1.4);
   }
 
-  &:hover ${IndustryUnderline}, &[aria-pressed="true"] ${IndustryUnderline} {
+  &:hover ${IndustryUnderline},
+  &:focus-visible ${IndustryUnderline},
+  &[aria-pressed="true"] ${IndustryUnderline} {
     width: 100%;
   }
 
-  &[aria-pressed="true"] ${IndustryTag} {
+  &:focus-visible ${IndustryTag}, &[aria-pressed="true"] ${IndustryTag} {
     color: ${({ theme }) => theme.color.primaryDim};
   }
 `;
@@ -110,14 +135,22 @@ export function IndustryCell({
   onMouseEnter,
   onMouseLeave,
 }: IndustryCellProps): JSX.Element {
+  const descriptionId = `industry-description-${item.id}`;
+
   return (
     <Cell
       ref={industryRef}
       type="button"
       $active={isActive}
+      aria-label={`${item.name}, ${item.tag}`}
       aria-pressed={isActive}
-      aria-controls={isMobileViewport ? "industry-modal-panel" : "industry-preview-panel"}
-      aria-expanded={isMobileViewport ? isMobileModalOpen && isActive : undefined}
+      aria-controls={
+        isMobileViewport ? "industry-modal-panel" : "industry-preview-panel"
+      }
+      aria-describedby={descriptionId}
+      aria-expanded={
+        isMobileViewport ? isMobileModalOpen && isActive : undefined
+      }
       aria-haspopup={isMobileViewport ? "dialog" : undefined}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -143,6 +176,7 @@ export function IndustryCell({
       <IndustryDot />
       <IndustryName>{item.name}</IndustryName>
       <IndustryTag $status={item.status}>{item.tag}</IndustryTag>
+      <IndustryDescription id={descriptionId}>{item.description}</IndustryDescription>
       <IndustryUnderline />
     </Cell>
   );

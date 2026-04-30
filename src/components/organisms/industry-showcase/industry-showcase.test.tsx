@@ -72,6 +72,14 @@ describe('IndustryShowcase', () => {
     );
   });
 
+  it('exposes industry descriptions to assistive technology on focus', () => {
+    renderIndustryShowcase();
+
+    expect(
+      screen.getByRole('button', { name: /automotive & ev/i }),
+    ).toHaveAccessibleDescription('Test description for automotive.');
+  });
+
   it('opens a modal on mobile when an industry is selected', async () => {
     const user = userEvent.setup();
 
