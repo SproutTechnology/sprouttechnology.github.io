@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    overflow-x: clip;
     scroll-behavior: smooth;
   }
 
@@ -24,6 +25,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     min-width: 320px;
+    overflow-x: clip;
     background: ${({ theme }) => theme.color.background};
     color: ${({ theme }) => theme.color.text};
     font-family: ${({ theme }) => theme.typography.mono};

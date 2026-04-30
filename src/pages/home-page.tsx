@@ -22,9 +22,7 @@ export function HomePage({ content }: HomePageProps): JSX.Element {
     <>
       <NavigationBar content={content} />
       <main id="main-content" data-page="home">
-        <Page>
-          <Hero content={content} />
-        </Page>
+        <Hero content={content} />
         <Ticker items={content.ticker} />
         <Page>
           <WhoWeAreSection content={content} />
