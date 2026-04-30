@@ -125,7 +125,7 @@ const SecondaryButton = styled.a`
 
   &:hover {
     border-color: ${({ theme }) => theme.color.textMuted};
-    color: ${({ theme }) => theme.color.text};
+    color: #171714;
     background: #e4e4e4;
   }
 `;
