@@ -12,6 +12,8 @@ interface FamilyTabsProps {
 }
 
 const Tabs = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 0;
   border-left: 1px solid ${({ theme }) => theme.color.border};
@@ -25,13 +27,18 @@ const Tabs = styled.div`
 `;
 
 const TabButton = styled.button<{ $active: boolean }>`
+  position: relative;
+  z-index: ${({ $active }) => ($active ? 1 : 0)};
   flex: 1;
   padding: 16px 20px;
   background: ${({ theme }) => theme.color.background};
   border: none;
   border-right: 1px solid ${({ theme }) => theme.color.border};
-  border-bottom: 1px solid ${({ theme, $active }) => ($active ? theme.color.background : theme.color.border)};
-  color: ${({ theme, $active }) => ($active ? theme.color.primary : theme.color.textDim)};
+  border-bottom: 1px solid
+    ${({ theme, $active }) =>
+      $active ? theme.color.background : theme.color.border};
+  color: ${({ theme, $active }) =>
+    $active ? theme.color.primary : theme.color.textDim};
   cursor: pointer;
   text-align: left;
   transition:
@@ -45,7 +52,14 @@ const TabButton = styled.button<{ $active: boolean }>`
 
   &:hover {
     background: ${({ theme }) => theme.color.surface};
-    color: ${({ theme, $active }) => ($active ? theme.color.primary : theme.color.textMuted)};
+    color: ${({ theme, $active }) =>
+      $active ? theme.color.primary : theme.color.textMuted};
+  }
+
+  &:focus-visible {
+    z-index: 2;
+    outline: 1px solid ${({ theme }) => theme.color.primary};
+    outline-offset: 4px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -60,7 +74,8 @@ const TabCount = styled.span<{ $active: boolean }>`
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
-  color: ${({ theme, $active }) => ($active ? theme.color.primary : theme.color.textDim)};
+  color: ${({ theme, $active }) =>
+    $active ? theme.color.primary : theme.color.textDim};
   transition: color 0.15s ease;
 `;
 
@@ -68,7 +83,8 @@ const TabLabel = styled(LabelText).attrs({
   as: 'span',
   $tone: 'default',
 })<{ $active: boolean }>`
-  color: ${({ theme, $active }) => ($active ? theme.color.primary : theme.color.textDim)};
+  color: ${({ theme, $active }) =>
+    $active ? theme.color.primary : theme.color.textDim};
 `;
 
 export function FamilyTabs({
@@ -97,7 +113,11 @@ export function FamilyTabs({
             $active={isActive}
             onClick={() => onSelect(tab.id)}
             onKeyDown={(event) => {
-              if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+              if (
+                ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(
+                  event.key,
+                )
+              ) {
                 event.preventDefault();
                 onKeyDown(index, event.key);
               }

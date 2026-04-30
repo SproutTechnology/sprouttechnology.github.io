@@ -95,4 +95,26 @@ describe('FamilySection', () => {
     expect(screen.getByText(/quartr/i)).toBeInTheDocument();
     expect(screen.getByText(/sightec/i)).toBeInTheDocument();
   });
+
+  it('exposes focused family items with readable descriptions', async () => {
+    const user = userEvent.setup();
+
+    renderFamilySection();
+
+    expect(screen.getByRole('group', { name: /eq2/i })).toHaveAccessibleDescription(
+      /Operating companies and support\..*Active/i,
+    );
+
+    await user.click(screen.getByRole('tab', { name: /exits/i }));
+
+    expect(
+      screen.getByRole('group', { name: /quartr/i }),
+    ).toHaveAccessibleDescription(/Built, backed, and exited companies\..*Backed & exited/i);
+
+    await user.click(screen.getByRole('tab', { name: /portfolio/i }));
+
+    expect(
+      screen.getByRole('group', { name: /health\s*&\s*femtech/i }),
+    ).toHaveAccessibleDescription(/Hormona, Medituner/i);
+  });
 });

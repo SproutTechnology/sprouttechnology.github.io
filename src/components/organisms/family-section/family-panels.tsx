@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import type {
   FamilyExitItem,
   FamilyInvestmentItem,
@@ -27,6 +27,32 @@ const Panel = styled.div`
   border-top: none;
 `;
 
+const readableItemFocusStyles = css`
+  position: relative;
+  transition:
+    background 0.15s ease,
+    outline-color 0.15s ease;
+
+  &:focus-visible {
+    z-index: 1;
+    outline: 1px solid ${({ theme }) => theme.color.primary};
+    outline-offset: -1px;
+    background: ${({ theme }) => theme.color.surface};
+  }
+`;
+
+const VisuallyHidden = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
+
 const InvestmentList = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,13 +61,13 @@ const InvestmentList = styled.div`
 `;
 
 const InvestmentRow = styled.article`
+  ${readableItemFocusStyles}
   display: grid;
   grid-template-columns: 140px 1fr auto;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xl};
   padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
   background: ${({ theme }) => theme.color.background};
-  transition: background 0.15s ease;
 
   &:hover {
     background: ${({ theme }) => theme.color.surface};
@@ -91,8 +117,10 @@ const InvestmentStatus = styled.span<{ $status: 'active' | 'exited' }>`
   gap: 6px;
   padding: 5px 12px;
   border: 1px solid;
-  color: ${({ theme, $status }) => ($status === 'active' ? theme.color.primary : theme.color.textDim)};
-  border-color: ${({ theme, $status }) => ($status === 'active' ? theme.color.primaryDim : theme.color.borderBright)};
+  color: ${({ theme, $status }) =>
+    $status === 'active' ? theme.color.primary : theme.color.textDim};
+  border-color: ${({ theme, $status }) =>
+    $status === 'active' ? theme.color.primaryDim : theme.color.borderBright};
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -115,9 +143,9 @@ const ExitGrid = styled.div`
 `;
 
 const ExitCard = styled.article`
+  ${readableItemFocusStyles}
   padding: 32px 28px;
   background: ${({ theme }) => theme.color.background};
-  transition: background 0.15s ease;
 
   &:hover {
     background: ${({ theme }) => theme.color.surface};
@@ -179,6 +207,7 @@ const PortfolioWrap = styled.div`
 `;
 
 const PortfolioGroupRow = styled.div`
+  ${readableItemFocusStyles}
   display: grid;
   grid-template-columns: 200px 1fr;
   background: ${({ theme }) => theme.color.background};
@@ -236,28 +265,46 @@ export function InvestmentsPanel({
   return (
     <Panel role="tabpanel" id="family-panel-investments" aria-labelledby="family-tab-investments">
       <InvestmentList>
-        {investments.map((item) => (
-          <InvestmentRow key={item.name}>
-            <div>
-              <InvestmentCompany>{item.name}</InvestmentCompany>
-              <InvestmentSector>{item.sector}</InvestmentSector>
-            </div>
+        {investments.map((item, index) => {
+          const companyId = `family-investment-company-${index}`;
+          const descriptionId = `family-investment-description-${index}`;
+          const statusId = `family-investment-status-${index}`;
+          const statusLabel =
+            item.status === 'active' ? activeStatusLabel : exitedStatusLabel;
 
-            <div>
-              <InvestmentDescription>{item.description}</InvestmentDescription>
-              <InvestmentBarWrap>
-                <InvestmentBar $progress={item.progress} />
-              </InvestmentBarWrap>
-            </div>
+          return (
+            <InvestmentRow
+              key={item.name}
+              role="group"
+              tabIndex={0}
+              aria-labelledby={companyId}
+              aria-describedby={`${descriptionId} ${statusId}`}
+            >
+              <div>
+                <InvestmentCompany id={companyId}>{item.name}</InvestmentCompany>
+                <InvestmentSector>{item.sector}</InvestmentSector>
+              </div>
 
-            <div>
-              <InvestmentStatus $status={item.status}>
-                {item.status === 'active' ? activeStatusLabel : exitedStatusLabel}
-                {item.status === 'exited' ? ' ↑' : null}
-              </InvestmentStatus>
-            </div>
-          </InvestmentRow>
-        ))}
+              <div>
+                <InvestmentDescription id={descriptionId}>
+                  {item.description}
+                </InvestmentDescription>
+                <InvestmentBarWrap aria-hidden="true">
+                  <InvestmentBar $progress={item.progress} />
+                </InvestmentBarWrap>
+              </div>
+
+              <div>
+                <InvestmentStatus id={statusId} $status={item.status}>
+                  {statusLabel}
+                  {item.status === 'exited' ? (
+                    <span aria-hidden="true"> ↑</span>
+                  ) : null}
+                </InvestmentStatus>
+              </div>
+            </InvestmentRow>
+          );
+        })}
       </InvestmentList>
     </Panel>
   );
@@ -267,14 +314,28 @@ export function ExitsPanel({ items, note }: ExitsPanelProps): JSX.Element {
   return (
     <Panel role="tabpanel" id="family-panel-exits" aria-labelledby="family-tab-exits">
       <ExitGrid>
-        {items.map((item) => (
-          <ExitCard key={item.name}>
-            <ExitArrow>↑</ExitArrow>
-            <ExitName>{item.name}</ExitName>
-            <ExitDescription>{item.description}</ExitDescription>
-            <ExitTag>{item.tag}</ExitTag>
-          </ExitCard>
-        ))}
+        {items.map((item, index) => {
+          const exitNameId = `family-exit-name-${index}`;
+          const exitDescriptionId = `family-exit-description-${index}`;
+          const exitTagId = `family-exit-tag-${index}`;
+
+          return (
+            <ExitCard
+              key={item.name}
+              role="group"
+              tabIndex={0}
+              aria-labelledby={exitNameId}
+              aria-describedby={`${exitDescriptionId} ${exitTagId}`}
+            >
+              <ExitArrow aria-hidden="true">↑</ExitArrow>
+              <ExitName id={exitNameId}>{item.name}</ExitName>
+              <ExitDescription id={exitDescriptionId}>
+                {item.description}
+              </ExitDescription>
+              <ExitTag id={exitTagId}>{item.tag}</ExitTag>
+            </ExitCard>
+          );
+        })}
       </ExitGrid>
       <ExitNote>
         <ExitNoteBody>{note}</ExitNoteBody>
@@ -287,16 +348,32 @@ export function PortfolioPanel({ groups }: PortfolioPanelProps): JSX.Element {
   return (
     <Panel role="tabpanel" id="family-panel-portfolio" aria-labelledby="family-tab-portfolio">
       <PortfolioWrap>
-        {groups.map((group) => (
-          <PortfolioGroupRow key={group.label}>
-            <PortfolioGroupLabel>{group.label}</PortfolioGroupLabel>
-            <PortfolioTags>
-              {group.companies.map((company) => (
-                <PortfolioTag key={`${group.label}-${company}`}>{company}</PortfolioTag>
-              ))}
-            </PortfolioTags>
-          </PortfolioGroupRow>
-        ))}
+        {groups.map((group, index) => {
+          const labelId = `family-portfolio-label-${index}`;
+          const companiesId = `family-portfolio-companies-${index}`;
+
+          return (
+            <PortfolioGroupRow
+              key={group.label}
+              role="group"
+              tabIndex={0}
+              aria-labelledby={labelId}
+              aria-describedby={companiesId}
+            >
+              <PortfolioGroupLabel id={labelId}>{group.label}</PortfolioGroupLabel>
+              <PortfolioTags>
+                <VisuallyHidden id={companiesId}>
+                  {group.companies.join(', ')}
+                </VisuallyHidden>
+                {group.companies.map((company) => (
+                  <PortfolioTag key={`${group.label}-${company}`}>
+                    {company}
+                  </PortfolioTag>
+                ))}
+              </PortfolioTags>
+            </PortfolioGroupRow>
+          );
+        })}
       </PortfolioWrap>
     </Panel>
   );
