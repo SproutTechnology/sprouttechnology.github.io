@@ -54,7 +54,7 @@ const TickerTrack = styled.div<{ $started: boolean }>`
   ${({ $started }) =>
     $started &&
     css`
-      animation: ${tickerLoop} 30s linear infinite;
+      animation: ${tickerLoop} 48s linear infinite;
     `}
 
   @media (prefers-reduced-motion: reduce) {
