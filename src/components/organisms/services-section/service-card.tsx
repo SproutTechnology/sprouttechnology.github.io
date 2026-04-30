@@ -2,7 +2,7 @@ import type { RefCallback } from 'react';
 import styled from 'styled-components';
 import type { ServiceItem } from '../../../i18n/site-content';
 import { photographicImageStyles } from '../../atoms/image-treatment/image-treatment';
-import { Heading3 } from '../../atoms/heading-3/heading-3';
+import { BodyText } from '../../atoms/body-text/body-text';
 import { LabelText } from '../../atoms/label-text/label-text';
 import type { ServiceVisual } from './service-visuals';
 
@@ -69,11 +69,11 @@ const ServiceEyebrow = styled(LabelText).attrs({
   display: block;
 `;
 
-const ServiceSummary = styled(Heading3)`
-  color: ${({ theme }) => theme.color.text};
-  font-size: 24px;
-  line-height: 1.15;
-`;
+const ServiceSummary = styled(BodyText).attrs({
+  as: 'div',
+  $size: 'large',
+  $tone: 'default',
+})``;
 
 const CardFooter = styled.div`
   display: flex;
