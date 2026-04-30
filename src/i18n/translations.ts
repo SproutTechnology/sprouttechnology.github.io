@@ -243,7 +243,9 @@ export const translations = {
           {
             number: '// 06',
             title: 'Startups',
-            summary: 'Ideas worth testing properly deserve more than a napkin.',
+            summary:
+              'We invest in great ideas and even greater people by helping them turn ideas into something real.',
+            cardSummary: 'We invest in great ideas and even greater people',
             body: "What if your side idea isn't just a side idea? We've all got one. The thing you think about in the shower, sketch on a napkin, then quietly talk yourself out of. At Sprout, we think those ideas deserve better than a napkin. We give our people time and space to actually explore them. Some will go nowhere and that's okay. A few might turn into something real. One or two might genuinely surprise everyone, including the person who had the idea. We'd love to be in the room when that happens. No pressure though.",
           },
         ],
@@ -903,7 +905,9 @@ export const translations = {
           {
             number: '// 06',
             title: 'Startups',
-            summary: 'Idéer värda att testa ordentligt förtjänar mer än en servett.',
+            summary:
+              'Vi investerar i bra idéer och ännu bättre människor genom att hjälpa dem göra idéer till något verkligt.',
+            cardSummary: 'Vi investerar i bra idéer och ännu bättre människor',
             body: 'Tänk om din sidoidé inte bara är en sidoidé? Vi har alla en. Den saken du tänker på i duschen, skissar på en servett, och sedan tyst pratar dig ur. På Sprout tycker vi att de idéerna förtjänar bättre än en servett. Vi ger våra människor tid och utrymme att faktiskt utforska dem. En del kommer inte att leda någonstans och det är okej. Några få kan bli något på riktigt. En eller två kan genuint överraska alla, inklusive personen som hade idén. Vi vill gärna vara i rummet när det händer. Ingen press dock.',
           },
         ],

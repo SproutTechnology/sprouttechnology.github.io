@@ -96,6 +96,13 @@ const PreviewTitle = styled(Heading3)`
   letter-spacing: -0.03em;
 `;
 
+const PreviewSummary = styled(BodyText)`
+  max-width: 48ch;
+  color: ${({ theme }) => theme.color.text};
+  font-size: 18px;
+  line-height: 1.6;
+`;
+
 const PreviewIntro = styled(BodyText)`
   max-width: 56ch;
   font-size: 15px;
@@ -166,6 +173,7 @@ export function ServiceModal({
               {sectionLabel} — {service.number}
             </PreviewEyebrow>
             <PreviewTitle id="service-modal-title">{service.title}</PreviewTitle>
+            {service.cardSummary ? <PreviewSummary>{service.summary}</PreviewSummary> : null}
             <PreviewIntro>{service.body}</PreviewIntro>
           </PreviewHeader>
 

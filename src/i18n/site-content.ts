@@ -63,6 +63,7 @@ export interface ServiceItem {
   number: string;
   title: string;
   summary: string;
+  cardSummary?: string;
   body: string;
 }
 

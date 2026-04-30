@@ -130,7 +130,7 @@ export function ServiceCard({
 
       <CardContent>
         <ServiceEyebrow>{item.title}</ServiceEyebrow>
-        <ServiceSummary>{item.summary}</ServiceSummary>
+        <ServiceSummary>{item.cardSummary ?? item.summary}</ServiceSummary>
         <CardFooter>
           <ServiceNumber>{item.number}</ServiceNumber>
           <CardAction $active={isActive}>{actionLabel}</CardAction>
