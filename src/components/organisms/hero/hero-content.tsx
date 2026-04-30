@@ -91,6 +91,7 @@ const HeroBodyList = styled.ol<HeroEntranceProps>`
 const HeroBodyItem = styled.li`
   counter-increment: hero-body;
   display: grid;
+  align-items: center;
   grid-template-columns: auto minmax(0, 1fr);
   gap: ${({ theme }) => theme.spacing.sm};
   color: ${({ theme }) => theme.color.textBody};
@@ -102,7 +103,6 @@ const HeroBodyItem = styled.li`
   &::before {
     content: counter(hero-body) ".";
     min-width: 18px;
-    padding-top: 2px;
     color: ${({ theme }) => theme.color.primary};
     font-family: ${({ theme }) => theme.typography.mono};
     font-size: ${({ theme }) => theme.typography.labelSmall.fontSize};
