@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import ScrollToAnchor from "./components/ScrollToAnchor";
-import ScriptInit from "./scripts/ScriptInit";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { GlobalStyles } from './globalStyles';
+import { I18nProvider } from './i18n/use-translation';
+import { ThemeModeProvider } from './theme/theme-provider';
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App />
-            <ScrollToAnchor />
-            <ScriptInit />
-        </BrowserRouter>
-    </React.StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <I18nProvider>
+      <ThemeModeProvider>
+        <GlobalStyles />
+        <App />
+      </ThemeModeProvider>
+    </I18nProvider>
+  </React.StrictMode>,
 );

@@ -1,36 +1,41 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { resolve } from 'node:path';
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import { getIndexablePages } from './src/i18n/site-pages';
 
-// https://vitejs.dev/config/
+const htmlInputs = Object.fromEntries([
+  ['index', resolve(__dirname, 'index.html')],
+  ...getIndexablePages().map((page: ReturnType<typeof getIndexablePages>[number]) => {
+    const entryKey = `${page.path.slice(1)}index`.replace(/\/$/, '').replace(/\/+/g, '/');
+    const entryPath = resolve(__dirname, page.path.slice(1), 'index.html');
+
+    return [entryKey, entryPath];
+  }),
+]);
+
 export default defineConfig({
-    server: {
-        open: true,
+  plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: htmlInputs,
     },
-    plugins: [
-        tsconfigPaths(),
-        react({
-            jsxImportSource: "@emotion/react",
-            plugins: [
-                [
-                    "@swc/plugin-emotion",
-                    {
-                        // default is true. It will be disabled when build type is production.
-                        sourceMap: false,
-                        // default is 'dev-only'.
-                        // autoLabel: "never" | "dev-only" | "always",
-                        autoLabel: "dev-only",
-
-                        // default is '[local]'.
-                        // Allowed values: `[local]` `[filename]` and `[dirname]`
-                        // This option only works when autoLabel is set to 'dev-only' or 'always'.
-                        // It allows you to define the format of the resulting label.
-                        // The format is defined via string where variable parts are enclosed in square brackets [].
-                        // For example labelFormat: "my-classname--[local]", where [local] will be replaced with the name of the variable the result is assigned to.
-                        // labelFormat: string,
-                    },
-                ],
-            ],
-        }),
-    ],
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      all: true,
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['**/*.test.*', '**/*.spec.*', 'src/test/**', '**/*.d.ts'],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 80,
+        statements: 80,
+      },
+    },
+  },
 });
