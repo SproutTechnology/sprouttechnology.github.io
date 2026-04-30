@@ -6,6 +6,7 @@ interface UseNavigationMenuLockOptions {
   triggerRef: RefObject<HTMLButtonElement | null>;
 }
 
+/* Locks page scroll and returns focus when the navigation panel closes. */
 export function useNavigationMenuLock({
   isOpen,
   onClose,

@@ -1,5 +1,6 @@
 import { type RefObject, useEffect } from "react";
 
+/* Locks page scroll and closes an open modal with Escape. */
 export function useModalKeyboardLock(
   isOpen: boolean,
   closeButtonRef: RefObject<HTMLButtonElement>,

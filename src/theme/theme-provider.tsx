@@ -93,6 +93,7 @@ export function ThemeModeProvider({ children, initialMode }: ThemeModeProviderPr
   );
 }
 
+/* Reads and updates the active theme mode from context. */
 export function useThemeMode(): ThemeModeContextValue {
   const context = useContext(ThemeModeContext);
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+/* Tracks whether the viewport is within the mobile breakpoint. */
 export function useMobileViewport(mobileBreakpoint: string): boolean {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
 

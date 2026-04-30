@@ -7,6 +7,7 @@ interface UseAutoRotateOptions {
   onRotate: () => void;
 }
 
+/* Rotates an active item on a timed interval. */
 export function useAutoRotate({
   disabled,
   intervalMs,

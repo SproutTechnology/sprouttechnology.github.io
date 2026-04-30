@@ -6,6 +6,7 @@ interface UseNavigationScrollspyOptions {
   links: NavigationLink[];
 }
 
+/* Tracks the currently active in-page navigation section. */
 export function useNavigationScrollspy({
   isEnabled,
   links,

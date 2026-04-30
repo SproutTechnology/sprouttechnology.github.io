@@ -130,6 +130,7 @@ export function I18nProvider({ children, initialLocale }: I18nProviderProps): JS
   return <TranslationContext.Provider value={value}>{children}</TranslationContext.Provider>;
 }
 
+/* Reads locale state and translation helpers from context. */
 export function useTranslation(): TranslationContextValue {
   const context = useContext(TranslationContext);
 

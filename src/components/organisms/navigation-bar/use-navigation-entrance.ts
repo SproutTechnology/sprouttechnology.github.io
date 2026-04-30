@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+/* Delays navigation entrance animation until after initial paint. */
 export function useNavigationEntrance(): boolean {
   const [hasEntered, setHasEntered] = useState(false);
 

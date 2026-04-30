@@ -210,6 +210,7 @@ export interface SiteContent {
   };
 }
 
+/* Reads the typed site content for the active locale. */
 export function useSiteContent(): SiteContent {
   const { t } = useTranslation();
 
