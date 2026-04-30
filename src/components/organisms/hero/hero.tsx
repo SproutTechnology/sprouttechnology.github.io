@@ -6,9 +6,8 @@ import { HeroContent } from "./hero-content";
 
 const HeroSection = styled.section`
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: clamp(620px, 82vh, 760px);
-  margin-left: calc(50% - 50vw);
   overflow: hidden;
   background: ${({ theme }) => theme.color.background};
   isolation: isolate;
