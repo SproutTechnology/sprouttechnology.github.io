@@ -105,7 +105,7 @@ const PrimaryButton = styled.a`
   transition: background 0.2s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.status.primaryHover};
+    background: ${({ theme }) => theme.color.primaryDim};
   }
 `;
 
