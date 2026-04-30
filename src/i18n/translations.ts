@@ -40,8 +40,12 @@ export const translations = {
         eyebrow: 'Software developers, consultants & investment company',
         headline: ['Great software', "doesn't just support", 'the world. It reshapes it.'],
         mutedLineIndex: 1,
-        description:
-          "We've seen it happen. We've contributed to it. We plan to keep making it happen — alongside people who genuinely give a damn.",
+        descriptionItems: [
+          'You can avoid costly mistakes and make better technical decisions—early.',
+          'You can get a team that owns delivery from idea to launch.',
+          'You can avoid the mistakes that slow teams down.',
+          'You will get incredibly skilled and experienced individuals on your team.',
+        ],
         primaryCta: { label: 'See what we do', href: '#what-we-do' },
         secondaryCta: { label: 'Our portfolio', href: '#our-family' },
         counter: {
@@ -696,8 +700,12 @@ export const translations = {
         eyebrow: 'Mjukvaruutvecklare, konsulter & investeringsbolag',
         headline: ['Bra mjukvara', 'stöttar inte bara', 'världen. Den omformar den.'],
         mutedLineIndex: 1,
-        description:
-          'Vi har sett det hända. Vi har bidragit till det. Och vi tänker fortsätta få det att hända — tillsammans med människor som faktiskt bryr sig.',
+        descriptionItems: [
+          'Du kan undvika dyra misstag och fatta bättre tekniska beslut tidigt.',
+          'Du kan få ett team som äger leveransen från idé till lansering.',
+          'Du kan undvika misstagen som saktar ner team.',
+          'Du får otroligt skickliga och erfarna personer i ditt team.',
+        ],
         primaryCta: { label: 'Se vad vi gör', href: '#what-we-do' },
         secondaryCta: { label: 'Vår portfölj', href: '#our-family' },
         counter: {

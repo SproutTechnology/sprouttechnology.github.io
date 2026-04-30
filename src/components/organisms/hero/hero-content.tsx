@@ -1,6 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
 import type { HeroContent as HeroContentModel } from "../../../i18n/site-content";
-import { BodyText } from "../../atoms/body-text/body-text";
 import { buttonTextStyles } from "../../atoms/button-text/button-text";
 import { Heading1 } from "../../atoms/heading-1/heading-1";
 import { LabelText } from "../../atoms/label-text/label-text";
@@ -78,10 +77,39 @@ const HeroMutedLine = styled.em`
   font-weight: 300;
 `;
 
-const HeroBody = styled(BodyText)<HeroEntranceProps>`
+const HeroBodyList = styled.ol<HeroEntranceProps>`
   ${heroEntrance(290)}
-  max-width: 680px;
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.sm};
+  max-width: 760px;
+  padding: 0;
   margin-bottom: ${({ theme }) => theme.spacing["3xl"]};
+  list-style: none;
+  counter-reset: hero-body;
+`;
+
+const HeroBodyItem = styled.li`
+  counter-increment: hero-body;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.color.textBody};
+  font-size: ${({ theme }) => theme.typography.bodyLarge.fontSize};
+  line-height: ${({ theme }) => theme.typography.bodyLarge.lineHeight};
+  font-weight: ${({ theme }) => theme.typography.bodyLarge.fontWeight};
+  letter-spacing: ${({ theme }) => theme.typography.bodyLarge.letterSpacing};
+
+  &::before {
+    content: counter(hero-body) ".";
+    min-width: 18px;
+    padding-top: 2px;
+    color: ${({ theme }) => theme.color.primary};
+    font-family: ${({ theme }) => theme.typography.mono};
+    font-size: ${({ theme }) => theme.typography.labelSmall.fontSize};
+    line-height: ${({ theme }) => theme.typography.labelSmall.lineHeight};
+    font-weight: ${({ theme }) => theme.typography.labelSmall.fontWeight};
+    letter-spacing: 0;
+  }
 `;
 
 const ActionRow = styled.div<HeroEntranceProps>`
@@ -174,7 +202,11 @@ export function HeroContent({
           </span>
         ))}
       </HeroHeading>
-      <HeroBody $entered={hasEntered}>{content.description}</HeroBody>
+      <HeroBodyList $entered={hasEntered}>
+        {content.descriptionItems.map((item) => (
+          <HeroBodyItem key={item}>{item}</HeroBodyItem>
+        ))}
+      </HeroBodyList>
       <ActionRow $entered={hasEntered}>
         <PrimaryButton href={content.primaryCta.href}>
           {content.primaryCta.label}

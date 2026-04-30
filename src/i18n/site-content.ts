@@ -28,7 +28,7 @@ export interface HeroContent {
   eyebrow: string;
   headline: string[];
   mutedLineIndex: number;
-  description: string;
+  descriptionItems: string[];
   primaryCta: CallToAction;
   secondaryCta: CallToAction;
   counter: {
