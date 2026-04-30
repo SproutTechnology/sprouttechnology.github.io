@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - migration/sprout-v2-replacement
   pull_request:
 
 jobs:
