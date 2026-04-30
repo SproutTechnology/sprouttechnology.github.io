@@ -140,7 +140,7 @@ export function CaseCard({
       }}
     >
       <CardMedia>
-        <CardImage src={visual.url} alt="" loading="lazy" />
+        <CardImage src={visual.url} alt={item.imageAlt} loading="lazy" />
       </CardMedia>
 
       <CardContent>
