@@ -67,8 +67,21 @@ const HeroEyebrow = styled(Eyebrow)<HeroEntranceProps>`
 
 const HeroHeading = styled(Heading1)<HeroEntranceProps>`
   ${heroEntrance(200)}
-  max-width: 900px;
+  max-width: 800px;
   margin-bottom: 48px;
+  text-wrap: pretty;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    max-width: 560px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    max-width: 460px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-width: 100%;
+  }
 `;
 
 const HeroMutedLine = styled.em`

@@ -709,7 +709,10 @@ export const translations = {
         headline: [
           [{ text: 'Bra mjukvara' }],
           [{ text: 'stöttar inte bara', muted: true }],
-          [{ text: 'världen. Den omformar den.' }],
+          [
+            { text: 'världen. Den omformar den. ' },
+            { text: 'AI ändrade bara takten.', muted: true },
+          ],
         ],
         descriptionItems: [
           'Du kan undvika dyra misstag och fatta bättre tekniska beslut tidigt.',
