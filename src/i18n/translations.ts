@@ -38,8 +38,14 @@ export const translations = {
       },
       hero: {
         eyebrow: 'Software developers, consultants & investment company',
-        headline: ['Great software', "doesn't just support", 'the world. It reshapes it.'],
-        mutedLineIndex: 1,
+        headline: [
+          [{ text: 'Great software' }],
+          [{ text: "doesn't just support", muted: true }],
+          [
+            { text: 'the world. It reshapes it. ' },
+            { text: 'AI only changed the pace.', muted: true },
+          ],
+        ],
         descriptionItems: [
           'You can avoid costly mistakes and make better technical decisions—early.',
           'You can get a team that owns delivery from idea to launch.',
@@ -700,8 +706,11 @@ export const translations = {
       },
       hero: {
         eyebrow: 'Mjukvaruutvecklare, konsulter & investeringsbolag',
-        headline: ['Bra mjukvara', 'stöttar inte bara', 'världen. Den omformar den.'],
-        mutedLineIndex: 1,
+        headline: [
+          [{ text: 'Bra mjukvara' }],
+          [{ text: 'stöttar inte bara', muted: true }],
+          [{ text: 'världen. Den omformar den.' }],
+        ],
         descriptionItems: [
           'Du kan undvika dyra misstag och fatta bättre tekniska beslut tidigt.',
           'Du kan få ett team som äger leveransen från idé till lansering.',

@@ -24,10 +24,14 @@ export interface NavigationLink {
 
 export interface CallToAction extends NavigationLink {}
 
+export interface HeroHeadlineSegment {
+  text: string;
+  muted?: boolean;
+}
+
 export interface HeroContent {
   eyebrow: string;
-  headline: string[];
-  mutedLineIndex: number;
+  headline: HeroHeadlineSegment[][];
   descriptionItems: string[];
   primaryCta: CallToAction;
   secondaryCta: CallToAction;

@@ -5,7 +5,7 @@ export type ThemeMode = 'light' | 'dark';
 const typography: DefaultTheme['typography'] = {
   mono: "'JetBrains Mono', monospace",
   heading1: {
-    fontSize: 'clamp(36px, 5vw, 72px)',
+    fontSize: 'clamp(32px, 4.5vw, 64px)',
     lineHeight: '1.1',
     fontWeight: 700,
     letterSpacing: '-0.05em',
